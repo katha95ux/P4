@@ -1,0 +1,348 @@
+/* DEVELOPER: Katha Patel, IS117-001, FALL 2025  */
+
+/*GLOBAL  */
+body {
+    background: linear-gradient(
+            180deg,
+            #f2f7ff 0%,     /* almost white baby-blue */
+            #e9f1ff 35%,    /* soft pastel */
+            #e7f0ff 70%,    /* slightly stronger but still light */
+            #f4f7ff 100%    /* very light bottom */
+    );
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    color: var(--kp-text-main);
+}
+/* Full-page background : soft vibe */
+body {
+    background: linear-gradient(
+            180deg,
+            var(--kp-blue-1) 0%,
+            var(--kp-blue-2) 40%,
+            #f3f6ff 90%
+    );
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    color: var(--kp-text-main);
+}
+
+/* TOP HEADER styling */
+
+.top-header {
+    background: linear-gradient(
+            90deg,
+            #dce9ff,
+            #e9f1ff,
+            #f3f7ff
+    );
+    border-bottom: 1px solid rgba(120, 144, 180, 0.3);
+}
+
+.logo-text {
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    font-size: 0.95rem;
+    color: #0f172a;
+}
+
+.search-input {
+    border-radius: 999px;
+    border: 1.5px solid rgba(120, 144, 180, 0.6);
+    background: #f8fbff;
+}
+
+/* NAV BAR styling */
+
+.main-nav {
+    background: linear-gradient(
+            90deg,
+            #d8e6ff,
+            #e4edff
+    );
+    border-bottom: 1px solid rgba(120, 144, 180, 0.25);
+}
+
+.navbar-nav .nav-link {
+    font-weight: 600;
+    color: #0f172a !important;
+}
+
+.navbar-nav .nav-link.active {
+    color: var(--kp-blue-accent) !important;
+}
+
+/* HERO SECTION styling */
+.hero-section {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+
+    background: linear-gradient(
+            180deg,
+            #edf4ff 0%,
+            #f3f7ff 40%,
+            #ffffff 100%
+    );
+
+    border-radius: 0 0 50px 50px;
+    box-shadow: 0 8px 20px rgba(140, 170, 210, 0.10);
+}
+
+.hero-pill {
+    background: #d1e0ff;
+    color: #1e40af;
+}
+
+/* hero headings stay dark for contrast so it will look better */
+.hero-title {
+    font-size: clamp(2.2rem, 2.8vw, 3rem);
+    font-weight: 700;
+}
+
+.hero-photo-wrapper {
+    width: 340px;
+    height: 340px;
+    border-radius: 50%;
+    padding: 10px;
+
+    background: radial-gradient(circle, #f3f7ff, #e3edff);
+    box-shadow: 0 20px 45px rgba(140, 170, 210, 0.18);
+}
+
+
+.hero-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+/*  CARDS STYLING */
+
+.project-card {
+    background: #ffffffcc;
+    backdrop-filter: blur(6px);
+    border-radius: 1.2rem;
+    box-shadow: 0 15px 40px rgba(120, 150, 200, 0.18);
+}
+
+.badge-soft {
+    background-color: #d7e5ff;
+    color: #1d4ed8;
+}
+
+.card-link-soft {
+    color: #2563eb !important;
+}
+
+/*  FOOTER STYLING */
+
+.footer {
+    background: linear-gradient(
+            180deg,
+            #dbe9ff,
+            #edf3ff
+    );
+    padding: 1rem 0;
+    border-top: 1px solid rgba(120, 144, 180, 0.3);
+}
+
+.footer-text {
+    color: #0f172a;
+    font-weight: 600;
+}
+
+/* RESPONSIVE STYLING */
+
+@media (max-width: 768px) {
+    .hero-photo-wrapper {
+        width: 260px;
+        height: 260px;
+    }
+
+    .navbar-nav.gap-4 {
+        gap: 1.25rem !important;
+    }
+}
+
+/* Contact Page Style */
+.contact-hero {
+    padding-top: 4rem;
+    padding-bottom: 5rem;
+}
+
+/* card that holds the contact form - styling*/
+.contact-card {
+    background: rgba(255, 255, 255, 0.97);
+    border-radius: 1.5rem;
+    box-shadow: 0 20px 45px rgba(15, 23, 42, 0.08);
+}
+
+/* labels a little bolder so the form feels neat I guess */
+.contact-card .form-label {
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+.contact-card .form-control {
+    border-radius: 0.8rem;
+}
+
+/*ABOUT ME PAGE STYLING */
+:root {
+            --kp-bg: #e3f2ff;
+--kp-bg-soft: #f5f9ff;
+--kp-accent: #2563eb;
+--kp-accent-soft: #dbeafe;
+--kp-text-main: #0f172a;
+--kp-text-muted: #64748b;
+}
+
+body {
+    background: radial-gradient(circle at top left,
+    #e0f2fe 0%, #f5f9ff 55%, #ffffff 100%);
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    color: var(--kp-text-main);
+}
+
+/* top logo + search row styling */
+.logo-text {
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+}
+
+.search-form {
+    max-width: 260px;
+    width: 100%;
+}
+
+.search-input {
+    border-radius: 999px;
+    font-size: 0.85rem;
+}
+
+/* navbar */
+.navbar {
+    background-color: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 15px rgba(15, 23, 42, 0.04);
+}
+
+.navbar-nav .nav-link {
+    font-size: 0.95rem;
+}
+
+.navbar-nav .nav-link.active {
+    font-weight: 600;
+    color: var(--kp-accent) !important;
+}
+
+/* about page hero block */
+.page-header {
+    padding: 3rem 0 2rem;
+}
+
+.page-header-inner {
+    background: linear-gradient(135deg, #dbeafe, #eff6ff);
+    border-radius: 24px;
+    padding: 2.5rem 2rem;
+    box-shadow: 0 20px 40px rgba(15, 23, 42, 0.12);
+}
+
+.page-header h1 {
+    font-weight: 700;
+    font-size: clamp(1.9rem, 2.3vw, 2.3rem);
+}
+
+.badge-soft {
+    background-color: var(--kp-accent-soft);
+    color: var(--kp-accent);
+    font-weight: 500;
+    font-size: 0.75rem;
+}
+
+/* cards on about page */
+.section-card {
+    border-radius: 1.2rem;
+    border: none;
+    box-shadow: 0 18px 45px rgba(15, 23, 42, 0.08);
+    background: #ffffff;
+}
+
+/* footer */
+.footer {
+    background-color: #f5f9ff;
+}
+
+.footer-text {
+    font-size: 0.9rem;
+    color: #4b5563;
+}
+/* PROJECTS STYLING */
+body {
+    background: radial-gradient(circle at top left, #e6f1ff, #f4f7ff 55%, #ffffff 100%);
+}
+
+.page-header {
+    padding: 3rem 0 1.5rem;
+}
+
+.page-header h1 {
+    font-weight: 700;
+    font-size: clamp(1.9rem, 2.4vw, 2.4rem);
+}
+
+.page-header p {
+    color: #64748b;
+}
+
+.project-card {
+    border-radius: 1.2rem;
+    border: none;
+    background: #ffffffee;
+    box-shadow: 0 18px 45px rgba(15, 23, 42, 0.06);
+}
+
+.badge-soft-blue {
+    background-color: #e0edff;
+    color: #1d4ed8;
+    font-weight: 500;
+}
+
+footer.footer {
+    background-color: #f5f7ff;
+}
+
+/* SKILLS PAGE STYLE*/
+body {
+    background: radial-gradient(circle at top left, #e6f1ff, #f4f7ff 55%, #ffffff 100%);
+}
+
+.page-header {
+    padding: 3rem 0 1.5rem;
+}
+
+.page-header h1 {
+    font-weight: 700;
+    font-size: clamp(1.9rem, 2.4vw, 2.4rem);
+}
+
+.page-header p {
+    color: #64748b;
+}
+
+.skill-card {
+    border-radius: 1.2rem;
+    border: none;
+    background: #ffffffee;
+    box-shadow: 0 18px 45px rgba(15, 23, 42, 0.06);
+}
+
+.badge-soft-blue {
+    background-color: #e0edff;
+    color: #1d4ed8;
+    font-weight: 500;
+}
+
+footer.footer {
+    background-color: #f5f7ff;
+}

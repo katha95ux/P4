@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<!-- DEVELOPER: Katha Patel, IS117-001, FALL 2025 -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Technical Skills | Katha Patel</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+          crossorigin="anonymous">
+
+    <!-- main blue theme styling -->
+    <link href="IS117-BootstrapStarterFilesV5/css/main.css" rel="stylesheet">
+
+</head>
+<body>
+<div class="container-fluid min-vh-100 d-flex flex-column p-0">
+
+    <!-- NAVBAR (Skills dropdown active on this page) -->
+    <nav class="navbar navbar-expand-md navbar-light shadow-sm bg-white">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">KATHA PATEL</a>
+
+            <button class="navbar-toggler" type="button"
+                    data-bs-toggle="collapse" data-bs-target="#mainNavbar"
+                    aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="mainNavbar">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">About</a>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle active" href="skills.html"
+                           id="projectsDropdown" role="button"
+                           data-bs-toggle="dropdown" aria-expanded="false">
+                            Projects
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="projectsDropdown">
+                            <li><a class="dropdown-item active" href="skills.html">Technical Skills</a></li>
+                            <li><a class="dropdown-item" href="projects.html">Design Projects</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+
+                    <!-- search box in navbar -->
+                    <li class="nav-item ms-3 d-none d-md-block">
+                        <form class="d-flex" role="search">
+                            <input class="form-control form-control-sm"
+                                   type="search" placeholder="Search" aria-label="Search">
+                        </form>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- MAIN CONTENT -->
+    <main class="flex-grow-1">
+        <header class="page-header">
+            <div class="container">
+                <span class="badge rounded-pill badge-soft-blue mb-2">Technical Skills</span>
+                <h1 class="mb-2">Tools and technologies.</h1>
+                <p class="mb-0">
+                    This page summarizes the programming languages, web technologies, and
+                    other skills I’m most comfortable using right now.
+                </p>
+            </div>
+        </header>
+
+        <section class="pb-5">
+            <div class="container">
+                <div class="row g-4">
+
+                    <!-- Programming languages -->
+                    <div class="col-md-6">
+                        <div class="card skill-card h-100">
+                            <div class="card-body">
+                                <h2 class="h5 mb-3">Programming Languages</h2>
+                                <ul class="mb-0 text-muted">
+                                    <li>HTML – semantic structure and clean markup</li>
+                                    <li>CSS – layout, Flexbox, basic animations</li>
+                                    <li>C and C++ – fundamentals of logic and memory</li>
+                                    <li>Java – object-oriented programming basics</li>
+                                    <li>Python – scripting, problem-solving, simple automation</li>
+                                    <li>SQL – writing basic queries and working with datasets</li>
+                                    <li>JavaScript – DOM basics and interactive UI behavior</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Web dev / frameworks -->
+                    <div class="col-md-6">
+                        <div class="card skill-card h-100">
+                            <div class="card-body">
+                                <h2 class="h5 mb-3">Web Development &amp; Frameworks</h2>
+                                <ul class="mb-0 text-muted">
+                                    <li>Responsive layouts with Bootstrap 5 grid system</li>
+                                    <li>Form design using Bootstrap components</li>
+                                    <li>Custom theming with CSS variables (light blue aesthetic)</li>
+                                    <li>Using browser DevTools to inspect and debug layouts</li>
+                                    <li>Version control and collaboration with Git &amp; GitHub</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Design / UX -->
+                    <div class="col-md-6">
+                        <div class="card skill-card h-100">
+                            <div class="card-body">
+                                <h2 class="h5 mb-3">Design &amp; UX Skills</h2>
+                                <ul class="mb-0 text-muted">
+                                    <li>Wireframing pages and user flows</li>
+                                    <li>Choosing color palettes and typography for clarity</li>
+                                    <li>Designing card-based layouts for easy scanning</li>
+                                    <li>Thinking mobile-first and then scaling up to desktop</li>
+                                    <li>Basic use of Figma and other digital design tools</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Other / soft skills -->
+                    <div class="col-md-6">
+                        <div class="card skill-card h-100">
+                            <div class="card-body">
+                                <h2 class="h5 mb-3">Other Skills</h2>
+                                <ul class="mb-0 text-muted">
+                                    <li>Time management and organizing coursework projects</li>
+                                    <li>Working in small teams and communicating clearly</li>
+                                    <li>Documenting work so others can follow my process</li>
+                                    <li>Presenting ideas visually and verbally</li>
+                                    <li>Curiosity and willingness to keep learning new tools</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer page-footer mt-auto py-3 border-top">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-auto">
+                    <span class="text-muted">
+                        &copy; Katha Patel, 2025 &nbsp;|&nbsp; Terms Of Use &nbsp;|&nbsp; Privacy Statement
+                    </span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+</body>
+</html>
