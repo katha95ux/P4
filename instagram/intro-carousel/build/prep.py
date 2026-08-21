@@ -7,9 +7,9 @@ AR = TW/TH
 
 # tag, out, cx, cy, zoom, extend_px, extend_mode, vig, lift, expo, sat, haze, pop
 SPECS = [
-    ('E','slide1', 0.530, 0.500, 1.00, 180, 'blurfade', 0.06, 0.035, 0.99, 1.00, 0.000, 2.3),  # cherry blossom
-    ('D','slide2', 0.476, 0.100, 1.00, 700, 'blurfade', 0.05, 0.075, 1.03, 0.93, 0.006, 1.5),  # matcha
-    ('J','slide3', 0.500, 0.100, 1.00, 520, 'blurfade', 0.05, 0.115, 1.14, 0.90, 0.010, 1.2),  # pizza in the car
+    ('E','slide1', 0.530, 0.500, 1.00,   0, None     , 0.06, 0.035, 0.99, 1.00, 0.000, 2.3),  # cherry blossom
+    ('D','slide2', 0.476, 0.100, 1.00, 320, 'blurfade', 0.05, 0.075, 1.03, 0.93, 0.006, 1.5),  # matcha
+    ('J','slide3', 0.500, 0.100, 1.00, 150, 'blurfade', 0.05, 0.115, 1.14, 0.90, 0.010, 1.2),  # pizza in the car
     ('I','slide4', 0.500, 0.500, 1.00,   0, None,       0.05, 0.125, 1.22, 0.90, 0.010, 1.2),  # bakery case
     ('H','slide5', 0.450, 0.500, 1.00,   0, None,       0.05, 0.120, 1.16, 0.90, 0.010, 1.2),  # hot pot
     ('F','slide6', 0.500, 0.100, 1.00,   0, None,       0.05, 0.060, 1.00, 0.95, 0.004, 1.6),  # bouquet

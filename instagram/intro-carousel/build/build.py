@@ -6,7 +6,7 @@ os.makedirs('html', exist_ok=True)
 
 INK   = '#3A2A20'      # warm brown handwriting
 GOLD  = '#A8710F'      # deep ochre — swashes, sparkles, hearts
-CREAM = '252,248,241'  # the scrim tint every slide fades through
+CREAM = '252,248,241'  # the tint every scrim fades through
 
 CSS = """
 *{margin:0;padding:0;box-sizing:border-box}
@@ -21,16 +21,15 @@ html,body{background:#F7F2EA}
   background:linear-gradient(180deg,rgba(__CR__,__TSA__) 0%,rgba(__CR__,calc(__TSA__*.72)) 46%,rgba(__CR__,0) 100%)}
 .scrim-b{position:absolute;left:0;right:0;bottom:0;height:__BSH__;
   background:linear-gradient(0deg,rgba(__CR__,__BSA__) 0%,rgba(__CR__,calc(__BSA__*.68)) 40%,rgba(__CR__,0) 100%)}
-.ink{position:absolute;color:__INK__;letter-spacing:.012em;
-  text-shadow:0 1px 16px rgba(255,252,246,.9),0 1px 3px rgba(255,252,246,.75)}
-.h1{font-weight:600;line-height:1.04}
-.h2{font-weight:600;line-height:1.10}
+.ink{position:absolute;color:__INK__;letter-spacing:.014em;font-weight:500;
+  text-shadow:0 1px 16px rgba(255,252,246,.92),0 1px 3px rgba(255,252,246,.78)}
+.line{line-height:1.30}
 .swash{display:block}
+.rule{display:flex;margin-top:10px}
+.rule.c{justify-content:center}
+.rule.r{justify-content:flex-end}
 .dood{display:inline-block;vertical-align:middle}
 .float{position:absolute}
-.li{display:flex;align-items:flex-start}
-.li .bul{flex:0 0 38px;padding-top:.30em;line-height:0}
-.li .txt{flex:1 1 auto}
 """
 
 def page(title, photo, blocks, tsh, tsa, bsh, bsa):
@@ -43,116 +42,83 @@ def page(title, photo, blocks, tsh, tsa, bsh, bsa):
             f'<div class="wash"></div><div class="scrim-t"></div><div class="scrim-b"></div>\n'
             f'{blocks}\n</div></body></html>')
 
-def bullets(items, bullet, size, lh=1.28, gap=18):
-    rows = ''.join(
-        f'<div class="li" style="margin-bottom:{0 if i==len(items)-1 else gap}px">'
-        f'<span class="bul">{bullet}</span><span class="txt">{t}</span></div>'
-        for i,t in enumerate(items))
-    return f'<div style="font-size:{size}px;font-weight:500;line-height:{lh}">{rows}</div>'
-
 sp = lambda s=22, op=1.0: sparkle(s, color=GOLD, op=op)
-ht = lambda s=22, f=False: heart(s, color=GOLD, fill=f)
+ht = lambda s=22: heart(s, color=GOLD)
 sw = lambda w: swash(w, color=GOLD)
 
-# ── 1 · hi, I'm Sanika ────────────────────────────── cherry blossom
+# Each slide is composed differently on purpose — low-left, top-right, centred,
+# low-right, top-left, centre — so the set never lands text in the same corner twice.
+
+# ── 1 · the hello ─────────────────────── cherry blossom · LOW LEFT, large
 s1 = f"""
-<div class="ink" style="left:82px;top:58px">
-  <div class="h1" style="font-size:86px">hi, I&rsquo;m Sanika&nbsp;{sp(30)}</div>
-  <div style="margin-top:8px">{sw(386)}</div>
+<div class="ink" style="left:84px;bottom:104px;right:120px">
+  <div class="line" style="font-size:96px;font-weight:600">hi, I&rsquo;m Sanika&nbsp;{sp(32)}</div>
+  <div class="rule">{sw(408)}</div>
+  <div class="line" style="margin-top:16px;font-size:44px">born &rsquo;01 &middot; scorpio &middot; still becoming</div>
 </div>
-<div class="ink" style="left:86px;bottom:86px;font-size:52px;font-weight:500;line-height:1.44">
-  <div>born &rsquo;01</div>
-  <div>scorpio&nbsp;&nbsp;{scorpio(44, color=INK)}</div>
-  <div>figuring it out<br>as I go&nbsp;&nbsp;{ht(28)}</div>
-</div>
-<div class="float" style="right:94px;top:236px">{sp(26,.9)}</div>
+<div class="float" style="right:104px;top:130px">{sp(26,.85)}</div>
 """
 
-# ── 2 · a little bit of everything ────────────────── matcha
+# ── 2 · what this is ──────────────────── matcha · TOP RIGHT, right-aligned
 s2 = f"""
-<div class="ink" style="left:82px;top:74px;right:78px">
-  <div class="h2" style="font-size:64px">a little bit of everything:</div>
-  <div style="margin-top:6px">{sw(500)}</div>
-  <div style="margin-top:22px">{bullets([
-    "food I&rsquo;m obsessed with",
-    "places I want to remember",
-    "things I&rsquo;m learning",
-    "books + little life lessons",
-    "trying to become 1% better"], sp(21), 43)}</div>
+<div class="ink" style="right:84px;top:96px;left:150px;text-align:right">
+  <div class="line" style="font-size:58px">this is where I keep<br>the things I don&rsquo;t want to forget</div>
+  <div class="rule r">{sw(300)}</div>
 </div>
-<div class="float" style="right:92px;top:86px">{sp(26,.9)}</div>
-<div class="float" style="right:106px;bottom:146px">{ht(34)}</div>
+<div class="float" style="left:118px;top:128px">{sp(24,.8)}</div>
 """
 
-# ── 3 · a few things about me ─────────────────────── pizza in the car
+# ── 3 · the unglamorous ones ──────────── pizza in the car · TOP CENTRE
 s3 = f"""
-<div class="ink" style="left:82px;top:52px;right:78px">
-  <div class="h2" style="font-size:62px">a few things about me:</div>
-  <div style="margin-top:6px">{sw(452)}</div>
-  <div style="margin-top:20px">{bullets([
-    "I love making food from scratch",
-    "I romanticize little things",
-    "I can spend way too long in a bookstore",
-    "I&rsquo;m always working on something",
-    f"and yes&hellip; I overthink everything&nbsp;{sp(20)}"], ht(21), 42)}</div>
+<div class="ink" style="left:96px;right:96px;top:88px;text-align:center">
+  <div class="line" style="font-size:60px">most of my favorite meals<br>happened somewhere like this</div>
+  <div class="rule c">{sw(276)}</div>
 </div>
-<div class="float" style="right:92px;top:64px">{sp(24,.85)}</div>
+<div class="float" style="left:104px;top:250px">{ht(30)}</div>
+<div class="float" style="right:108px;top:236px">{sp(24,.85)}</div>
 """
 
-# ── 4 · food I'm obsessed with ────────────────────── bakery case
+# ── 4 · from scratch ──────────────────── bakery case · LOW RIGHT, right-aligned
 s4 = f"""
-<div class="ink" style="left:82px;top:64px;right:78px">
-  <div class="h2" style="font-size:70px">food I&rsquo;m obsessed with</div>
-  <div style="margin-top:6px">{sw(486)}</div>
-  <div style="margin-top:26px;font-size:52px;font-weight:500;line-height:1.34">
-    exhibit A&nbsp;&nbsp;{sp(24)}
-  </div>
+<div class="ink" style="right:84px;bottom:100px;left:180px;text-align:right">
+  <div class="line" style="font-size:52px">I make most things from scratch&nbsp;&mdash;<br>
+    I come here for the ones I can&rsquo;t yet&nbsp;{ht(26)}</div>
+  <div class="rule r">{sw(208)}</div>
 </div>
-<div class="float" style="left:296px;top:286px;opacity:.95">{arrow(78,110,color=GOLD,sw=5.2)}</div>
-<div class="float" style="right:98px;top:80px">{ht(36)}</div>
+<div class="float" style="left:110px;top:110px">{sp(26,.85)}</div>
 """
 
-# ── 5 · places I want to remember ─────────────────── hot pot
+# ── 5 · the table ─────────────────────── hot pot · TOP LEFT, quiet
 s5 = f"""
-<div class="ink" style="left:82px;top:62px;right:78px">
-  <div class="h2" style="font-size:66px">places I want<br>to remember</div>
-  <div style="margin-top:8px">{sw(372)}</div>
-  <div style="margin-top:18px;font-size:44px;font-weight:500;line-height:1.32">
-    and everything<br>I ordered there&nbsp;&nbsp;{ht(26)}
-  </div>
+<div class="ink" style="left:84px;top:92px;right:190px">
+  <div class="line" style="font-size:58px">the table is the point&nbsp;&mdash;<br>the food is just how we stay longer</div>
+  <div class="rule">{sw(288)}</div>
 </div>
-<div class="float" style="right:100px;top:74px">{sp(26,.9)}</div>
-<div class="float" style="right:150px;top:178px">{sp(20,.75)}</div>
+<div class="float" style="right:100px;top:104px">{ht(34)}</div>
+<div class="float" style="right:158px;top:206px">{sp(20,.7)}</div>
 """
 
-# ── 6 · so, why am I here? ────────────────────────── bouquet
+# ── 6 · the invitation ────────────────── bouquet · CENTRED, closer low right
 s6 = f"""
-<div class="ink" style="left:82px;top:54px;right:78px">
-  <div class="h2" style="font-size:68px">so&hellip; why am I here?</div>
-  <div style="margin-top:6px">{sw(470)}</div>
-  <div style="margin-top:26px;font-size:46px;font-weight:500;line-height:1.38">
-    I wanted a little corner of the internet<br>
-    to document the things I love,<br>
-    the things I&rsquo;m learning,<br>
-    and the person I&rsquo;m becoming.
-  </div>
+<div class="ink" style="left:96px;right:96px;top:104px;text-align:center">
+  <div class="line" style="font-size:58px">I&rsquo;m looking for the people<br>who notice the same small things</div>
+  <div class="rule c">{sw(300)}</div>
 </div>
-<div class="ink" style="right:104px;bottom:92px;text-align:right">
-  <div class="h2" style="font-size:62px">stay awhile&nbsp;&nbsp;{ht(34)}</div>
-  <div style="margin-top:4px;display:flex;justify-content:flex-end">{sw(268)}</div>
+<div class="ink" style="right:104px;bottom:96px;text-align:right">
+  <div class="line" style="font-size:64px;font-weight:600">stay awhile&nbsp;&nbsp;{ht(34)}</div>
+  <div class="rule r" style="margin-top:6px">{sw(252)}</div>
 </div>
-<div class="float" style="right:112px;top:96px">{ht(40)}</div>
-<div class="float" style="right:176px;top:196px">{sp(24,.9)}</div>
-<div class="float" style="left:120px;top:470px">{sp(22,.75)}</div>
+<div class="float" style="left:126px;top:400px">{sp(24,.8)}</div>
+<div class="float" style="right:132px;top:372px">{sp(20,.65)}</div>
 """
 
 SLIDES = [
- ('slide1','Slide 1 — hi, I’m Sanika',            'slide1.jpg', s1, '30%','.40','40%','.56'),
- ('slide2','Slide 2 — a little bit of everything','slide2.jpg', s2, '52%','.56','24%','.28'),
- ('slide3','Slide 3 — a few things about me',     'slide3.jpg', s3, '46%','.44','22%','.24'),
- ('slide4','Slide 4 — food I’m obsessed with',    'slide4.jpg', s4, '38%','.78','22%','.26'),
- ('slide5','Slide 5 — places I want to remember', 'slide5.jpg', s5, '46%','.88','24%','.30'),
- ('slide6','Slide 6 — so, why am I here?',        'slide6.jpg', s6, '46%','.34','30%','.24'),
+ ('slide1','Slide 1 — hi, I’m Sanika',      'slide1.jpg', s1, '22%','.24','44%','.66'),
+ ('slide2','Slide 2 — what I keep here',    'slide2.jpg', s2, '34%','.60','20%','.22'),
+ ('slide3','Slide 3 — favorite meals',      'slide3.jpg', s3, '34%','.46','20%','.22'),
+ ('slide4','Slide 4 — from scratch',        'slide4.jpg', s4, '22%','.30','36%','.76'),
+ ('slide5','Slide 5 — the table',           'slide5.jpg', s5, '38%','.86','20%','.26'),
+ ('slide6','Slide 6 — stay awhile',         'slide6.jpg', s6, '42%','.34','30%','.26'),
 ]
 
 for name,title,photo,blocks,tsh,tsa,bsh,bsa in SLIDES:

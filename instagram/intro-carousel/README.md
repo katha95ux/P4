@@ -5,14 +5,16 @@ Pinterest-y handwritten-overlay look: photo → handwritten thought →
 tiny doodles → lots of breathing room.
 
 Light/airy treatment throughout — a faded-film grade, warm cream fades,
-and warm brown handwriting rather than cream-on-dark.
+and warm brown handwriting rather than cream-on-dark. One soft thought
+per slide, and each slide composed in a different part of the frame so
+the set never lands its text in the same corner twice.
 
-    slides/slide1.jpg   hi, I'm Sanika              (cherry blossom portrait)
-    slides/slide2.jpg   a little bit of everything  (strawberry matcha)
-    slides/slide3.jpg   a few things about me       (pizza in the car)
-    slides/slide4.jpg   food I'm obsessed with      (bakery case)
-    slides/slide5.jpg   places I want to remember   (hot pot dinner)
-    slides/slide6.jpg   so… why am I here?          (bouquet)
+    slides/slide1.jpg   hi, I'm Sanika              (cherry blossom)   low left
+    slides/slide2.jpg   what I keep here            (matcha)           top right
+    slides/slide3.jpg   favorite meals              (pizza in the car) top centre
+    slides/slide4.jpg   from scratch                (bakery case)      low right
+    slides/slide5.jpg   the table is the point      (hot pot)          top left
+    slides/slide6.jpg   stay awhile                 (bouquet)          centre
 
 `caption.md` has the caption, hashtags and posting notes.
 `contact-sheet.jpg` shows all four side by side.

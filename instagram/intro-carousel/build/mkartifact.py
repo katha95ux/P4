@@ -16,34 +16,34 @@ def img(n):
     return 'data:image/jpeg;base64,' + base64.b64encode(open(f'out/{n}_web.jpg','rb').read()).decode()
 
 SLIDES = [
-    ('slide1','intro','hi, I&rsquo;m Sanika',
-     "Sanika smiling under a cherry blossom tree, wearing a pink top. Text: hi, I'm Sanika — born '01, scorpio, figuring it out as I go."),
-    ('slide2','what you&rsquo;ll find','a little bit of everything',
-     "A strawberry matcha latte held over a sidewalk. Text: a little bit of everything — food, places, things I'm learning, books, becoming 1% better."),
-    ('slide3','about me','a few things about me',
-     "Sanika eating a slice of pizza in a car. Text: a few things about me."),
-    ('slide4','the food','food I&rsquo;m obsessed with',
-     "A bakery case full of croissants and brioche doughnuts. Text: food I'm obsessed with — exhibit A."),
-    ('slide5','the places','places I want to remember',
-     "Sanika at a hot pot restaurant with a divided broth pot on the table. Text: places I want to remember, and everything I ordered there."),
-    ('slide6','why I&rsquo;m here','so&hellip; why am I here?',
-     "Sanika resting her chin on her hand beside a bouquet of pink peonies and roses. Text: so… why am I here? stay awhile."),
+    ('slide1','the hello','hi, I&rsquo;m Sanika',
+     "Sanika smiling under a cherry blossom tree in a pink top. Handwritten: hi, I'm Sanika — born '01, scorpio, still becoming."),
+    ('slide2','what this is','this is where I keep',
+     "A strawberry matcha latte held over a sidewalk. Handwritten: this is where I keep the things I don't want to forget."),
+    ('slide3','the meals','most of my favorite meals',
+     "Sanika eating a slice of pizza in a car. Handwritten: most of my favorite meals happened somewhere like this."),
+    ('slide4','from scratch','I make most things from scratch',
+     "A bakery case full of croissants and brioche doughnuts. Handwritten: I make most things from scratch — I come here for the ones I can't yet."),
+    ('slide5','the table','the table is the point',
+     "Sanika at a hot pot restaurant with a divided broth pot on the table. Handwritten: the table is the point — the food is just how we stay longer."),
+    ('slide6','the invitation','stay awhile',
+     "Sanika resting her chin on her hand beside a bouquet of pink peonies and roses. Handwritten: I'm looking for the people who notice the same small things. Stay awhile."),
 ]
 
 CAPTION = """hi, I'm Sanika ✷
 
-I wanted a little corner of the internet — so here it is.
+this is where I'm keeping the things I don't want to forget — the food I make badly at first and then well, the tables I stayed too long at, the small ordinary hours nobody photographs.
 
-food I'm obsessed with, places I want to remember, books, and me trying to become 1% better. that's the whole plan.
+I'm here to find the people who notice the same things.
 
-born '01 · scorpio · figuring it out as I go ♡
+born '01 · scorpio · still becoming
 
-tell me one thing you're romanticizing lately ♡"""
+stay awhile ♡"""
 
-TAGS = ("#introducingmyself #introductionpost #newhere #gettoknowme #romanticizeyourlife "
-        "#romanticizingmylife #slowliving #littlethings #1percentbetter #lifestyleblogger "
-        "#contentcreator #creatorcommunity #foodiegram #strawberrymatcha #bakerylove "
-        "#hotpotlover #bookstagram #booklover #dailyaesthetic #aestheticfeed #softlife")
+TAGS = ("#introducingmyself #introductionpost #newhere #gettoknowme #slowliving "
+        "#littlethings #quietmoments #romanticizeyourlife #softlife #madefromscratch "
+        "#homecook #bakinglove #foodiegram #strawberrymatcha #bakerylove "
+        "#hotpotlover #bookstagram #dailyaesthetic #aestheticfeed #filmlook")
 
 frames = '\n'.join(f'''      <figure class="frame">
         <div class="marg"><span class="num">{i+1}</span><span class="role">{role}</span></div>
@@ -182,8 +182,9 @@ dd b{{font-weight:600}}
       <path d="M4 7.2 C52 1.6 99 9.8 150 5.4 C201 1 250 9.2 296 3.6" stroke="var(--gold)"
             stroke-width="3.2" stroke-linecap="round"/>
     </svg>
-    <p class="lede">Photo, one handwritten thought, a couple of small doodles, and a lot of
-      breathing room &mdash; six slides that introduce you without explaining you to death.</p>
+    <p class="lede">One soft thought per slide, a couple of small doodles, and a lot of
+      breathing room &mdash; six slides that introduce you without explaining you to death. Each one is
+      composed in a different part of the frame, so the set never puts its text in the same corner twice.</p>
   </header>
 
   <div class="strip">
@@ -223,6 +224,9 @@ dd b{{font-weight:600}}
           new visitors see.</dd></div>
         <div><dt>Six is the practical ceiling</dt><dd>Instagram allows 20, but swipe-through falls off hard
           after about six &mdash; slides 5 and 6 are already doing well to be seen at all.</dd></div>
+        <div><dt>The words never repeat</dt><dd>Each slide says something the others don&rsquo;t: the hello, what
+          this is, the meals, what you make, why the table matters, the invitation. Nothing is restated
+          from an earlier slide, and the caption doesn&rsquo;t restate the slides either.</dd></div>
         <div><dt>Freed up for later</dt><dd>The homemade pizza, the fitting-room selfie, the windy-hair
           portrait, the brown bomber shot and the dusk sunset are all out of the carousel and all strong
           enough to headline their own post.</dd></div>
@@ -243,7 +247,8 @@ dd b{{font-weight:600}}
     photo carries the same airy faded-film grade &mdash; matte lifted blacks, brightened midtones, a breath
     of cream haze &mdash; tuned per photo so a dim hot-pot restaurant and a backlit portrait under blossoms
     land in the same world. On slides&nbsp;1&ndash;3 the frame is extended above the photo and the scene
-    continued upward, which is where the text gets its clean room. Source and build scripts are in
+    continued upward, which is where the text gets its clean room &mdash; far less of it than before, now that
+    each slide carries a line or two instead of a list. Source and build scripts are in
     <code>instagram/intro-carousel/</code>.</p>
 </div>
 
