@@ -1,31 +1,33 @@
 # Instagram intro carousel
 
-Six-slide 4:5 introduction carousel (1080 × 1350), built to a
-Pinterest-y handwritten-overlay look: photo → handwritten thought →
-tiny doodles → lots of breathing room.
+Eleven-slide 4:5 introduction carousel (1080 × 1350) in a marker-pen
+annotation style: fat headers in crimson, purple and black, hand-drawn
+circles around titles, double and triple underlines, big drawn arrows,
+dash bullets and hook arrows — written straight onto the photograph the
+way you'd annotate a printed picture.
 
-Light/airy treatment throughout — a faded-film grade, warm cream fades,
-and warm brown handwriting rather than cream-on-dark. One soft thought
-per slide, and each slide composed in a different part of the frame so
-the set never lands its text in the same corner twice.
+    slides/slide01.jpg  hello! I'm Sanika          (cherry blossom)
+    slides/slide02.jpg  What you'll find here      (fitting room)
+    slides/slide03.jpg  Fun Facts about me         (dusk / sunset)
+    slides/slide04.jpg  I make most things...      (homemade pizza)
+    slides/slide05.jpg  The best meals...          (pizza in the car)
+    slides/slide06.jpg  Places I want to remember  (hot pot)
+    slides/slide07.jpg  Things I can't make (yet)  (bakery case)
+    slides/slide08.jpg  Currently obsessed         (matcha)
+    slides/slide09.jpg  Things I'm learning        (windy hair)
+    slides/slide10.jpg  Why I'm actually here      (brown bomber)
+    slides/slide11.jpg  that's me!                 (bouquet)
 
-    slides/slide1.jpg   hi, I'm Sanika              (cherry blossom)   low left
-    slides/slide2.jpg   what I keep here            (matcha)           top right
-    slides/slide3.jpg   favorite meals              (pizza in the car) top centre
-    slides/slide4.jpg   from scratch                (bakery case)      low right
-    slides/slide5.jpg   the table is the point      (hot pot)          top left
-    slides/slide6.jpg   stay awhile                 (bouquet)          centre
-
-`caption.md` has the caption, hashtags and posting notes.
-`contact-sheet.jpg` shows all four side by side.
+`caption.md` has the caption, hashtags, alt text and posting notes.
+`contact-sheet.jpg` shows all eleven together.
 
 ## How it's built
 
 | file | what it does |
 | --- | --- |
-| `build/prep.py` | crops each photo to 4:5, extends the canvas where a slide needs clean room for text, applies the airy faded-film grade — per-slide exposure, black lift, saturation, haze, contrast and vignette, so a dim restaurant shot and a backlit portrait land in the same world |
-| `build/doodles.py` | inline-SVG hand-drawn bits — gold underline swashes, sparkles, hearts, arrows, the scorpio glyph |
-| `build/build.py` | lays out each slide as a self-contained HTML page (Caveat embedded as base64, so it renders identically anywhere) |
+| `build/prep.py` | crops each photo to 4:5, extends the canvas where a slide needs clean room for text, and applies a deliberately light grade — the inspo's photos are unfiltered, so these get only a nudge of exposure for the dim interiors, a little snap and a little grain |
+| `build/doodles.py` | inline-SVG marker annotations — wobbly circles that overshoot where they close, one/two/three-stroke underlines, fat arrows, hook arrows, dashes, stars, hearts, burst marks |
+| `build/build.py` | lays out each slide as a self-contained HTML page. Three embedded faces: Permanent Marker (headers), Patrick Hand (body), Caveat (script accents) |
 | `build/render.js` | screenshots each `.stage` at 2× with Playwright, then the images are downsampled to 1080 × 1350 |
 
 Rebuild:
@@ -41,8 +43,10 @@ original camera files.
 
 ## Type & colour
 
-- Handwriting: **Caveat** (400–700), embedded
-- Ink: warm brown `#3A2A20` · accents: deep ochre `#A8710F`
-- Scrims fade through warm cream `rgb(252,248,241)`, tuned per slide —
-  gentle over the bright photos, strong over the dim interiors, where
-  they read as a soft milky band rather than a dark one
+- Headers: **Permanent Marker** · body: **Patrick Hand** · accents: **Caveat**
+- Ink rotates by slide: black `#17151A`, crimson `#C0264A`, purple `#4A1CA8`,
+  red `#E23B2E` for the hook-arrow answers, white on the dark frames
+- No wash over the photograph. Legibility comes from a four-way text
+  outline (white behind dark ink, black behind light ink) plus a light
+  directional veil only where a slide genuinely needs it — so the words
+  still read as written *on* the picture rather than on a panel above it

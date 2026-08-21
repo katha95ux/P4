@@ -1,45 +1,81 @@
-# Hand-drawn SVG doodles: gold underline swashes, sparkles, hearts, arrows, scorpio glyph.
-GOLD  = '#F2C86E'
-CREAM = '#FCF7EC'
+# Marker-pen annotation doodles: wobbly circles, multi-underlines, fat arrows,
+# hook arrows, dashes, stars, hearts and burst marks. All deliberately imperfect.
 
-def swash(w, h=22, color=GOLD, sw=5.0, double=True):
-    d2 = f'<path d="M26,17.2 C74,12.4 126,19.6 182,14.4 C222,10.8 254,16 274,12.8" fill="none" stroke="{color}" stroke-width="{sw*0.62:.1f}" stroke-linecap="round" opacity=".78"/>' if double else ''
-    return (f'<svg class="swash" width="{w}" height="{h}" viewBox="0 0 300 22" preserveAspectRatio="none" '
-            f'fill="none" xmlns="http://www.w3.org/2000/svg">'
-            f'<path d="M5,10.6 C52,3.4 99,14.6 150,8.6 C201,2.6 250,13.4 295,6.2" fill="none" stroke="{color}" '
-            f'stroke-width="{sw}" stroke-linecap="round"/>{d2}</svg>')
+BLACK, CRIMSON, PURPLE, RED, WHITE = '#17151A', '#C0264A', '#4A1CA8', '#E23B2E', '#FFFFFF'
 
-def sparkle(s=26, color=GOLD, op=1.0):
-    return (f'<svg class="dood" width="{s}" height="{s}" viewBox="0 0 24 24" opacity="{op}" '
-            f'xmlns="http://www.w3.org/2000/svg"><path d="M12 1.1 C12.95 7.55 16.45 11.05 22.9 12 '
-            f'C16.45 12.95 12.95 16.45 12 22.9 C11.05 16.45 7.55 12.95 1.1 12 C7.55 11.05 11.05 7.55 12 1.1 Z" '
-            f'fill="{color}"/></svg>')
+def _svg(w, h, vb, body, extra=''):
+    return (f'<svg class="dood" width="{w}" height="{h}" viewBox="{vb}" fill="none" '
+            f'xmlns="http://www.w3.org/2000/svg"{extra}>{body}</svg>')
 
-def heart(s=24, color=GOLD, fill=False, sw=2.1):
-    style = f'fill="{color}"' if fill else f'fill="none" stroke="{color}" stroke-width="{sw}" stroke-linejoin="round"'
-    return (f'<svg class="dood" width="{s}" height="{s*22//24}" viewBox="0 0 24 22" '
-            f'xmlns="http://www.w3.org/2000/svg"><path d="M12 20.2 C5.6 15.3 1.9 11.7 1.9 7.9 '
-            f'A5.15 5.15 0 0 1 12 5.5 A5.15 5.15 0 0 1 22.1 7.9 C22.1 11.7 18.4 15.3 12 20.2 Z" {style}/></svg>')
+def circle_round(w, h=None, color=CRIMSON, sw=5.0):
+    """A hand-drawn oval that overshoots where it closes — like a marker circling a title."""
+    h = h or int(w*0.52)
+    p = ('M30,54 C24,22 80,6 126,9 C172,12 198,32 194,58 C190,86 138,98 92,95 '
+         'C48,92 18,78 19,57 C20,40 46,22 82,15')
+    return _svg(w, h, '0 0 214 104',
+                f'<path d="{p}" stroke="{color}" stroke-width="{sw}" stroke-linecap="round"/>',
+                ' preserveAspectRatio="none"')
 
-def scorpio(s=46, color=CREAM, sw=2.5):
-    return (f'<svg class="dood" width="{s}" height="{s*23//34}" viewBox="0 0 34 23" fill="none" '
-            f'stroke="{color}" stroke-width="{sw}" stroke-linecap="round" stroke-linejoin="round" '
-            f'xmlns="http://www.w3.org/2000/svg">'
-            f'<path d="M2 20.4 L2 8.9 A3.55 3.55 0 0 1 9.1 8.9 L9.1 20.4"/>'
-            f'<path d="M9.1 8.9 A3.55 3.55 0 0 1 16.2 8.9 L16.2 20.4"/>'
-            f'<path d="M16.2 8.9 A3.55 3.55 0 0 1 23.3 8.9 L23.3 18.6 L31.2 10.7"/>'
-            f'<path d="M31.2 10.7 L24.4 11.3 M31.2 10.7 L30.6 17.5"/></svg>')
+def underline(w, n=1, color=BLACK, sw=5.0, h=None):
+    """One, two or three roughly parallel marker strokes."""
+    rows = [('M4,8 C58,3 118,12 178,5 C226,0 268,8 296,4', 1.0),
+            ('M12,17 C64,13 124,21 182,14 C224,9 262,16 288,12', .92),
+            ('M22,26 C70,22 126,29 180,23 C218,19 250,25 276,21', .84)]
+    h = h or (10 + 9*n)
+    body = ''.join(f'<path d="{d}" stroke="{color}" stroke-width="{sw*s:.1f}" stroke-linecap="round"/>'
+                   for d, s in rows[:n])
+    return _svg(w, h, f'0 0 300 {10+9*n}', body, ' preserveAspectRatio="none"')
 
-def arrow(w=74, h=104, color=GOLD, sw=4.6, flip=False):
-    t = ' transform="scale(-1,1) translate(-74,0)"' if flip else ''
-    return (f'<svg class="dood" width="{w}" height="{h}" viewBox="0 0 74 104" fill="none" stroke="{color}" '
-            f'stroke-width="{sw}" stroke-linecap="round" xmlns="http://www.w3.org/2000/svg"><g{t}>'
-            f'<path d="M9 7 C44 21 60 50 47 88"/>'
-            f'<path d="M34 74 L47 90 L62 76"/></g></svg>')
+def big_arrow(w=170, h=52, color=BLACK, sw=6.0, flip=False):
+    """Long straight marker arrow, chunky open head."""
+    t = ' transform="scale(-1,1) translate(-200,0)"' if flip else ''
+    body = (f'<g{t}><path d="M8,29 C56,26 112,32 176,28" stroke="{color}" stroke-width="{sw}" '
+            f'stroke-linecap="round"/>'
+            f'<path d="M146,10 L182,28 L147,47" stroke="{color}" stroke-width="{sw}" '
+            f'stroke-linecap="round" stroke-linejoin="round"/></g>')
+    return _svg(w, h, '0 0 200 58', body)
 
-def arrow_hook(w=96, h=86, color=CREAM, sw=4.0):
-    """short curl-and-point arrow, like the inspo's slide-3 flourish"""
-    return (f'<svg class="dood" width="{w}" height="{h}" viewBox="0 0 96 86" fill="none" stroke="{color}" '
-            f'stroke-width="{sw}" stroke-linecap="round" xmlns="http://www.w3.org/2000/svg">'
-            f'<path d="M8 8 C46 4 76 20 70 58"/>'
-            f'<path d="M56 44 L70 62 L84 46"/></svg>')
+def hook_arrow(w=70, h=58, color=RED, sw=4.4):
+    """The little down-then-right arrow used to attach an answer under a question."""
+    body = (f'<path d="M9,5 C9,26 11,39 30,41 L56,41" stroke="{color}" stroke-width="{sw}" '
+            f'stroke-linecap="round"/>'
+            f'<path d="M45,31 L59,41 L45,51" stroke="{color}" stroke-width="{sw}" '
+            f'stroke-linecap="round" stroke-linejoin="round"/>')
+    return _svg(w, h, '0 0 66 56', body)
+
+def dash(w=34, color=BLACK, sw=4.6):
+    body = f'<path d="M3,7 C11,4 24,9 33,5" stroke="{color}" stroke-width="{sw}" stroke-linecap="round"/>'
+    return _svg(w, int(w*0.35), '0 0 36 12', body)
+
+def arrow_sm(w=42, color=BLACK, sw=4.4):
+    body = (f'<path d="M3,14 L33,14" stroke="{color}" stroke-width="{sw}" stroke-linecap="round"/>'
+            f'<path d="M25,6 L37,14 L25,22" stroke="{color}" stroke-width="{sw}" '
+            f'stroke-linecap="round" stroke-linejoin="round"/>')
+    return _svg(w, int(w*0.67), '0 0 42 28', body)
+
+def star(s=26, color=BLACK):
+    p = ('M13,1 C14,8.6 17.4,12 25,13 C17.4,14 14,17.4 13,25 '
+         'C12,17.4 8.6,14 1,13 C8.6,12 12,8.6 13,1 Z')
+    return _svg(s, s, '0 0 26 26', f'<path d="{p}" fill="{color}"/>')
+
+def star5(s=28, color=BLACK):
+    p = 'M14,1.5 L17.6,10.2 L27,11 L19.9,17.2 L22,26.3 L14,21.4 L6,26.3 L8.1,17.2 L1,11 L10.4,10.2 Z'
+    return _svg(s, s, '0 0 28 28', f'<path d="{p}" fill="{color}"/>')
+
+def heart(s=26, color=CRIMSON, fill=True, sw=3.2):
+    style = f'fill="{color}"' if fill else f'stroke="{color}" stroke-width="{sw}" stroke-linejoin="round"'
+    p = ('M13,22.4 C5.6,16.8 1.8,12.8 1.8,8.4 A5.6,5.6 0 0 1 13,5.8 '
+         'A5.6,5.6 0 0 1 24.2,8.4 C24.2,12.8 20.4,16.8 13,22.4 Z')
+    return _svg(s, int(s*0.92), '0 0 26 24', f'<path d="{p}" {style}/>')
+
+def burst(s=44, color=BLACK):
+    """Three fat wedges radiating — the marks flanking a shouted name."""
+    body = (f'<path d="M2,20 L20,10 L18,17 Z" fill="{color}"/>'
+            f'<path d="M3,31 L23,28 L19,34 Z" fill="{color}"/>'
+            f'<path d="M9,41 L25,35 L23,42 Z" fill="{color}"/>')
+    return _svg(s, s, '0 0 30 48', body)
+
+def squiggle(w=120, color=CRIMSON, sw=4.2):
+    body = (f'<path d="M4,16 C18,4 30,26 44,15 C58,4 70,26 84,15 C96,6 108,20 116,12" '
+            f'stroke="{color}" stroke-width="{sw}" stroke-linecap="round"/>')
+    return _svg(w, int(w*0.25), '0 0 120 30', body)
