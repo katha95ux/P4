@@ -7,17 +7,18 @@ AR = TW/TH
 
 # tag, out, cx, cy, zoom, extend_px, extend_mode, expo, pop, sat, vig
 SPECS = [
-    ('E','slide01', 0.530, 0.500, 1.00, 520, 'blurfade', 1.00, 1.15, 1.02, 0.06),  # cherry blossom
-    ('K','slide02', 0.500, 0.100, 1.00,   0, None,       1.05, 1.10, 1.00, 0.06),  # fitting room
-    ('B','slide03', 0.500, 0.100, 1.00,   0, None,       1.00, 1.10, 1.06, 0.07),  # sunset fence
-    ('G','slide04', 0.500, 0.100, 1.00, 560, 'blurfade', 1.02, 1.10, 1.02, 0.06),  # homemade pizza
-    ('J','slide05', 0.500, 0.100, 1.00, 260, 'blurfade', 1.08, 1.05, 1.00, 0.06),  # pizza in the car
-    ('H','slide06', 0.450, 0.500, 1.00,   0, None,       1.10, 1.05, 1.00, 0.06),  # hot pot
-    ('I','slide07', 0.500, 0.440, 1.00,   0, None,       1.12, 1.05, 1.00, 0.06),  # bakery case
-    ('D','slide08', 0.476, 0.100, 1.00, 320, 'blurfade', 1.04, 1.10, 1.02, 0.06),  # matcha
-    ('A','slide09', 0.557, 0.500, 1.00,   0, None,       1.02, 1.12, 1.02, 0.07),  # windy hair
-    ('C','slide10', 0.500, 0.180, 1.00, 240, 'blurfade', 1.03, 1.12, 1.02, 0.06),  # brown bomber
-    ('F','slide11', 0.500, 0.100, 1.00,   0, None,       1.00, 1.10, 1.02, 0.05),  # bouquet
+    ('L','slide01', 0.500, 0.100, 1.00, 420, 'blurfade', 1.03, 1.10, 1.02, 0.05),  # sticky-note wall
+    ('E','slide02', 0.530, 0.500, 1.00, 640, 'blurfade', 1.00, 1.15, 1.02, 0.06),  # cherry blossom
+    ('K','slide03', 0.500, 0.100, 1.00,   0, None,       1.05, 1.10, 1.00, 0.06),  # fitting room
+    ('B','slide04', 0.500, 0.100, 1.00,   0, None,       1.00, 1.10, 1.06, 0.07),  # sunset fence
+    ('G','slide05', 0.500, 0.100, 1.00, 560, 'blurfade', 1.02, 1.10, 1.02, 0.06),  # homemade pizza
+    ('J','slide06', 0.500, 0.100, 1.00, 260, 'blurfade', 1.08, 1.05, 1.00, 0.06),  # pizza in the car
+    ('H','slide07', 0.450, 0.500, 1.00,   0, None,       1.10, 1.05, 1.00, 0.06),  # hot pot
+    ('I','slide08', 0.500, 0.440, 1.00,   0, None,       1.12, 1.05, 1.00, 0.06),  # bakery case
+    ('D','slide09', 0.476, 0.100, 1.00, 320, 'blurfade', 1.04, 1.10, 1.02, 0.06),  # matcha
+    ('A','slide10', 0.557, 0.500, 1.00,   0, None,       1.02, 1.12, 1.02, 0.07),  # windy hair
+    ('C','slide11', 0.500, 0.180, 1.00, 240, 'blurfade', 1.03, 1.12, 1.02, 0.06),  # brown bomber
+    ('F','slide12', 0.500, 0.100, 1.00,   0, None,       1.00, 1.10, 1.02, 0.05),  # bouquet
 ]
 
 def crop45(im, cx, cy, zoom):

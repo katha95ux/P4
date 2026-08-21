@@ -17,32 +17,34 @@ def img(n):
 
 SLIDES = [
     ('slide01','hello','hello! I&rsquo;m Sanika',
-     "Sanika under a cherry blossom tree. Handwritten: hello! I'm Sanika — born 2001, Scorpio, still figuring it out."),
+     "Sanika in a white knit sweater in front of a wall of numbered yellow sticky notes. Handwritten: hello! I'm Sanika — born 2001, Scorpio, still figuring it out."),
     ('slide02','what you&rsquo;ll find','What you&rsquo;ll find here',
-     "Sanika taking a mirror photo in a fitting room. Handwritten: what you'll find here — food I make from scratch, places worth remembering, books, figuring out my 20s."),
-    ('slide03','fun facts','Fun Facts about me',
+     "Sanika under a cherry blossom tree. Handwritten: what you'll find here."),
+    ('slide03','things I always do','Things I always do',
+     'Sanika taking a mirror photo in a fitting room. Handwritten: things I always do.'),
+    ('slide04','fun facts','Fun Facts about me',
      'Sanika at dusk in front of a chain-link fence under an orange sunset. Handwritten: fun facts about me.'),
-    ('slide04','from scratch','I make most things from scratch',
-     'A homemade pizza on a baking tray. Handwritten: I make most things from scratch — badly at first, then eventually well.'),
-    ('slide05','the best meals','The best meals aren&rsquo;t the fancy ones',
+    ('slide05','from scratch','I make most things from scratch',
+     'A homemade pizza on a baking tray. Handwritten: I make most things from scratch — and usually get it right the first time, even the bread.'),
+    ('slide06','the best meals','The best meals aren&rsquo;t the fancy ones',
      "Sanika eating a slice of pizza in a car. Handwritten: the best meals aren't the fancy ones."),
-    ('slide06','places','Places I want to remember',
+    ('slide07','places','Places I want to remember',
      'Sanika at a hot pot restaurant with a divided broth pot on the table. Handwritten: places I want to remember.'),
-    ('slide07','can&rsquo;t make yet','Things I can&rsquo;t make (yet)',
+    ('slide08','can&rsquo;t make yet','Things I can&rsquo;t make (yet)',
      "A bakery case full of croissants and brioche doughnuts. Handwritten: things I can't make yet."),
-    ('slide08','obsessed','Currently obsessed',
-     'A strawberry matcha latte held over a sidewalk. Handwritten: currently obsessed.'),
-    ('slide09','learning','Things I&rsquo;m learning',
+    ('slide09','obsessed','Currently obsessed',
+     'A strawberry matcha latte held over a sidewalk. Handwritten: currently obsessed — matcha, every single day.'),
+    ('slide10','learning','Things I&rsquo;m learning',
      "Sanika laughing with her hair blowing across her face. Handwritten: things I'm learning."),
-    ('slide10','why I&rsquo;m here','Why I&rsquo;m actually here',
+    ('slide11','why I&rsquo;m here','Why I&rsquo;m actually here',
      "Sanika in a brown bomber jacket outside a cabin. Handwritten: why I'm actually here."),
-    ('slide11','that&rsquo;s me','that&rsquo;s me!',
+    ('slide12','that&rsquo;s me','that&rsquo;s me!',
      "Sanika resting her chin on her hand beside a bouquet of pink peonies and roses. Handwritten: that's me! Stay awhile."),
 ]
 
 CAPTION = """hi, I'm Sanika ✷
 
-I make most things from scratch — badly at first, then eventually well. I lose whole hours in bookstores. I run on strawberry matcha. And the best meals I've ever had were eaten in a parking lot, straight out of the box.
+I make most things from scratch — and usually get them right the first time. Even the bread. I make matcha at home every single day: strawberry, chocolate, whatever's next. And the best meals I've ever had were eaten in a parking lot, straight out of the box.
 
 This is where I'm keeping the things I don't want to forget, and where I'm hoping to find the people who notice the same small ones.
 
@@ -51,9 +53,9 @@ Born 2001 · Scorpio · still figuring it out
 stay awhile ♡"""
 
 TAGS = ("#introducingmyself #introductionpost #newhere #gettoknowme #funfactsaboutme "
-        "#madefromscratch #homecook #bakinglove #foodiegram #strawberrymatcha "
-        "#bakerylove #hotpotlover #bookstagram #booklover #slowliving #littlethings "
-        "#figuringoutmy20s #contentcreator #creatorcommunity #softlife")
+        "#madefromscratch #homecook #homebaker #breadbaking #matchaeveryday "
+        "#matchalover #strawberrymatcha #foodiegram #bakerylove #hotpotlover "
+        "#bookstagram #slowliving #figuringoutmy20s #creatorcommunity #softlife")
 
 frames = '\n'.join(f'''      <figure class="frame">
         <div class="marg"><span class="num">{i+1}</span><span class="role">{role}</span></div>
@@ -186,14 +188,14 @@ dd b{{font-weight:600}}
 
 <div class="wrap">
   <header class="col">
-    <p class="eyebrow">Instagram &middot; 11 slides &middot; 1080 &times; 1350</p>
+    <p class="eyebrow">Instagram &middot; 12 slides &middot; 1080 &times; 1350</p>
     <h1>Sanika&rsquo;s intro carousel</h1>
     <svg class="rule-hand" viewBox="0 0 300 12" preserveAspectRatio="none" fill="none" aria-hidden="true">
       <path d="M4 7.2 C52 1.6 99 9.8 150 5.4 C201 1 250 9.2 296 3.6" stroke="var(--gold)"
             stroke-width="3.2" stroke-linecap="round"/>
     </svg>
-    <p class="lede">Marker-pen annotation, straight onto the photograph &mdash; fat headers, circled
-      titles, drawn arrows and dash bullets, the way you&rsquo;d write on a printed picture. Eleven slides,
+    <p class="lede">Marker-pen annotation, straight onto the photograph &mdash; brush-pen headers, circled
+      titles, drawn arrows and dash bullets, the way you&rsquo;d write on a printed picture. Twelve slides,
       one per photo, with the ink colour switching by slide and no wash sitting between the words and
       the image.</p>
   </header>
@@ -201,7 +203,7 @@ dd b{{font-weight:600}}
   <div class="strip">
 {frames}
   </div>
-  <p class="swipe">eleven slides &middot; scroll to see them all &rarr;</p>
+  <p class="swipe">twelve slides &middot; scroll to see them all &rarr;</p>
 
   <section class="col">
     <div class="bar">
@@ -233,16 +235,20 @@ dd b{{font-weight:600}}
         <div><dt>Cover</dt><dd>Slide 1. It&rsquo;s the only one that has to stop a scroll.</dd></div>
         <div><dt>Pin it</dt><dd>Pin the post to the top of your profile so it stays the first thing
           new visitors see.</dd></div>
-        <div><dt>Eleven is long</dt><dd>Instagram allows 20, but most people stop swiping around six.
+        <div><dt>Twelve is long</dt><dd>Instagram allows 20, but most people stop swiping around six.
           Slides&nbsp;1&ndash;6 carry the whole introduction on their own &mdash; if you want a shorter cut,
-          drop 7&ndash;10 and keep 11 as the closer.</dd></div>
+          drop 7&ndash;11 and keep 12 as the closer.</dd></div>
+        <div><dt>Two lines worth sharpening</dt><dd>Slide&nbsp;5 says &ldquo;even the bread&rdquo; because the
+          specific bread you named didn&rsquo;t come through in the audio &mdash; naming it would make the line.
+          And if the numbers on the sticky-note wall are a countdown or a tracker, saying what they
+          count would make slide&nbsp;1 the strongest opener in the set.</dd></div>
         <div><dt>The outline I couldn&rsquo;t draw</dt><dd>The inspo traces a white cutout outline around the
           subject on several slides. That needs the figure separated from its background, which code
           can&rsquo;t do reliably &mdash; but it&rsquo;s two minutes a slide by hand: select the subject in Canva or
           Procreate, add an 8&ndash;12px white stroke, nudge it slightly. Slides 1, 5 and 11 are the ones
           worth doing.</dd></div>
-        <div><dt>Every photo is in</dt><dd>All eleven pictures you&rsquo;ve sent have a slide. Nothing held back
-          this time.</dd></div>
+        <div><dt>Every photo is in</dt><dd>All twelve pictures you&rsquo;ve sent have a slide. Nothing held
+          back.</dd></div>
       </dl>
     </div>
   </section>
@@ -255,9 +261,9 @@ dd b{{font-weight:600}}
     </div>
   </section>
 
-  <p class="built col">Built as eleven self-contained HTML slides. Three embedded faces do the
-    handwriting &mdash; <code>Permanent Marker</code> for the headers, <code>Patrick Hand</code> for the
-    lists, <code>Caveat</code> for the script accents &mdash; and every circle, underline, arrow, hook,
+  <p class="built col">Built as twelve self-contained HTML slides. Three embedded faces do the
+    handwriting &mdash; <code>Caveat Brush</code> for the headers, <code>Patrick Hand</code> for the
+    lists, <code>Sacramento</code> for the script accents &mdash; and every circle, underline, arrow, hook,
     dash, star and heart is inline SVG drawn slightly wrong on purpose, so the ovals overshoot where
     they close. There is no wash between the words and the picture: legibility comes from a four-way
     text outline, white behind dark ink and black behind light ink, plus a directional veil only on the
