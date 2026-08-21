@@ -1,0 +1,7 @@
+{
+  "name": "intro-carousel-render",
+  "private": true,
+  "description": "Renders the intro carousel slides to PNG with Playwright",
+  "scripts": { "render": "node render.js" },
+  "dependencies": { "playwright": "^1.49.0" }
+}
