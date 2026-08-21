@@ -42,13 +42,17 @@ where most of the early reach on an intro post actually comes from.
   so it takes up the most feed space). Don't let IG crop to square.
 - **Cover:** slide1. It's the one that has to stop the scroll.
 - **Alt text** (Accessibility → Write alt text), per slide:
-  1. "Sanika in a brown bomber jacket outside a cabin. Text: hi, I'm Sanika — born '01, scorpio, figuring it out as I go."
+  1. "Sanika smiling under a cherry blossom tree, wearing a pink top. Text: hi, I'm Sanika — born '01, scorpio, figuring it out as I go."
   2. "A strawberry matcha latte held over a sidewalk. Text: a little bit of everything — food, places, things I'm learning, books, becoming 1% better."
   3. "Sanika laughing with her hair blowing across her face. Text: a few things about me."
-  4. "Sanika at dusk in front of a chain-link fence under an orange sunset. Text: so… why am I here? stay awhile."
+  4. "Sanika resting her chin on her hand beside a bouquet of pink peonies and roses. Text: so… why am I here? stay awhile."
 - **Pin it** to the top of your profile so it stays the first thing
   new visitors see.
-- **Photos saved for later posts:** the blue-top roadside shot and the
-  sunset shot both have unused frames worth revisiting — and keep the
-  NYC/travel photo as the hero of its own carousel rather than burying
-  it here.
+- **Freed up for later posts:** the brown bomber portrait and the dusk
+  sunset shot are both strong enough to headline their own post — the
+  bomber one for an outfit/lifestyle post, the sunset for a
+  "little moments lately" photo dump.
+- **Slide 4 runs light on purpose.** The first three slides are warm and
+  moody; the last opens up into white with brown ink. It reads as an
+  exhale at the end of the swipe. If you'd rather it match the others,
+  say so and it becomes a dark slide with cream text.

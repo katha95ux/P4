@@ -17,13 +17,13 @@ def img(n):
 
 SLIDES = [
     ('slide1','intro','hi, I&rsquo;m Sanika',
-     "Sanika in a brown bomber jacket outside a cabin. Text: hi, I'm Sanika — born '01, scorpio, figuring it out as I go."),
+     "Sanika smiling under a cherry blossom tree, wearing a pink top. Text: hi, I'm Sanika — born '01, scorpio, figuring it out as I go."),
     ('slide2','what you&rsquo;ll find here','a little bit of everything',
      "A strawberry matcha latte held over a sidewalk. Text: a little bit of everything — food, places, things I'm learning, books, becoming 1% better."),
     ('slide3','about me','a few things about me',
      "Sanika laughing with her hair blowing across her face. Text: a few things about me."),
     ('slide4','why I&rsquo;m here','so&hellip; why am I here?',
-     "Sanika at dusk in front of a chain-link fence under an orange sunset. Text: so… why am I here? stay awhile."),
+     "Sanika resting her chin on her hand beside a bouquet of pink peonies and roses. Text: so… why am I here? stay awhile."),
 ]
 
 CAPTION = """hi, I'm Sanika ✷
@@ -225,8 +225,12 @@ dd b{{font-weight:600}}
         <div><dt>Cover</dt><dd>Slide 1. It&rsquo;s the only one that has to stop a scroll.</dd></div>
         <div><dt>Pin it</dt><dd>Pin the post to the top of your profile so it stays the first thing
           new visitors see.</dd></div>
-        <div><dt>Held back for later</dt><dd>The NYC/travel shot stays out of this carousel on purpose &mdash;
-          it&rsquo;s beautiful, but it says nothing about you. Save it as the hero of its own post.</dd></div>
+        <div><dt>Slide 4 runs light on purpose</dt><dd>The first three slides are warm and moody; the last
+          opens up into white with brown ink, so the swipe ends on an exhale. Say the word and it becomes a
+          dark slide with cream text like the others.</dd></div>
+        <div><dt>Freed up for later</dt><dd>The brown bomber portrait and the dusk sunset shot are both strong
+          enough to headline their own post &mdash; the bomber one for an outfit post, the sunset for a
+          &ldquo;little moments lately&rdquo; photo dump.</dd></div>
       </dl>
     </div>
   </section>
@@ -242,8 +246,9 @@ dd b{{font-weight:600}}
   <p class="built col">Built as four self-contained HTML slides &mdash; handwriting is
     <code>Caveat</code>, the swashes, sparkles, hearts and the scorpio glyph are inline SVG, and every
     photo carries the same warm film grade (lifted blacks, warm highlights, fine grain) so the set reads
-    as one. On slides&nbsp;2 and&nbsp;4 the frame is extended above the photo and the scene continued
-    upward, which is where the text gets its clean room. Source and build scripts are in
+    as one. On slides&nbsp;1 and&nbsp;2 the frame is extended above the photo and the scene continued
+    upward, which is where the text gets its clean room; slide&nbsp;4 flips to brown ink and ochre on a
+    light scrim, because cream would vanish on that white wall. Source and build scripts are in
     <code>instagram/intro-carousel/</code>.</p>
 </div>
 
