@@ -18,32 +18,32 @@ def img(n):
 SLIDES = [
     ('slide1','intro','hi, I&rsquo;m Sanika',
      "Sanika smiling under a cherry blossom tree, wearing a pink top. Text: hi, I'm Sanika — born '01, scorpio, figuring it out as I go."),
-    ('slide2','what you&rsquo;ll find here','a little bit of everything',
+    ('slide2','what you&rsquo;ll find','a little bit of everything',
      "A strawberry matcha latte held over a sidewalk. Text: a little bit of everything — food, places, things I'm learning, books, becoming 1% better."),
     ('slide3','about me','a few things about me',
-     "Sanika laughing with her hair blowing across her face. Text: a few things about me."),
-    ('slide4','why I&rsquo;m here','so&hellip; why am I here?',
+     "Sanika eating a slice of pizza in a car. Text: a few things about me."),
+    ('slide4','the food','food I&rsquo;m obsessed with',
+     "A bakery case full of croissants and brioche doughnuts. Text: food I'm obsessed with — exhibit A."),
+    ('slide5','the places','places I want to remember',
+     "Sanika at a hot pot restaurant with a divided broth pot on the table. Text: places I want to remember, and everything I ordered there."),
+    ('slide6','why I&rsquo;m here','so&hellip; why am I here?',
      "Sanika resting her chin on her hand beside a bouquet of pink peonies and roses. Text: so… why am I here? stay awhile."),
 ]
 
 CAPTION = """hi, I'm Sanika ✷
 
-I wanted a little corner of the internet to document the things I love, the things I'm learning, and the person I'm becoming.
+I wanted a little corner of the internet — so here it is.
 
-so here's what you'll find: food I'm obsessed with, places I want to remember, books + little life lessons, and me quietly trying to become 1% better.
-
-a few true things — I love making food from scratch, I romanticize little things, I can spend way too long in a bookstore, and yes… I overthink everything.
+food I'm obsessed with, places I want to remember, books, and me trying to become 1% better. that's the whole plan.
 
 born '01 · scorpio · figuring it out as I go ♡
 
-tell me one thing you're romanticizing lately — I'll go first: slow mornings and a strawberry matcha 🍓
-
-stay awhile ♡"""
+tell me one thing you're romanticizing lately ♡"""
 
 TAGS = ("#introducingmyself #introductionpost #newhere #gettoknowme #romanticizeyourlife "
         "#romanticizingmylife #slowliving #littlethings #1percentbetter #lifestyleblogger "
-        "#contentcreator #creatorcommunity #foodiegram #strawberrymatcha #matchalover "
-        "#bookstagram #booklover #dailyaesthetic #aestheticfeed #softlife")
+        "#contentcreator #creatorcommunity #foodiegram #strawberrymatcha #bakerylove "
+        "#hotpotlover #bookstagram #booklover #dailyaesthetic #aestheticfeed #softlife")
 
 frames = '\n'.join(f'''      <figure class="frame">
         <div class="marg"><span class="num">{i+1}</span><span class="role">{role}</span></div>
@@ -96,9 +96,12 @@ h1{{
 
 /* ── filmstrip ──────────────────────────────── */
 .strip{{
-  margin:clamp(38px,6vw,64px) 0 0;
-  display:grid; grid-template-columns:repeat(4,1fr); gap:clamp(14px,2vw,26px);
+  margin:clamp(38px,6vw,64px) 0 0; display:flex; gap:clamp(14px,2vw,24px);
+  overflow-x:auto; scroll-snap-type:x mandatory; scrollbar-width:thin;
+  margin-inline:calc(clamp(18px,4vw,40px) * -1); padding:0 clamp(18px,4vw,40px) 8px;
+  overscroll-behavior-x:contain;
 }}
+.frame{{flex:0 0 clamp(232px,26vw,300px)}}
 .frame{{margin:0; display:flex; flex-direction:column; gap:12px; scroll-snap-align:start}}
 .marg{{display:flex; align-items:baseline; gap:10px; min-height:24px}}
 .num{{
@@ -122,14 +125,7 @@ h1{{
   font-family:"DM Mono",ui-monospace,monospace; font-size:11px; letter-spacing:.14em;
   text-transform:uppercase; color:var(--soft); margin:16px 0 0; text-align:right;
 }}
-@media (max-width:760px){{
-  .strip{{
-    display:flex; overflow-x:auto; scroll-snap-type:x mandatory;
-    margin-inline:calc(clamp(18px,4vw,40px) * -1); padding-inline:clamp(18px,4vw,40px);
-    padding-bottom:6px; scrollbar-width:thin;
-  }}
-  .frame{{flex:0 0 68vw}}
-}}
+@media (max-width:760px){{ .frame{{flex:0 0 68vw}} }}
 
 /* ── sections ───────────────────────────────── */
 section{{margin-top:clamp(48px,7vw,84px)}}
@@ -180,20 +176,20 @@ dd b{{font-weight:600}}
 
 <div class="wrap">
   <header class="col">
-    <p class="eyebrow">Instagram &middot; 4 slides &middot; 1080 &times; 1350</p>
+    <p class="eyebrow">Instagram &middot; 6 slides &middot; 1080 &times; 1350</p>
     <h1>Sanika&rsquo;s intro carousel</h1>
     <svg class="rule-hand" viewBox="0 0 300 12" preserveAspectRatio="none" fill="none" aria-hidden="true">
       <path d="M4 7.2 C52 1.6 99 9.8 150 5.4 C201 1 250 9.2 296 3.6" stroke="var(--gold)"
             stroke-width="3.2" stroke-linecap="round"/>
     </svg>
     <p class="lede">Photo, one handwritten thought, a couple of small doodles, and a lot of
-      breathing room &mdash; four slides that introduce you without explaining you to death.</p>
+      breathing room &mdash; six slides that introduce you without explaining you to death.</p>
   </header>
 
   <div class="strip">
 {frames}
   </div>
-  <p class="swipe">swipe order &rarr;</p>
+  <p class="swipe">six slides &middot; scroll to see them all &rarr;</p>
 
   <section class="col">
     <div class="bar">
@@ -225,12 +221,11 @@ dd b{{font-weight:600}}
         <div><dt>Cover</dt><dd>Slide 1. It&rsquo;s the only one that has to stop a scroll.</dd></div>
         <div><dt>Pin it</dt><dd>Pin the post to the top of your profile so it stays the first thing
           new visitors see.</dd></div>
-        <div><dt>Slide 4 runs light on purpose</dt><dd>The first three slides are warm and moody; the last
-          opens up into white with brown ink, so the swipe ends on an exhale. Say the word and it becomes a
-          dark slide with cream text like the others.</dd></div>
-        <div><dt>Freed up for later</dt><dd>The brown bomber portrait and the dusk sunset shot are both strong
-          enough to headline their own post &mdash; the bomber one for an outfit post, the sunset for a
-          &ldquo;little moments lately&rdquo; photo dump.</dd></div>
+        <div><dt>Six is the practical ceiling</dt><dd>Instagram allows 20, but swipe-through falls off hard
+          after about six &mdash; slides 5 and 6 are already doing well to be seen at all.</dd></div>
+        <div><dt>Freed up for later</dt><dd>The homemade pizza, the fitting-room selfie, the windy-hair
+          portrait, the brown bomber shot and the dusk sunset are all out of the carousel and all strong
+          enough to headline their own post.</dd></div>
       </dl>
     </div>
   </section>
@@ -245,10 +240,10 @@ dd b{{font-weight:600}}
 
   <p class="built col">Built as four self-contained HTML slides &mdash; handwriting is
     <code>Caveat</code>, the swashes, sparkles, hearts and the scorpio glyph are inline SVG, and every
-    photo carries the same warm film grade (lifted blacks, warm highlights, fine grain) so the set reads
-    as one. On slides&nbsp;1 and&nbsp;2 the frame is extended above the photo and the scene continued
-    upward, which is where the text gets its clean room; slide&nbsp;4 flips to brown ink and ochre on a
-    light scrim, because cream would vanish on that white wall. Source and build scripts are in
+    photo carries the same airy faded-film grade &mdash; matte lifted blacks, brightened midtones, a breath
+    of cream haze &mdash; tuned per photo so a dim hot-pot restaurant and a backlit portrait under blossoms
+    land in the same world. On slides&nbsp;1&ndash;3 the frame is extended above the photo and the scene
+    continued upward, which is where the text gets its clean room. Source and build scripts are in
     <code>instagram/intro-carousel/</code>.</p>
 </div>
 

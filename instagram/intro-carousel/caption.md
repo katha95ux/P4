@@ -1,58 +1,60 @@
 # Intro carousel — caption + posting notes
 
+Six slides, 1080 × 1350, light/airy treatment: warm brown handwriting on
+cream fades over a faded-film grade.
+
 ## Caption
+
+Five options are drafted; this is the one currently in the deck. Swap
+freely — the others are in the conversation.
 
 hi, I'm Sanika ✷
 
-I wanted a little corner of the internet to document the things I love,
-the things I'm learning, and the person I'm becoming.
+I wanted a little corner of the internet — so here it is.
 
-so here's what you'll find: food I'm obsessed with, places I want to
-remember, books + little life lessons, and me quietly trying to become
-1% better.
-
-a few true things — I love making food from scratch, I romanticize
-little things, I can spend way too long in a bookstore, and yes… I
-overthink everything.
+food I'm obsessed with, places I want to remember, books, and me trying
+to become 1% better. that's the whole plan.
 
 born '01 · scorpio · figuring it out as I go ♡
 
-tell me one thing you're romanticizing lately — I'll go first: slow
-mornings and a strawberry matcha 🍓
-
-stay awhile ♡
+tell me one thing you're romanticizing lately ♡
 
 ## Hashtags
 
-Keep these in the first comment (or at the end after a few line breaks):
+First comment, or after a few line breaks:
 
 #introducingmyself #introductionpost #newhere #gettoknowme
 #romanticizeyourlife #romanticizingmylife #slowliving #littlethings
 #1percentbetter #lifestyleblogger #contentcreator #creatorcommunity
-#foodiegram #strawberrymatcha #matchalover #bookstagram #booklover
+#foodiegram #strawberrymatcha #bakerylove #hotpotlover #bookstagram
 #dailyaesthetic #aestheticfeed #softlife
 
-Swap 3–5 of these for tags local to you (your city / state) — that's
-where most of the early reach on an intro post actually comes from.
+Swap three to five for tags local to you — that's where most of the
+early reach on an intro post actually comes from.
 
 ## Posting notes
 
-- **Upload in this order:** slide1 → slide2 → slide3 → slide4
-- **Size:** 1080 × 1350 (4:5 portrait — the tallest ratio IG allows,
-  so it takes up the most feed space). Don't let IG crop to square.
-- **Cover:** slide1. It's the one that has to stop the scroll.
+- **Upload order:** slide1 → slide2 → slide3 → slide4 → slide5 → slide6
+- **Ratio:** 1080 × 1350 (4:5). Tallest ratio Instagram allows, so it
+  takes the most feed space — don't let the uploader crop to square.
+- **Cover:** slide1. The only one that has to stop a scroll.
+- **Pin it** to the top of your profile.
+- **Six is the practical ceiling.** Instagram allows 20, but swipe-through
+  falls off hard after about six — slides 5 and 6 are already doing well
+  to be seen.
 - **Alt text** (Accessibility → Write alt text), per slide:
   1. "Sanika smiling under a cherry blossom tree, wearing a pink top. Text: hi, I'm Sanika — born '01, scorpio, figuring it out as I go."
   2. "A strawberry matcha latte held over a sidewalk. Text: a little bit of everything — food, places, things I'm learning, books, becoming 1% better."
-  3. "Sanika laughing with her hair blowing across her face. Text: a few things about me."
-  4. "Sanika resting her chin on her hand beside a bouquet of pink peonies and roses. Text: so… why am I here? stay awhile."
-- **Pin it** to the top of your profile so it stays the first thing
-  new visitors see.
-- **Freed up for later posts:** the brown bomber portrait and the dusk
-  sunset shot are both strong enough to headline their own post — the
-  bomber one for an outfit/lifestyle post, the sunset for a
-  "little moments lately" photo dump.
-- **Slide 4 runs light on purpose.** The first three slides are warm and
-  moody; the last opens up into white with brown ink. It reads as an
-  exhale at the end of the swipe. If you'd rather it match the others,
-  say so and it becomes a dark slide with cream text.
+  3. "Sanika eating a slice of pizza in a car. Text: a few things about me."
+  4. "A bakery case full of croissants and brioche doughnuts. Text: food I'm obsessed with — exhibit A."
+  5. "Sanika at a hot pot restaurant with a divided broth pot on the table. Text: places I want to remember, and everything I ordered there."
+  6. "Sanika resting her chin on her hand beside a bouquet of pink peonies and roses. Text: so… why am I here? stay awhile."
+
+## Photos not used, saved for later posts
+
+- **homemade pizza on the tray** — the from-scratch shot; strong enough to
+  headline its own "I make things badly at first" post
+- **fitting room mirror selfie** — reads outfit, not intro
+- **windy-hair roadside portrait** — was slide 3 in the dark version
+- **brown bomber portrait** — outfit/lifestyle post
+- **dusk sunset shot** — "little moments lately" photo dump
