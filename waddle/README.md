@@ -10,7 +10,7 @@ two, flippers up at three, and confetti on all six.
 | # | Frame | Habit | Closes on |
 |---|-------|-------|-----------|
 | 01 | Morning | 20 minutes off the phone, one nice thing planned | timer or self-report + a written intention |
-| 02 | Water | photograph the bottle once, tap it off as you drink | reaching the daily ml goal |
+| 02 | Water | snap the bottle once — its size is read off the label — then tap it off as you drink | reaching the daily ml goal |
 | 03 | Food | photograph each meal, calories estimated from the photo | 2 meals logged |
 | 04 | Move | before and after photos | both photos present |
 | 05 | Manifest | one present-tense sentence, 21 repetitions on a 6-second beat | a completed session |
@@ -41,9 +41,13 @@ screen.
   published as a Claude Artifact, so clearing a browser cannot wipe a long
   run. Opened as a plain file it falls back to `localStorage`.
 - **Photos** are held in IndexedDB on the device and are never uploaded.
-- **Calorie estimates** come from the photo via the page's `sample`
-  capability where available; otherwise the field is typed by hand. Either
-  way the number stays editable, because a photo estimate is a guess.
+- **Calorie estimates** and **bottle capacity** are read from the photo via
+  the page's `sample` capability where available; otherwise both are typed by
+  hand. Either way the number stays editable, because a photo estimate is a
+  guess, not a measurement. Where the capability is absent the reading step is
+  skipped silently rather than left spinning.
+
+Goals are targets, not caps: the app counts, and never blocks or scolds.
 
 The manifestation practice follows Joseph Murphy's *The Power of Your
 Subconscious Mind* (1963). The wording is original; the method is his.

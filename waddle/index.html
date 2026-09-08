@@ -499,8 +499,8 @@ details.tuck summary::before{content:"✿ ";color:var(--berry)}
         <h2>Water</h2>
         <span class="card__tick"><svg viewBox="0 0 24 24"><use href="#i-tick"></use></svg></span>
       </div>
-      <p class="card__why">Photograph your bottle once so Pip knows its size, then tap it off
-        every time you finish one.</p>
+      <p class="card__why">Snap your bottle once and Pip reads the size off the label. After
+        that, just tap it off every time you finish one.</p>
       <div class="card__work">
         <div>
           <div class="meter__top">
@@ -510,6 +510,7 @@ details.tuck summary::before{content:"✿ ";color:var(--berry)}
           <div class="meter__bar"><div class="meter__fill" id="waterFill"></div></div>
         </div>
         <div class="shots shots--few" id="waterShots"></div>
+        <div id="waterPending" hidden></div>
         <label class="btn snap" style="align-self:flex-start">
           <span id="waterSnapLabel">Photograph the bottle</span>
           <input type="file" accept="image/*" capture="environment" id="waterPhoto">
@@ -531,7 +532,7 @@ details.tuck summary::before{content:"✿ ";color:var(--berry)}
         <span class="card__tick"><svg viewBox="0 0 24 24"><use href="#i-tick"></use></svg></span>
       </div>
       <p class="card__why">Snap the plate before you eat and Pip reads the calories off the
-        photo. Two meals closes this one.</p>
+        photo — a friendly estimate, not a weigh-in. Two meals closes this one.</p>
       <div class="card__work">
         <div>
           <div class="meter__top">
@@ -677,8 +678,9 @@ details.tuck summary::before{content:"✿ ";color:var(--berry)}
   </section>
 
   <footer class="foot">
-    <p>Calorie numbers are Pip's best guess from a photo. Treat them as a rough guide and
-      overwrite them whenever they look off — the field is always yours to edit.</p>
+    <p>Calorie and bottle numbers are Pip's best guess from a photo, not a measurement.
+      Both are always yours to edit. Your goals are targets to aim at, not limits — nothing
+      here will ever stop you or tell you off for going past one.</p>
     <p>The manifest bit follows Joseph Murphy's <em>The Power of Your Subconscious Mind</em>
       (1963). It's a practice, not treatment — if something feels genuinely heavy, please talk
       to a doctor too.</p>
@@ -1354,13 +1356,93 @@ details.tuck summary::before{content:"✿ ";color:var(--berry)}
     D.water.ml = Math.max(0, D.water.ml - last);
     commit();
   });
+  var waterPending = $("waterPending");
+
+  var BOTTLE_PROMPT =
+    "You are reading a photograph of a drinking bottle, flask or cup to find how much it " +
+    "holds. Reply with JSON only, no prose.\n" +
+    'Shape: {"ml":number,"source":"label"|"estimate","confidence":"low"|"medium"|"high",' +
+    '"note":string}\n' +
+    "- ml: total capacity in millilitres, rounded to the nearest 50. Convert any printed " +
+    "unit (fl oz, litres, cups) to millilitres.\n" +
+    '- source: "label" only if a printed capacity is actually legible in the photo; ' +
+    'otherwise "estimate"\n' +
+    "- note: one short sentence, max 14 words, saying what you went on\n" +
+    'If there is no bottle or cup in the photo, return {"ml":0,"source":"estimate",' +
+    '"confidence":"low","note":"I can\'t see a bottle in this one!"}';
+
+  function bottleAsk(r) {
+    var ml = r && Math.round(r.ml || 0);
+    waterPending.hidden = false;
+    waterPending.textContent = "";
+    var box = document.createElement("div");
+    box.className = "estimate";
+    var note = document.createElement("p");
+    note.className = "estimate__note";
+    box.appendChild(note);
+    var row = document.createElement("div");
+    row.className = "row row--fill";
+    box.appendChild(row);
+    waterPending.appendChild(box);
+
+    function close() { waterPending.hidden = true; waterPending.textContent = ""; }
+
+    if (!ml) {
+      note.textContent = (r && r.note) ||
+        "I couldn't read a size off that one — set it in Goals & settings.";
+      var ok = document.createElement("button");
+      ok.className = "btn";
+      ok.textContent = "Okay";
+      ok.addEventListener("click", close);
+      row.appendChild(ok);
+      return;
+    }
+
+    ml = clamp(ml, 100, 2000);
+    note.textContent = "Looks like " + ml + " ml" +
+      (r.source === "label" ? ", read off the label. " : ", going by the look of it. ") +
+      (r.note || "");
+    var use = document.createElement("button");
+    use.className = "btn btn--go";
+    use.textContent = "Use " + ml + " ml";
+    use.addEventListener("click", function () {
+      P.bottleMl = ml;
+      $("setBottle").value = ml;
+      save({ day: false });
+      render();
+      close();
+      toast("Bottle set to <b>" + ml + " ml</b>");
+    });
+    var keep = document.createElement("button");
+    keep.className = "btn";
+    keep.textContent = "Keep " + P.bottleMl + " ml";
+    keep.addEventListener("click", close);
+    row.appendChild(use);
+    row.appendChild(keep);
+  }
+
   $("waterPhoto").addEventListener("change", function () {
     var f = this.files && this.files[0];
     this.value = "";
     if (!f) return;
-    shrink(f, 900, .75).then(function (b) { return Photos.put(TODAY + ":water", b); })
-      .then(function () { D.water.photo = true; commit(); })
-      .catch(function () { toast("Couldn't read that photo — try again?"); });
+    shrink(f, 900, .75).then(function (stored) {
+      return Photos.put(TODAY + ":water", stored).then(function () {
+        D.water.photo = true;
+        commit();
+        if (!sampleNs || !sampleImages) return;
+        waterPending.hidden = false;
+        waterPending.innerHTML =
+          '<div class="thinking"><i></i><span>Pip is checking the size…</span></div>';
+        return shrink(f, 768, .8).then(function (forClaude) {
+          return sampleNs.json(BOTTLE_PROMPT, { images: [forClaude], modelTier: "default" })
+            .then(bottleAsk)
+            .catch(function () {
+              waterPending.hidden = true;
+              waterPending.textContent = "";
+            });
+        });
+      });
+    }).catch(function () { toast("Couldn't read that photo — try again?"); });
   });
 
   /* ══ 03 Food ════════════════════════════════════════════════════════ */
