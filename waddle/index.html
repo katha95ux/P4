@@ -1,0 +1,1766 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#FFF6FA">
+<meta name="description" content="Six little things a day with Pip the penguin: phone down, water, food, moving, manifesting, and something good before bed.">
+<title>Waddle</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600&family=Nunito:ital,wght@0,400;0,600;0,700;1,400&display=swap">
+<style>
+/* ══ Tokens ═══════════════════════════════════════════════════════════
+   Antarctic sorbet: Pip lives on ice, so the palette is ice-white and
+   berry with a tangerine beak. Light is the default; the dark set is a
+   plum night sky that keeps every accent working.                    */
+:root{
+  --ice:#FFF5FA;          /* ground — a white warmed toward the berry  */
+  --frost:#FFFFFF;        /* cards                                     */
+  --field:#FFFFFF;        /* inputs                                    */
+  --edge:#F6DCE8;         /* hairlines                                 */
+  --berry:#FF5FA2;
+  --berry-deep:#DE2F80;
+  --berry-wash:#FFE7F1;
+  --tangerine:#FF9F3D;
+  --mint:#25C295;
+  --sky:#8FD0FF;
+  --ink:#43284D;          /* deep plum, warmer than any grey           */
+  --ink-soft:#8B6E93;
+  --ink-faint:#B79CBD;
+  --shadow:0 6px 20px rgba(222,47,128,.10);
+  --shadow-lift:0 10px 30px rgba(222,47,128,.18);
+
+  /* one tint per frame — warm to cool to warm, across the day */
+  --f1:#FFE3CE; --f2:#D2EAFF; --f3:#FFF2BE; --f4:#D0F5E5; --f5:#E9DCFF; --f6:#FFDAE9;
+
+  --pip-body:#4B3159;
+  --pip-belly:#FFFDF8;
+  --slot:rgba(255,255,255,.5);
+  --slot-edge:rgba(255,255,255,.95);
+
+  --f-display:"Fredoka","Trebuchet MS",sans-serif;
+  --f-body:"Nunito","Segoe UI",system-ui,sans-serif;
+  --col:33rem;
+  --r:22px;
+  --r-sm:14px;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --ice:#2A1A33; --frost:#3A2545; --field:#472C53; --edge:#54365F;
+    --berry:#FF7DB4; --berry-deep:#FF9DC6; --berry-wash:#4A2A44;
+    --tangerine:#FFB35C; --mint:#4FDDB0; --sky:#7FC3F5;
+    --ink:#FFF0F8; --ink-soft:#D3B4DC; --ink-faint:#9C7BA6;
+    --shadow:0 6px 20px rgba(0,0,0,.35);
+    --shadow-lift:0 10px 30px rgba(0,0,0,.45);
+    --f1:#5A3A2A; --f2:#263D52; --f3:#544823; --f4:#22493D; --f5:#3E3160; --f6:#552B41;
+    --pip-body:#F4E9FA; --pip-belly:#3A2545;
+    --slot:rgba(255,255,255,.07); --slot-edge:rgba(255,255,255,.3);
+  }
+}
+:root[data-theme="dark"]{
+  --ice:#2A1A33; --frost:#3A2545; --field:#472C53; --edge:#54365F;
+  --berry:#FF7DB4; --berry-deep:#FF9DC6; --berry-wash:#4A2A44;
+  --tangerine:#FFB35C; --mint:#4FDDB0; --sky:#7FC3F5;
+  --ink:#FFF0F8; --ink-soft:#D3B4DC; --ink-faint:#9C7BA6;
+  --shadow:0 6px 20px rgba(0,0,0,.35);
+  --shadow-lift:0 10px 30px rgba(0,0,0,.45);
+  --f1:#5A3A2A; --f2:#263D52; --f3:#544823; --f4:#22493D; --f5:#3E3160; --f6:#552B41;
+  --pip-body:#F4E9FA; --pip-belly:#3A2545;
+  --slot:rgba(255,255,255,.07); --slot-edge:rgba(255,255,255,.3);
+}
+
+*,*::before,*::after{box-sizing:border-box}
+[hidden]{display:none !important}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:var(--ice);color:var(--ink);
+  font-family:var(--f-body);font-size:1rem;line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+  padding-bottom:calc(2rem + env(safe-area-inset-bottom));
+}
+h1,h2,h3{margin:0;font-family:var(--f-display);font-weight:600;text-wrap:balance;line-height:1.15}
+p{margin:0}
+ol,ul{margin:0;padding:0;list-style:none}
+img{max-width:100%;display:block}
+button,input,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:3px solid var(--tangerine);outline-offset:2px;border-radius:8px}
+
+.col{width:100%;max-width:var(--col);margin-inline:auto;padding-inline:1rem}
+.lbl{display:block;font-family:var(--f-display);font-size:.75rem;font-weight:500;
+  letter-spacing:.02em;color:var(--ink-soft);margin-bottom:.3rem}
+.num{font-family:var(--f-display);font-variant-numeric:tabular-nums}
+
+/* ══ Sticky bar ═══════════════════════════════════════════════════════ */
+.bar{position:sticky;top:0;z-index:40;background:var(--ice);
+  border-bottom:2px solid var(--edge)}
+.bar__in{max-width:var(--col);margin-inline:auto;padding:.55rem 1rem;
+  display:flex;align-items:center;gap:.7rem}
+.bar__pip{width:2.3rem;height:2.3rem;flex:0 0 auto}
+/* Pip is taller than she is wide; in the bar, fit to height and hold still. */
+.bar__pip .pipsvg{height:100%;width:auto;animation:none}
+.chip{
+  display:inline-flex;align-items:center;gap:.3rem;padding:.28rem .65rem;
+  border-radius:999px;background:var(--berry-wash);color:var(--berry-deep);
+  font-family:var(--f-display);font-weight:600;font-size:.85rem;
+  font-variant-numeric:tabular-nums;white-space:nowrap;
+}
+.chip--ice{background:rgba(143,208,255,.28);color:var(--ink)}
+.chip--xp{background:rgba(255,159,61,.2);color:var(--ink)}
+.bar__chips{display:flex;gap:.35rem;flex:1 1 auto;flex-wrap:wrap}
+.bar__sync{width:.5rem;height:.5rem;border-radius:50%;background:var(--ink-faint);flex:0 0 auto}
+.bar__sync[data-sync="on"]{background:var(--mint)}
+
+/* ══ Pip ══════════════════════════════════════════════════════════════
+   One SVG, four moods. Groups are swapped by [data-mood] rather than
+   redrawn, so switching costs nothing.                               */
+.pipwrap{position:relative;display:grid;place-items:center}
+.pipsvg{width:100%;height:auto;overflow:visible}
+.pip__body{fill:var(--pip-body)}
+.pip__belly{fill:var(--pip-belly)}
+.pip__beak,.pip__foot{fill:var(--tangerine)}
+.pip__blush{fill:var(--berry);opacity:.5}
+.pip__eye{fill:var(--pip-body)}
+.pip__glint{fill:#FFFFFF}
+.pip__line{fill:none;stroke:var(--pip-body);stroke-width:5;stroke-linecap:round}
+.pip__bow{fill:var(--berry)}
+.pip__bowknot{fill:var(--berry-deep)}
+.pip__zzz{fill:var(--ink-soft);font-family:var(--f-display);font-weight:600}
+.pip__spark{fill:var(--tangerine)}
+.pip__flipper{fill:var(--pip-body);transform-box:fill-box;transform-origin:center top;
+  transition:transform .45s cubic-bezier(.34,1.56,.64,1)}
+
+[data-mood="sleepy"] .m-open,[data-mood="sleepy"] .m-happy,
+[data-mood="happy"]  .m-shut,[data-mood="happy"]  .m-happy,
+[data-mood="excited"] .m-shut,[data-mood="excited"] .m-open,
+[data-mood="party"]  .m-shut,[data-mood="party"]  .m-open{display:none}
+[data-mood="sleepy"] .pip__spark,
+[data-mood="happy"]  .pip__spark{display:none}
+[data-mood="sleepy"] .pip__blush{opacity:.25}
+[data-mood="excited"] .pip__zzz,[data-mood="happy"] .pip__zzz,
+[data-mood="party"] .pip__zzz{display:none}
+[data-mood="excited"] .pip__flipper--l,[data-mood="party"] .pip__flipper--l{transform:rotate(-42deg)}
+[data-mood="excited"] .pip__flipper--r,[data-mood="party"] .pip__flipper--r{transform:rotate(42deg)}
+
+.pipwrap[data-mood="party"] .pipsvg{animation:wiggle .55s ease-in-out 3}
+.pipwrap .pipsvg{animation:bob 4.5s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+@keyframes wiggle{0%,100%{transform:rotate(0)}25%{transform:rotate(-6deg)}75%{transform:rotate(6deg)}}
+
+/* ══ Hero ═════════════════════════════════════════════════════════════ */
+.hero{
+  margin-top:1.1rem;background:var(--frost);border-radius:var(--r);
+  box-shadow:var(--shadow);padding:1.2rem 1.1rem 1.3rem;
+  display:grid;grid-template-columns:1fr 7.5rem;gap:.9rem;align-items:end;
+}
+.bubble{
+  position:relative;background:var(--berry-wash);color:var(--ink);
+  border-radius:18px 18px 18px 5px;padding:.75rem .9rem;
+  font-family:var(--f-display);font-size:1.02rem;font-weight:500;line-height:1.35;
+}
+.hero__hi{font-size:.78rem;font-family:var(--f-display);color:var(--ink-soft);
+  margin-bottom:.45rem;font-weight:500}
+.hero__pip{width:7.5rem}
+.pearls{display:flex;gap:.4rem;margin-top:.95rem;grid-column:1/-1;align-items:center}
+.pearl{
+  width:1.5rem;height:1.5rem;border-radius:50%;background:var(--edge);
+  display:grid;place-items:center;transition:background .35s ease,transform .35s cubic-bezier(.34,1.56,.64,1);
+}
+.pearl[data-on="1"]{background:var(--berry);transform:scale(1.12)}
+.pearl svg{width:.8rem;height:.8rem;fill:#fff;opacity:0}
+.pearl[data-on="1"] svg{opacity:1}
+.pearls__count{margin-left:auto;font-family:var(--f-display);font-weight:600;
+  font-size:.85rem;color:var(--ink-soft)}
+
+/* ══ Frame cards ══════════════════════════════════════════════════════ */
+.cards{display:flex;flex-direction:column;gap:.85rem;margin-top:1.1rem}
+.card{
+  border-radius:var(--r);padding:1rem 1rem 1.05rem;
+  box-shadow:var(--shadow);position:relative;
+  transition:box-shadow .3s ease,transform .3s cubic-bezier(.34,1.56,.64,1);
+}
+.card[data-tint="1"]{background:var(--f1)}
+.card[data-tint="2"]{background:var(--f2)}
+.card[data-tint="3"]{background:var(--f3)}
+.card[data-tint="4"]{background:var(--f4)}
+.card[data-tint="5"]{background:var(--f5)}
+.card[data-tint="6"]{background:var(--f6)}
+.card[data-state="done"]{box-shadow:var(--shadow-lift)}
+.card__head{display:flex;align-items:center;gap:.6rem}
+.card__icon{
+  width:2.4rem;height:2.4rem;flex:0 0 auto;border-radius:50%;
+  background:var(--frost);display:grid;place-items:center;box-shadow:var(--shadow);
+}
+.card__icon svg{width:1.35rem;height:1.35rem}
+.card__head h2{flex:1 1 auto;font-size:1.28rem}
+.card__tick{
+  width:1.7rem;height:1.7rem;flex:0 0 auto;border-radius:50%;
+  border:2px solid rgba(255,255,255,.75);background:transparent;
+  display:grid;place-items:center;
+}
+.card[data-state="done"] .card__tick{background:var(--mint);border-color:var(--mint)}
+.card__tick svg{width:.9rem;height:.9rem;fill:#fff;opacity:0}
+.card[data-state="done"] .card__tick svg{opacity:1}
+.card__why{color:var(--ink);opacity:.72;font-size:.9rem;margin-top:.45rem;line-height:1.5}
+.card__work{margin-top:.9rem;display:flex;flex-direction:column;gap:.7rem}
+.card__foot{
+  margin-top:.85rem;display:flex;justify-content:space-between;align-items:center;gap:.5rem;
+  font-family:var(--f-display);font-size:.78rem;font-weight:500;color:var(--ink);opacity:.6;
+}
+.card[data-state="done"] .card__foot{opacity:.9}
+
+/* ══ Controls ═════════════════════════════════════════════════════════ */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:.4rem;
+  padding:.62rem 1.1rem;min-height:2.85rem;border-radius:999px;border:none;
+  background:var(--frost);color:var(--ink);box-shadow:var(--shadow);
+  font-family:var(--f-display);font-size:.9rem;font-weight:500;
+  transition:transform .18s cubic-bezier(.34,1.56,.64,1),box-shadow .18s ease,background .18s ease;
+}
+.btn:hover{transform:translateY(-2px);box-shadow:var(--shadow-lift)}
+.btn:active{transform:translateY(0) scale(.97)}
+.btn--go{background:var(--berry);color:#fff}
+.btn--go:hover{background:var(--berry-deep)}
+.btn--on{background:var(--mint);color:#0B3B2C}
+.btn[disabled]{opacity:.45;cursor:not-allowed;transform:none}
+.row{display:flex;gap:.5rem;flex-wrap:wrap}
+.row--fill > *{flex:1 1 0;min-width:0}
+
+.well{
+  width:100%;background:var(--field);border:2px solid transparent;border-radius:var(--r-sm);
+  padding:.65rem .85rem;font-size:.95rem;box-shadow:var(--shadow);
+}
+.well:focus{outline:none;border-color:var(--berry)}
+.well::placeholder{color:var(--ink-faint)}
+textarea.well{font-family:var(--f-display);font-size:1.05rem;line-height:1.4;resize:vertical}
+
+/* Meters */
+.meter__top{display:flex;justify-content:space-between;align-items:baseline;
+  font-family:var(--f-display);font-weight:500;font-size:.85rem;
+  font-variant-numeric:tabular-nums;margin-bottom:.35rem}
+.meter__top b{font-size:1.25rem;font-weight:600}
+.meter__bar{height:.7rem;border-radius:999px;background:var(--frost);overflow:hidden;
+  box-shadow:inset 0 1px 3px rgba(67,40,77,.12)}
+.meter__fill{height:100%;width:0;border-radius:999px;background:var(--berry);
+  transition:width .55s cubic-bezier(.34,1.4,.64,1)}
+.meter__fill[data-over="1"]{background:var(--mint)}
+
+/* Photos */
+.shots{display:grid;grid-template-columns:repeat(auto-fill,minmax(5.5rem,1fr));gap:.5rem}
+.shots--few{grid-template-columns:repeat(auto-fill,6rem);justify-content:start}
+.shot{
+  position:relative;aspect-ratio:1;border-radius:var(--r-sm);overflow:hidden;
+  background:var(--frost);display:grid;place-items:center;box-shadow:var(--shadow);
+}
+.shot img{width:100%;height:100%;object-fit:cover}
+.shot__tag{position:absolute;left:0;right:0;bottom:0;padding:.2rem .4rem;
+  background:linear-gradient(0deg,rgba(67,40,77,.72),transparent);
+  color:#fff;font-family:var(--f-display);font-size:.68rem;font-weight:500}
+.shot--empty{border:2px dashed var(--slot-edge);background:var(--slot);box-shadow:none}
+.shot--empty span{font-family:var(--f-display);font-size:.72rem;color:var(--ink);opacity:.6;
+  text-align:center;padding:.3rem;line-height:1.35}
+.snap{position:relative;overflow:hidden;display:inline-flex}
+.snap input[type=file]{position:absolute;inset:0;opacity:0;width:100%;height:100%;cursor:pointer}
+
+/* Meals */
+.meals{display:flex;flex-direction:column;gap:.45rem}
+.meal{display:flex;align-items:center;gap:.6rem;padding:.45rem .55rem;
+  background:var(--frost);border-radius:var(--r-sm);box-shadow:var(--shadow)}
+.meal img{width:2.5rem;height:2.5rem;border-radius:10px;object-fit:cover;flex:0 0 auto}
+.meal__name{flex:1 1 auto;min-width:0;font-size:.88rem;overflow:hidden;
+  text-overflow:ellipsis;white-space:nowrap}
+.meal__kcal{font-family:var(--f-display);font-weight:600;font-size:.85rem;
+  color:var(--tangerine);white-space:nowrap;font-variant-numeric:tabular-nums}
+.meal__del{background:none;border:none;color:var(--ink-faint);font-size:1.1rem;
+  line-height:1;padding:.2rem .3rem}
+.meal__del:hover{color:var(--berry)}
+.estimate{background:var(--frost);border-radius:var(--r-sm);padding:.8rem;
+  box-shadow:var(--shadow);display:flex;flex-direction:column;gap:.55rem}
+.estimate__note{font-size:.82rem;color:var(--ink-soft);line-height:1.45}
+.thinking{display:flex;align-items:center;gap:.5rem;font-family:var(--f-display);
+  font-weight:500;font-size:.88rem;color:var(--ink-soft);
+  background:var(--frost);border-radius:var(--r-sm);padding:.8rem;box-shadow:var(--shadow)}
+.thinking i{width:.6rem;height:.6rem;border-radius:50%;background:var(--berry);
+  animation:pop 1.2s ease-in-out infinite}
+@keyframes pop{0%,100%{opacity:.3;transform:scale(.6)}50%{opacity:1;transform:scale(1)}}
+
+/* Timer */
+.timer{display:flex;align-items:center;gap:.8rem}
+.timer__num{font-family:var(--f-display);font-weight:600;font-size:2.3rem;line-height:1;
+  font-variant-numeric:tabular-nums}
+.timer__lbl{font-family:var(--f-display);font-size:.82rem;font-weight:500;color:var(--ink-soft)}
+
+/* Breathing heart (manifest) */
+.glow{position:relative;width:min(11rem,50vw);aspect-ratio:1;margin:.1rem auto}
+.glow canvas{position:absolute;inset:0;width:100%;height:100%}
+.glow__word{position:absolute;inset:0;display:grid;place-items:center;
+  font-family:var(--f-display);font-weight:500;font-size:1.15rem;color:var(--ink)}
+
+details.tuck{margin-top:.2rem}
+details.tuck summary{font-family:var(--f-display);font-weight:500;font-size:.85rem;
+  color:var(--ink-soft);cursor:pointer;list-style:none;padding:.3rem 0}
+details.tuck summary::-webkit-details-marker{display:none}
+details.tuck summary::before{content:"✿ ";color:var(--berry)}
+.tuck__body{display:flex;flex-direction:column;gap:.6rem;padding-top:.5rem}
+.tuck__body p{font-size:.86rem;line-height:1.5;color:var(--ink);opacity:.78}
+.tuck__body b{font-family:var(--f-display);font-weight:600;opacity:1}
+
+/* ══ Month grid & stickers ════════════════════════════════════════════ */
+.section{margin-top:1.6rem;background:var(--frost);border-radius:var(--r);
+  padding:1.1rem 1rem 1.2rem;box-shadow:var(--shadow)}
+.section h2{font-size:1.2rem}
+.section__sub{color:var(--ink-soft);font-size:.86rem;margin-top:.25rem}
+.month{display:grid;grid-template-columns:repeat(7,1fr);gap:.35rem;margin-top:.9rem}
+.dot{aspect-ratio:1;border-radius:50%;background:var(--edge)}
+.dot[data-lit="1"]{background:rgba(255,95,162,.35)}
+.dot[data-lit="2"]{background:var(--berry)}
+.dot[data-lit="3"]{background:var(--berry);box-shadow:0 0 0 3px var(--berry-wash)}
+.dot[data-today="1"]{outline:3px solid var(--tangerine);outline-offset:1px}
+.key{display:flex;flex-wrap:wrap;gap:.35rem .9rem;margin-top:.8rem;
+  font-family:var(--f-display);font-size:.75rem;color:var(--ink-soft)}
+
+.stickers{display:flex;flex-wrap:wrap;gap:.45rem;margin-top:.9rem}
+.sticker{
+  padding:.4rem .75rem;border-radius:999px;background:var(--ice);
+  font-family:var(--f-display);font-size:.78rem;font-weight:500;color:var(--ink-faint);
+  border:2px dashed var(--edge);
+}
+.sticker[data-won="1"]{background:var(--berry-wash);color:var(--berry-deep);
+  border:2px solid var(--berry);transform:rotate(-1.5deg)}
+.sticker[data-won="1"]:nth-child(even){transform:rotate(1.5deg)}
+
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:.7rem}
+.foot{padding:1.6rem 0 1rem;color:var(--ink-soft);font-size:.8rem;line-height:1.6}
+.foot p + p{margin-top:.55rem}
+
+/* ══ Session overlay ══════════════════════════════════════════════════ */
+.session{
+  position:fixed;inset:0;z-index:70;background:var(--ice);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:1.1rem;padding:2rem 1.2rem;text-align:center;
+}
+.session[data-mode="night"]{background:#2A1A33;color:#FFF0F8}
+.session__glow{position:relative;width:min(13rem,50vw);aspect-ratio:1}
+.session__glow canvas{position:absolute;inset:0;width:100%;height:100%}
+.session[data-mode="night"] .session__glow{width:min(8rem,32vw)}
+.session__phrase{font-family:var(--f-display);font-weight:500;
+  font-size:clamp(1.35rem,1.1rem + 1.9vw,2rem);line-height:1.3;max-width:24rem}
+.session[data-mode="night"] .session__phrase{transition:opacity 2.6s ease}
+.session__phase{font-family:var(--f-display);font-weight:600;font-size:.95rem;color:var(--berry)}
+.session__count{font-family:var(--f-display);font-weight:600;font-size:.9rem;
+  color:var(--ink-soft);font-variant-numeric:tabular-nums}
+.session[data-mode="night"] .session__count,
+.session[data-mode="night"] .session__hint{color:#C9A9D4}
+.session__hint{font-family:var(--f-body);font-size:.85rem;color:var(--ink-soft);max-width:22rem}
+.session__pip{width:5rem}
+
+/* ══ Toasts & confetti ════════════════════════════════════════════════ */
+.toasts{position:fixed;left:0;right:0;bottom:1rem;z-index:80;display:flex;
+  flex-direction:column;align-items:center;gap:.4rem;pointer-events:none;padding-inline:1rem}
+.toast{
+  background:var(--frost);border-radius:999px;padding:.6rem 1.1rem;
+  box-shadow:var(--shadow-lift);max-width:24rem;
+  font-family:var(--f-display);font-weight:500;font-size:.9rem;
+  animation:rise .4s cubic-bezier(.34,1.56,.64,1);
+}
+.toast b{color:var(--berry-deep)}
+.toast[data-kind="big"]{background:var(--berry);color:#fff}
+.toast[data-kind="big"] b{color:#fff}
+@keyframes rise{from{opacity:0;transform:translateY(1rem) scale(.9)}to{opacity:1;transform:none}}
+#confetti{position:fixed;inset:0;z-index:75;pointer-events:none}
+
+@media (prefers-reduced-motion:reduce){
+  *{animation-duration:.001ms !important;animation-iteration-count:1 !important;
+    transition-duration:.001ms !important}
+}
+@media (max-width:24rem){
+  .hero{grid-template-columns:1fr 6rem}
+  .hero__pip{width:6rem}
+}
+</style>
+</head>
+<body>
+
+<!-- ══ Pip, drawn once and cloned into the bar ═════════════════════════ -->
+<template id="pipTpl">
+  <svg class="pipsvg" viewBox="0 0 140 165" role="img" aria-label="Pip the penguin">
+    <ellipse class="pip__foot" cx="53" cy="150" rx="15" ry="7"></ellipse>
+    <ellipse class="pip__foot" cx="87" cy="150" rx="15" ry="7"></ellipse>
+    <ellipse class="pip__flipper pip__flipper--l" cx="23" cy="90" rx="10" ry="27"></ellipse>
+    <ellipse class="pip__flipper pip__flipper--r" cx="117" cy="90" rx="10" ry="27"></ellipse>
+    <path class="pip__body" d="M70,12 C42,12 26,44 26,86 C26,124 45,150 70,150 C95,150 114,124 114,86 C114,44 98,12 70,12 Z"></path>
+    <path class="pip__belly" d="M70,46 C51,46 42,68 42,97 C42,125 55,144 70,144 C85,144 98,125 98,97 C98,68 89,46 70,46 Z"></path>
+    <ellipse class="pip__blush" cx="45" cy="88" rx="8" ry="5.5"></ellipse>
+    <ellipse class="pip__blush" cx="95" cy="88" rx="8" ry="5.5"></ellipse>
+
+    <g class="m-open">
+      <circle class="pip__eye" cx="57" cy="73" r="7.5"></circle>
+      <circle class="pip__eye" cx="83" cy="73" r="7.5"></circle>
+      <circle class="pip__glint" cx="59.5" cy="70" r="2.6"></circle>
+      <circle class="pip__glint" cx="85.5" cy="70" r="2.6"></circle>
+    </g>
+    <g class="m-shut">
+      <path class="pip__line" d="M50,72 q7,8 14,0"></path>
+      <path class="pip__line" d="M76,72 q7,8 14,0"></path>
+    </g>
+    <g class="m-happy">
+      <path class="pip__line" d="M50,77 q7,-10 14,0"></path>
+      <path class="pip__line" d="M76,77 q7,-10 14,0"></path>
+    </g>
+
+    <path class="pip__beak" d="M61,88 Q70,82 79,88 Q70,97 61,88 Z"></path>
+
+    <g class="pip__bow">
+      <path d="M100,25 C90,13 80,15 81,25 C80,36 90,38 100,25 Z"></path>
+      <path d="M100,25 C110,13 120,15 119,25 C120,36 110,38 100,25 Z"></path>
+      <circle class="pip__bowknot" cx="100" cy="25" r="5.5"></circle>
+    </g>
+
+    <g class="pip__zzz">
+      <text x="116" y="48" font-size="15">z</text>
+      <text x="126" y="34" font-size="12">z</text>
+      <text x="133" y="23" font-size="9">z</text>
+    </g>
+
+    <g>
+      <path class="pip__spark" d="M0,-10 Q1.5,-1.5 10,0 Q1.5,1.5 0,10 Q-1.5,1.5 -10,0 Q-1.5,-1.5 0,-10Z" transform="translate(16,36) scale(.85)"></path>
+      <path class="pip__spark" d="M0,-10 Q1.5,-1.5 10,0 Q1.5,1.5 0,10 Q-1.5,1.5 -10,0 Q-1.5,-1.5 0,-10Z" transform="translate(126,72) scale(.6)"></path>
+      <path class="pip__spark" d="M0,-10 Q1.5,-1.5 10,0 Q1.5,1.5 0,10 Q-1.5,1.5 -10,0 Q-1.5,-1.5 0,-10Z" transform="translate(24,126) scale(.5)"></path>
+    </g>
+  </svg>
+</template>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <path id="i-tick" d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"></path>
+</defs></svg>
+
+<header class="bar">
+  <div class="bar__in">
+    <div class="bar__pip pipwrap" id="barPip" data-mood="happy" aria-hidden="true"></div>
+    <div class="bar__chips">
+      <span class="chip" title="Days in a row">🩷 <b class="num" id="streakNum">0</b> days</span>
+      <span class="chip chip--ice" title="Ice cubes cover a day you miss">🧊 <b class="num" id="freezeNum">0</b></span>
+      <span class="chip chip--xp" title="Today's XP toward your goal">✨ <b class="num" id="xpNum">0</b>/<span class="num" id="xpGoal">100</span></span>
+    </div>
+    <span class="bar__sync" id="sync" title="Saving on this device"></span>
+  </div>
+</header>
+
+<main class="col">
+
+  <!-- ══ Pip says hello ═══════════════════════════════════════════════ -->
+  <section class="hero">
+    <div>
+      <p class="hero__hi" id="dayDate">&nbsp;</p>
+      <div class="bubble" id="pipSays">Hi! Let's do six little things today.</div>
+    </div>
+    <div class="hero__pip pipwrap" id="heroPip" data-mood="happy"></div>
+    <div class="pearls" id="pearls" aria-label="Frames finished today"></div>
+  </section>
+
+  <div class="cards">
+
+    <!-- 01 Morning -->
+    <section class="card" id="f-dawn" data-tint="1" data-state="open">
+      <div class="card__head">
+        <span class="card__icon"><svg viewBox="0 0 24 24" style="color:#E8863C" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4.5"
+          fill="currentColor" stroke="none"></circle><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M19.1 4.9l-1.8 1.8M6.7 17.3l-1.8 1.8"></path></svg></span>
+        <h2>Morning</h2>
+        <span class="card__tick"><svg viewBox="0 0 24 24"><use href="#i-tick"></use></svg></span>
+      </div>
+      <p class="card__why">Twenty minutes before you touch the feed. Whatever your mind grabs
+        first sets the tone for the whole day — don't let it be strangers.</p>
+      <div class="card__work">
+        <div class="timer">
+          <span class="timer__num" id="dawnClock">20:00</span>
+          <div>
+            <div class="timer__lbl">Phone down</div>
+            <div class="timer__lbl" id="dawnState" style="opacity:.7">Not started yet</div>
+          </div>
+        </div>
+        <div class="row row--fill">
+          <button class="btn" id="dawnStart">Start 20 min</button>
+          <button class="btn" id="dawnOwn">I stayed off it</button>
+        </div>
+        <div>
+          <label class="lbl" for="dawnNice">One nice thing you'll do today</label>
+          <input class="well" id="dawnNice" type="text" placeholder="Call Mum. Take the pretty route home.">
+        </div>
+      </div>
+      <div class="card__foot"><span id="dawnStatus">Not yet</span><span>15 XP</span></div>
+    </section>
+
+    <!-- 02 Water -->
+    <section class="card" id="f-water" data-tint="2" data-state="open">
+      <div class="card__head">
+        <span class="card__icon"><svg viewBox="0 0 24 24" style="color:#4FB0F5" fill="currentColor"><path d="M12 2.7s-6.5 7.4-6.5 11.6a6.5 6.5 0 0 0 13 0C18.5 10.1 12 2.7 12 2.7z"></path></svg></span>
+        <h2>Water</h2>
+        <span class="card__tick"><svg viewBox="0 0 24 24"><use href="#i-tick"></use></svg></span>
+      </div>
+      <p class="card__why">Photograph your bottle once so Pip knows its size, then tap it off
+        every time you finish one.</p>
+      <div class="card__work">
+        <div>
+          <div class="meter__top">
+            <span><b class="num" id="waterMl">0</b> / <span class="num" id="waterGoal">2500</span> ml</span>
+            <span id="waterBottles">0 bottles</span>
+          </div>
+          <div class="meter__bar"><div class="meter__fill" id="waterFill"></div></div>
+        </div>
+        <div class="shots shots--few" id="waterShots"></div>
+        <label class="btn snap" style="align-self:flex-start">
+          <span id="waterSnapLabel">Photograph the bottle</span>
+          <input type="file" accept="image/*" capture="environment" id="waterPhoto">
+        </label>
+        <div class="row row--fill">
+          <button class="btn btn--go" id="waterAdd">+ 1 bottle</button>
+          <button class="btn" id="waterGlass">+ glass</button>
+          <button class="btn" id="waterUndo">Undo</button>
+        </div>
+      </div>
+      <div class="card__foot"><span id="waterStatus">Not yet</span><span>15 XP</span></div>
+    </section>
+
+    <!-- 03 Food -->
+    <section class="card" id="f-fuel" data-tint="3" data-state="open">
+      <div class="card__head">
+        <span class="card__icon"><svg viewBox="0 0 24 24" style="color:#D9A21B" fill="currentColor"><path d="M3 10.5h18a9 9 0 0 1-18 0z"></path><path d="M12 3c-1.6 0-2.8 1.1-2.8 2.4 0 1 .7 1.7 1.5 2.1.5.3.6.7.6 1h1.4c0-.3.1-.7.6-1 .8-.4 1.5-1.1 1.5-2.1C14.8 4.1 13.6 3 12 3z"></path></svg></span>
+        <h2>Food</h2>
+        <span class="card__tick"><svg viewBox="0 0 24 24"><use href="#i-tick"></use></svg></span>
+      </div>
+      <p class="card__why">Snap the plate before you eat and Pip reads the calories off the
+        photo. Two meals closes this one.</p>
+      <div class="card__work">
+        <div>
+          <div class="meter__top">
+            <span><b class="num" id="fuelKcal">0</b> / <span class="num" id="fuelGoal">2000</span> kcal</span>
+            <span id="fuelCount">0 meals</span>
+          </div>
+          <div class="meter__bar"><div class="meter__fill" id="fuelFill"></div></div>
+        </div>
+        <div class="meals" id="mealList"></div>
+        <div id="fuelPending" hidden></div>
+        <div class="row row--fill">
+          <label class="btn btn--go snap">
+            <span>Snap a meal</span>
+            <input type="file" accept="image/*" capture="environment" id="fuelPhoto">
+          </label>
+          <button class="btn" id="fuelManual">Type it in</button>
+        </div>
+      </div>
+      <div class="card__foot"><span id="fuelStatus">Not yet</span><span>20 XP</span></div>
+    </section>
+
+    <!-- 04 Move -->
+    <section class="card" id="f-move" data-tint="4" data-state="open">
+      <div class="card__head">
+        <span class="card__icon"><svg viewBox="0 0 24 24" style="color:#2BC28E" fill="currentColor"><path d="M12 20.5S3.5 14.9 3.5 9.3A4.6 4.6 0 0 1 12 6.8a4.6 4.6 0 0 1 8.5 2.5c0 5.6-8.5 11.2-8.5 11.2z"></path></svg></span>
+        <h2>Move</h2>
+        <span class="card__tick"><svg viewBox="0 0 24 24"><use href="#i-tick"></use></svg></span>
+      </div>
+      <p class="card__why">Before and after. One photo won't do it — the pair is the proof,
+        and the proof is the fun part.</p>
+      <div class="card__work">
+        <div class="shots" style="grid-template-columns:1fr 1fr" id="moveShots"></div>
+        <div class="row row--fill">
+          <label class="btn snap"><span id="moveBeforeLabel">Before</span>
+            <input type="file" accept="image/*" capture="user" id="movePhotoBefore"></label>
+          <label class="btn snap"><span id="moveAfterLabel">After</span>
+            <input type="file" accept="image/*" capture="user" id="movePhotoAfter"></label>
+        </div>
+        <div class="row">
+          <input class="well" id="moveWhat" type="text" style="flex:2 1 10rem"
+                 placeholder="What you did — walk, gym, dancing">
+          <input class="well" id="moveMins" type="number" min="0" max="600" style="flex:0 0 5.5rem"
+                 placeholder="min" aria-label="Minutes">
+        </div>
+      </div>
+      <div class="card__foot"><span id="moveStatus">Not yet</span><span>25 XP</span></div>
+    </section>
+
+    <!-- 05 Manifest -->
+    <section class="card" id="f-manifest" data-tint="5" data-state="open">
+      <div class="card__head">
+        <span class="card__icon"><svg viewBox="0 0 24 24" style="color:#A07BFF" fill="currentColor"><path d="M12 2 Q13.6 10.4 22 12 Q13.6 13.6 12 22 Q10.4 13.6 2 12 Q10.4 10.4 12 2Z"></path></svg></span>
+        <h2>Manifest</h2>
+        <span class="card__tick"><svg viewBox="0 0 24 24"><use href="#i-tick"></use></svg></span>
+      </div>
+      <p class="card__why">One sentence, present tense, twenty-one slow repetitions. Two
+        minutes. Breathe with the glow.</p>
+      <div class="card__work">
+        <div class="glow">
+          <canvas id="cardGlow" aria-hidden="true"></canvas>
+          <span class="glow__word" id="cardPhase">Breathe</span>
+        </div>
+        <div>
+          <label class="lbl" for="impression">Today's wish, said as if it's already true</label>
+          <textarea class="well" id="impression" rows="2"></textarea>
+        </div>
+        <p class="card__why" id="checkText" style="margin-top:-.3rem"></p>
+        <div class="row row--fill">
+          <button class="btn btn--go" id="startExpose">Say it 21 times</button>
+          <button class="btn" id="startNight">Sleepy version</button>
+        </div>
+        <details class="tuck">
+          <summary>Why this actually works</summary>
+          <div class="tuck__body">
+            <p><b>It takes what it's given.</b> Your subconscious doesn't judge whether a thought
+              is good for you. It accepts what's repeated and gets to work.</p>
+            <p><b>Feeling is the key.</b> One sentence said with real feeling beats a thousand
+              said flatly. Straining is what stops it landing.</p>
+            <p><b>Never argue with a thought.</b> Fighting a worry feeds it your attention.
+              Don't wrestle it — swap it.</p>
+            <p><b>Sleep is the doorway.</b> The last five minutes before you drop off are worth
+              more than an hour at noon. That's what the sleepy version is for.</p>
+            <p><b>You don't need the how.</b> Pick the outcome, drop the route. Explaining the
+              method to yourself is how you talk yourself out of it.</p>
+          </div>
+        </details>
+      </div>
+      <div class="card__foot"><span id="manifestStatus">Not yet</span><span>20 XP</span></div>
+    </section>
+
+    <!-- 06 Night -->
+    <section class="card" id="f-dusk" data-tint="6" data-state="open">
+      <div class="card__head">
+        <span class="card__icon"><svg viewBox="0 0 24 24" style="color:#FF6BA8" fill="currentColor"><path d="M20.5 15.2A8.6 8.6 0 0 1 9.4 4.1a8.6 8.6 0 1 0 11.1 11.1z"></path></svg></span>
+        <h2>Night</h2>
+        <span class="card__tick"><svg viewBox="0 0 24 24"><use href="#i-tick"></use></svg></span>
+      </div>
+      <p class="card__why">Three good things from today, and the one thing that would make
+        tomorrow good. What you notice, you get more of.</p>
+      <div class="card__work">
+        <div class="row" style="flex-direction:column;gap:.45rem">
+          <input class="well" id="g1" type="text" placeholder="Something that went right" aria-label="First good thing">
+          <input class="well" id="g2" type="text" placeholder="Someone you're glad about" aria-label="Second good thing">
+          <input class="well" id="g3" type="text" placeholder="Something small you enjoyed" aria-label="Third good thing">
+        </div>
+        <div>
+          <label class="lbl" for="tomorrow">Tomorrow's one thing</label>
+          <input class="well" id="tomorrow" type="text" placeholder="The one thing that'd make tomorrow good">
+        </div>
+        <button class="btn btn--go" id="duskSave" style="width:100%">Tuck the day in</button>
+        <ul class="meals" id="duskList"></ul>
+      </div>
+      <div class="card__foot"><span id="duskStatus">Not yet</span><span>15 XP</span></div>
+    </section>
+  </div>
+
+  <!-- ══ The month ════════════════════════════════════════════════════ -->
+  <section class="section">
+    <h2>Your last five weeks</h2>
+    <p class="section__sub">One dot a day. Three frames lights it up.</p>
+    <div class="month" id="month"></div>
+    <div class="key">
+      <span>Pale · 1–2 frames</span><span>Pink · day lit</span>
+      <span>Ringed · all six</span><span>Orange outline · today</span>
+    </div>
+    <div class="stickers" id="stickers"></div>
+    <details class="tuck" style="margin-top:1rem">
+      <summary>Goals &amp; settings</summary>
+      <div class="tuck__body">
+        <div class="grid2">
+          <div><label class="lbl" for="setWater">Water goal (ml)</label>
+            <input class="well" id="setWater" type="number" min="500" max="6000" step="100"></div>
+          <div><label class="lbl" for="setBottle">Bottle size (ml)</label>
+            <input class="well" id="setBottle" type="number" min="100" max="2000" step="50"></div>
+          <div><label class="lbl" for="setKcal">Calorie goal</label>
+            <input class="well" id="setKcal" type="number" min="800" max="6000" step="50"></div>
+          <div><label class="lbl" for="setXp">Daily XP goal</label>
+            <input class="well" id="setXp" type="number" min="20" max="110" step="5"></div>
+        </div>
+        <p id="storageNote"></p>
+      </div>
+    </details>
+  </section>
+
+  <footer class="foot">
+    <p>Calorie numbers are Pip's best guess from a photo. Treat them as a rough guide and
+      overwrite them whenever they look off — the field is always yours to edit.</p>
+    <p>The manifest bit follows Joseph Murphy's <em>The Power of Your Subconscious Mind</em>
+      (1963). It's a practice, not treatment — if something feels genuinely heavy, please talk
+      to a doctor too.</p>
+  </footer>
+</main>
+
+<div class="session" id="session" role="dialog" aria-modal="true" aria-label="Manifest session" hidden>
+  <p class="session__phase" id="sessionPhase">Breathe in</p>
+  <div class="session__glow"><canvas id="sessionGlow" aria-hidden="true"></canvas></div>
+  <p class="session__phrase" id="sessionPhrase"></p>
+  <p class="session__count" id="sessionCount"></p>
+  <p class="session__hint" id="sessionHint"></p>
+  <button class="btn" id="endSession">Done for now</button>
+</div>
+
+<canvas id="confetti" hidden></canvas>
+<div class="toasts" id="toasts" aria-live="polite"></div>
+
+<script>
+(function () {
+  "use strict";
+
+  var $ = function (id) { return document.getElementById(id); };
+  var reduced = window.matchMedia &&
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  function pad(n) { return String(n).padStart(2, "0"); }
+  function keyOf(d) { return d.getFullYear() + "-" + pad(d.getMonth() + 1) + "-" + pad(d.getDate()); }
+  function midnight(d) { return new Date(d.getFullYear(), d.getMonth(), d.getDate()); }
+  function shift(d, n) { var x = midnight(d); x.setDate(x.getDate() + n); return x; }
+  function apart(a, b) {
+    return Math.round((new Date(b + "T00:00:00") - new Date(a + "T00:00:00")) / 86400000);
+  }
+  function clamp(n, lo, hi) { return Math.max(lo, Math.min(hi, n)); }
+
+  var now = new Date();
+  var TODAY = keyOf(now);
+
+  /* ══ Pip ════════════════════════════════════════════════════════════ */
+  var tpl = $("pipTpl");
+  var pips = [$("heroPip"), $("barPip")];
+  pips.forEach(function (host) { host.appendChild(tpl.content.cloneNode(true)); });
+  var moodHold = null;
+  function setMood(m) {
+    pips.forEach(function (h) { h.setAttribute("data-mood", m); });
+  }
+  function celebrate(ms) {
+    clearTimeout(moodHold);
+    setMood("party");
+    moodHold = setTimeout(function () { pipUpdate(); }, ms || 2600);
+  }
+
+  /* ══ Toasts ═════════════════════════════════════════════════════════ */
+  function toast(html, kind) {
+    var t = document.createElement("div");
+    t.className = "toast";
+    if (kind) t.setAttribute("data-kind", kind);
+    t.innerHTML = html;
+    $("toasts").appendChild(t);
+    setTimeout(function () {
+      t.style.transition = "opacity .4s ease";
+      t.style.opacity = "0";
+      setTimeout(function () { t.remove(); }, 420);
+    }, kind === "big" ? 6000 : 3600);
+  }
+
+  /* ══ Confetti ═══════════════════════════════════════════════════════ */
+  function confetti() {
+    if (reduced) return;
+    var c = $("confetti"), ctx = c.getContext("2d");
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    c.hidden = false;
+    c.width = innerWidth * dpr; c.height = innerHeight * dpr;
+    c.style.width = innerWidth + "px"; c.style.height = innerHeight + "px";
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    var cols = ["#FF5FA2", "#FF9F3D", "#25C295", "#8FD0FF", "#DE2F80"];
+    var bits = [], i;
+    for (i = 0; i < 110; i++) {
+      bits.push({
+        x: Math.random() * innerWidth, y: -20 - Math.random() * innerHeight * .5,
+        w: 6 + Math.random() * 7, h: 8 + Math.random() * 8,
+        vy: 2.2 + Math.random() * 3.2, vx: (Math.random() - .5) * 1.6,
+        a: Math.random() * Math.PI, va: (Math.random() - .5) * .22,
+        col: cols[i % cols.length]
+      });
+    }
+    var t0 = performance.now();
+    (function frame(t) {
+      ctx.clearRect(0, 0, innerWidth, innerHeight);
+      bits.forEach(function (b) {
+        b.x += b.vx; b.y += b.vy; b.a += b.va;
+        ctx.save();
+        ctx.translate(b.x, b.y); ctx.rotate(b.a);
+        ctx.fillStyle = b.col;
+        ctx.fillRect(-b.w / 2, -b.h / 2, b.w, b.h);
+        ctx.restore();
+      });
+      if (t - t0 < 3400) requestAnimationFrame(frame);
+      else { ctx.clearRect(0, 0, innerWidth, innerHeight); c.hidden = true; }
+    })(t0);
+  }
+
+  /* ══ Capability access ══════════════════════════════════════════════ */
+  function use(name) {
+    try {
+      if (window.claude && typeof window.claude.use === "function") return window.claude.use(name);
+    } catch (e) {}
+    return Promise.resolve(null);
+  }
+
+  /* ══ Photos — IndexedDB, on this device only ════════════════════════ */
+  var Photos = (function () {
+    var ready = null, urls = {};
+    function open() {
+      if (ready) return ready;
+      ready = new Promise(function (resolve) {
+        if (!window.indexedDB) return resolve(null);
+        var req = indexedDB.open("safelight-photos", 1);
+        req.onupgradeneeded = function () {
+          if (!req.result.objectStoreNames.contains("shots")) req.result.createObjectStore("shots");
+        };
+        req.onsuccess = function () { resolve(req.result); };
+        req.onerror = function () { resolve(null); };
+      });
+      return ready;
+    }
+    function tx(mode) {
+      return open().then(function (db) {
+        return db ? db.transaction("shots", mode).objectStore("shots") : null;
+      });
+    }
+    return {
+      put: function (key, blob) {
+        return tx("readwrite").then(function (st) {
+          if (!st) return false;
+          return new Promise(function (res) {
+            var r = st.put(blob, key);
+            r.onsuccess = function () {
+              if (urls[key]) { URL.revokeObjectURL(urls[key]); delete urls[key]; }
+              res(true);
+            };
+            r.onerror = function () { res(false); };
+          });
+        });
+      },
+      url: function (key) {
+        if (urls[key]) return Promise.resolve(urls[key]);
+        return tx("readonly").then(function (st) {
+          if (!st) return null;
+          return new Promise(function (res) {
+            var r = st.get(key);
+            r.onsuccess = function () {
+              if (!r.result) return res(null);
+              urls[key] = URL.createObjectURL(r.result);
+              res(urls[key]);
+            };
+            r.onerror = function () { res(null); };
+          });
+        });
+      },
+      drop: function (key) {
+        if (urls[key]) { URL.revokeObjectURL(urls[key]); delete urls[key]; }
+        return tx("readwrite").then(function (st) { if (st) st.delete(key); });
+      }
+    };
+  })();
+
+  function shrink(file, max, quality) {
+    return new Promise(function (resolve, reject) {
+      var done = function (img, w0, h0, close) {
+        var scale = Math.min(1, max / Math.max(w0, h0));
+        var w = Math.max(1, Math.round(w0 * scale)), h = Math.max(1, Math.round(h0 * scale));
+        var c = document.createElement("canvas");
+        c.width = w; c.height = h;
+        c.getContext("2d").drawImage(img, 0, 0, w, h);
+        if (close) close();
+        c.toBlob(function (b) { b ? resolve(b) : reject(new Error("encode failed")); },
+                 "image/jpeg", quality);
+      };
+      if (window.createImageBitmap) {
+        createImageBitmap(file).then(function (bmp) {
+          done(bmp, bmp.width, bmp.height, function () { bmp.close && bmp.close(); });
+        }).catch(reject);
+      } else {
+        var url = URL.createObjectURL(file);
+        var im = new Image();
+        im.onload = function () {
+          done(im, im.naturalWidth, im.naturalHeight, function () { URL.revokeObjectURL(url); });
+        };
+        im.onerror = function () { URL.revokeObjectURL(url); reject(new Error("decode failed")); };
+        im.src = url;
+      }
+    });
+  }
+
+  /* ══ Records — local now, synced store when the page has one ════════
+     Key and document paths are unchanged from the first build, so any
+     day already logged carries over.                                 */
+  var LKEY = "safelight.app.v1";
+  var mem = { profile: null, days: {} };
+
+  function readLocal() {
+    try { return JSON.parse(localStorage.getItem(LKEY)) || {}; } catch (e) { return {}; }
+  }
+  function writeLocal() {
+    try { localStorage.setItem(LKEY, JSON.stringify(mem)); } catch (e) {}
+  }
+
+  function blankProfile() {
+    return {
+      streak: 0, best: 0, freezes: 0, lastLit: null, totalXp: 0, badges: [],
+      goalXp: 100, waterGoal: 2500, bottleMl: 750, kcalGoal: 2000,
+      impression: "", updatedAt: 0
+    };
+  }
+  function blankDay(k) {
+    return {
+      d: k, updatedAt: 0,
+      dawn: { off: false, nice: "", timed: false },
+      water: { ml: 0, photo: false },
+      fuel: { meals: [] },
+      move: { before: false, after: false, what: "", mins: 0 },
+      manifest: { reps: 0, done: false },
+      dusk: { good: ["", "", ""], tomorrow: "", done: false }
+    };
+  }
+  /* Merge a stored record onto a blank one. Note `typeof null === "object"`:
+     descending into a null default (lastLit) would throw on every boot once
+     a streak existed, so both sides are checked before recursing. */
+  function fill(target, blank) {
+    Object.keys(blank).forEach(function (k) {
+      var b = blank[k];
+      if (target[k] === undefined || target[k] === null) target[k] = b;
+      else if (b && typeof b === "object" && !Array.isArray(b) &&
+               target[k] && typeof target[k] === "object" && !Array.isArray(target[k])) {
+        fill(target[k], b);
+      }
+    });
+    return target;
+  }
+
+  var boot = readLocal();
+  mem.profile = fill(boot.profile || {}, blankProfile());
+  mem.days = boot.days || {};
+  Object.keys(mem.days).forEach(function (k) { fill(mem.days[k], blankDay(k)); });
+
+  function dayOf(k) {
+    if (!mem.days[k]) mem.days[k] = blankDay(k);
+    return mem.days[k];
+  }
+  var P = mem.profile;
+  var D = dayOf(TODAY);
+
+  var remote = null;
+  function pushDay(k) { if (remote) remote.doc("days/" + k).set(mem.days[k]).catch(function () {}); }
+  function pushProfile() { if (remote) remote.doc("state/profile").set(P).catch(function () {}); }
+
+  var saveTimer = null;
+  function save(opts) {
+    var o = opts || {};
+    var d = o.day === false ? null : D;
+    if (d) d.updatedAt = Date.now();
+    P.updatedAt = Date.now();
+    writeLocal();
+    clearTimeout(saveTimer);
+    saveTimer = setTimeout(function () { if (d) pushDay(d.d); pushProfile(); }, 700);
+  }
+
+  use("db").then(function (db) {
+    if (!db) {
+      $("sync").title = "Saved on this device";
+      $("storageNote").textContent =
+        "Everything is saved in this browser, and photos never leave your device.";
+      return;
+    }
+    remote = db;
+    $("sync").setAttribute("data-sync", "on");
+    $("sync").title = "Streak and numbers are synced";
+    $("storageNote").textContent =
+      "Your streak, XP and daily numbers sync, so clearing this browser can't wipe them. " +
+      "Photos stay on this device only.";
+
+    Promise.all([
+      db.doc("state/profile").get().catch(function () { return null; }),
+      db.collection("days").orderBy("d", "desc").limit(45).get().catch(function () { return null; })
+    ]).then(function (r) {
+      var rp = r[0] && r[0].exists ? r[0].data() : null;
+      if (rp && (rp.updatedAt || 0) > (P.updatedAt || 0)) {
+        fill(rp, blankProfile());
+        Object.keys(rp).forEach(function (k) { P[k] = rp[k]; });
+      }
+      if (r[1]) {
+        r[1].docs.forEach(function (doc) {
+          var rd = fill(doc.data(), blankDay(doc.id));
+          var local = mem.days[doc.id];
+          if (!local || (rd.updatedAt || 0) > (local.updatedAt || 0)) mem.days[doc.id] = rd;
+        });
+      }
+      D = dayOf(TODAY);
+      writeLocal();
+      repairStreak();
+      hydrate();
+      render();
+      pushProfile();
+      pushDay(TODAY);
+    });
+  });
+
+  /* ══ The six ════════════════════════════════════════════════════════ */
+  var FRAMES = [
+    { key: "dawn", name: "Morning", xp: 15,
+      done: function (d) { return d.dawn.off && !!d.dawn.nice.trim(); } },
+    { key: "water", name: "Water", xp: 15,
+      done: function (d) { return d.water.ml >= P.waterGoal; } },
+    { key: "fuel", name: "Food", xp: 20,
+      done: function (d) { return d.fuel.meals.length >= 2; } },
+    { key: "move", name: "Move", xp: 25,
+      done: function (d) { return d.move.before && d.move.after; } },
+    { key: "manifest", name: "Manifest", xp: 20,
+      done: function (d) { return d.manifest.done; } },
+    { key: "dusk", name: "Night", xp: 15,
+      done: function (d) { return d.dusk.good.some(function (g) { return !!g.trim(); }) &&
+                                  !!d.dusk.tomorrow.trim(); } }
+  ];
+  var FULL_BONUS = 40, LIT_AT = 3;
+
+  function closedIn(d) { return FRAMES.filter(function (f) { return f.done(d); }); }
+  function xpOf(d) {
+    var c = closedIn(d);
+    var x = c.reduce(function (a, f) { return a + f.xp; }, 0);
+    return c.length === FRAMES.length ? x + FULL_BONUS : x;
+  }
+  function litLevel(d) {
+    var n = closedIn(d).length;
+    return n === FRAMES.length ? 3 : n >= LIT_AT ? 2 : n > 0 ? 1 : 0;
+  }
+
+  /* ══ Streak ═════════════════════════════════════════════════════════ */
+  var MILESTONES = [
+    { n: 3, label: "3 days ✿" }, { n: 7, label: "one week ✿" },
+    { n: 14, label: "two weeks ✿" }, { n: 30, label: "a month ✿" },
+    { n: 50, label: "fifty ✿" }, { n: 80, label: "80 · Duolingo matched ✿" },
+    { n: 100, label: "one hundred ✿" }, { n: 180, label: "half a year ✿" },
+    { n: 365, label: "a whole year ✿" }
+  ];
+
+  function repairStreak() {
+    if (!P.lastLit || P.lastLit === TODAY) return;
+    var gap = apart(P.lastLit, TODAY) - 1;
+    if (gap <= 0) return;
+    if (P.freezes >= gap && gap <= 2) {
+      P.freezes -= gap;
+      P.lastLit = keyOf(shift(now, -1));
+      toast("🧊 <b>Ice cube used</b> — " + gap + " missed day" + (gap > 1 ? "s" : "") +
+            " covered. " + P.freezes + " left.", "big");
+    } else if (P.streak > 0) {
+      toast("Streak stopped at " + P.streak + ". Pip still loves you — start again today.");
+      P.best = Math.max(P.best, P.streak);
+      P.streak = 0;
+    }
+    writeLocal();
+  }
+
+  function updateStreak() {
+    if (litLevel(D) < 2 || P.lastLit === TODAY) return;
+    P.streak = (P.lastLit === keyOf(shift(now, -1))) ? P.streak + 1 : 1;
+    P.lastLit = TODAY;
+    P.best = Math.max(P.best, P.streak);
+    toast("🩷 <b>Day " + P.streak + "</b> — today counts!", "big");
+    if (P.streak % 7 === 0 && P.freezes < 2) {
+      P.freezes++;
+      toast("🧊 <b>Ice cube earned.</b> You have " + P.freezes + ".");
+    }
+    MILESTONES.forEach(function (m) {
+      if (P.streak === m.n && P.badges.indexOf(m.n) === -1) {
+        P.badges.push(m.n);
+        toast("<b>" + m.label + "</b> New sticker!", "big");
+        confetti();
+      }
+    });
+  }
+
+  /* ══ Awarding ═══════════════════════════════════════════════════════ */
+  var wasClosed = {};
+  FRAMES.forEach(function (f) { wasClosed[f.key] = f.done(D); });
+  var wasFull = closedIn(D).length === FRAMES.length;
+
+  function commit() {
+    var closedSomething = false;
+    FRAMES.forEach(function (f) {
+      var isDone = f.done(D);
+      if (isDone && !wasClosed[f.key]) {
+        P.totalXp += f.xp;
+        toast("<b>+" + f.xp + " XP</b> · " + f.name + " done!");
+        closedSomething = true;
+      }
+      wasClosed[f.key] = isDone;
+    });
+    var full = closedIn(D).length === FRAMES.length;
+    if (full && !wasFull) {
+      P.totalXp += FULL_BONUS;
+      toast("<b>All six!</b> Pip is doing a little dance · +" + FULL_BONUS + " XP", "big");
+      confetti();
+    }
+    wasFull = full;
+    updateStreak();
+    save();
+    render();
+    if (closedSomething && !full) celebrate();
+  }
+
+  /* ══ Render ═════════════════════════════════════════════════════════ */
+  function render() {
+    var xp = xpOf(D);
+    $("xpNum").textContent = xp;
+    $("xpGoal").textContent = P.goalXp;
+    $("streakNum").textContent = P.streak;
+    $("freezeNum").textContent = P.freezes;
+    $("dayDate").textContent = now.toLocaleDateString(undefined,
+      { weekday: "long", day: "numeric", month: "long" });
+
+    FRAMES.forEach(function (f) {
+      var done = f.done(D);
+      $("f-" + f.key).setAttribute("data-state", done ? "done" : "open");
+      var st = $(f.key + "Status");
+      if (st) st.textContent = done ? "Done · +" + f.xp + " XP" : "Not yet";
+    });
+
+    var n = closedIn(D).length;
+    var pearls = $("pearls");
+    if (pearls.children.length !== FRAMES.length + 1) {
+      pearls.textContent = "";
+      FRAMES.forEach(function (f) {
+        var p = document.createElement("span");
+        p.className = "pearl";
+        p.title = f.name;
+        p.innerHTML = '<svg viewBox="0 0 24 24"><use href="#i-tick"></use></svg>';
+        pearls.appendChild(p);
+      });
+      var cnt = document.createElement("span");
+      cnt.className = "pearls__count";
+      pearls.appendChild(cnt);
+    }
+    FRAMES.forEach(function (f, i) {
+      pearls.children[i].setAttribute("data-on", f.done(D) ? "1" : "0");
+    });
+    pearls.lastChild.textContent = n + " of 6 today";
+
+    /* Morning */
+    $("dawnOwn").classList.toggle("btn--on", D.dawn.off);
+    $("dawnOwn").textContent = D.dawn.off ? "Phone stayed down ✓" : "I stayed off it";
+
+    /* Water */
+    $("waterMl").textContent = D.water.ml;
+    $("waterGoal").textContent = P.waterGoal;
+    $("waterBottles").textContent = (D.water.ml / P.bottleMl).toFixed(1) + " bottles";
+    var wf = $("waterFill");
+    wf.style.width = clamp(D.water.ml / P.waterGoal, 0, 1) * 100 + "%";
+    wf.setAttribute("data-over", D.water.ml >= P.waterGoal ? "1" : "0");
+    $("waterAdd").textContent = "+ 1 bottle";
+    $("waterAdd").title = "Adds " + P.bottleMl + " ml";
+    $("waterSnapLabel").textContent = D.water.photo ? "New bottle photo" : "Photograph the bottle";
+    renderShots("waterShots", D.water.photo
+      ? [{ key: TODAY + ":water", tag: "My bottle" }]
+      : [{ empty: "Snap your bottle" }]);
+
+    /* Food */
+    var kcal = D.fuel.meals.reduce(function (a, m) { return a + (m.kcal || 0); }, 0);
+    $("fuelKcal").textContent = kcal;
+    $("fuelGoal").textContent = P.kcalGoal;
+    $("fuelCount").textContent = D.fuel.meals.length +
+      (D.fuel.meals.length === 1 ? " meal" : " meals");
+    var ff = $("fuelFill");
+    ff.style.width = clamp(kcal / P.kcalGoal, 0, 1) * 100 + "%";
+    ff.setAttribute("data-over", kcal > P.kcalGoal ? "1" : "0");
+    renderMeals();
+
+    /* Move */
+    $("moveBeforeLabel").textContent = D.move.before ? "Retake before" : "Before";
+    $("moveAfterLabel").textContent = D.move.after ? "Retake after" : "After";
+    renderShots("moveShots", [
+      D.move.before ? { key: TODAY + ":move-before", tag: "Before" } : { empty: "Before" },
+      D.move.after ? { key: TODAY + ":move-after", tag: "After" } : { empty: "After" }
+    ]);
+
+    /* Night */
+    var dl = $("duskList");
+    dl.textContent = "";
+    D.dusk.good.filter(function (g) { return g.trim(); }).forEach(function (g) {
+      var li = document.createElement("li");
+      li.className = "meal";
+      var s = document.createElement("span");
+      s.className = "meal__name";
+      s.textContent = "🩷 " + g;
+      li.appendChild(s);
+      dl.appendChild(li);
+    });
+
+    renderMonth();
+    renderStickers();
+    pipUpdate();
+  }
+
+  function carryOver() {
+    var y = mem.days[keyOf(shift(now, -1))];
+    return (y && y.dusk && y.dusk.tomorrow.trim()) || "";
+  }
+
+  function pipUpdate() {
+    var n = closedIn(D).length;
+    setMood(n === 0 ? "sleepy" : n >= FRAMES.length ? "party" : n >= LIT_AT ? "excited" : "happy");
+    var carry = carryOver();
+    var line;
+    if (n === 0) {
+      line = carry
+        ? "Last night you wrote “" + carry + "”. Let's start there."
+        : (P.streak > 0
+            ? "Day " + (P.streak + 1) + " is waiting. Three little things and it's safe."
+            : "Hi! Six little things today. None of them are big.");
+    } else if (n === 1) { line = "One down. See? That was nothing."; }
+    else if (n === 2) { line = "Two! One more and today counts."; }
+    else if (n === 3) { line = "Today counts 🩷 Everything after this is a bonus."; }
+    else if (n === 4) { line = "Four. Okay, now you're showing off."; }
+    else if (n === 5) { line = "Five! One frame left. Go on, I'll wait."; }
+    else { line = "All six! I'm so proud I could flap."; }
+    $("pipSays").textContent = line;
+  }
+
+  function renderShots(hostId, list) {
+    var host = $(hostId);
+    host.textContent = "";
+    list.forEach(function (item) {
+      var d = document.createElement("div");
+      d.className = "shot" + (item.empty ? " shot--empty" : "");
+      if (item.empty) {
+        var s = document.createElement("span");
+        s.textContent = item.empty;
+        d.appendChild(s);
+      } else {
+        var tag = document.createElement("span");
+        tag.className = "shot__tag";
+        tag.textContent = item.tag;
+        d.appendChild(tag);
+        Photos.url(item.key).then(function (u) {
+          if (!u) return;
+          var im = document.createElement("img");
+          im.src = u; im.alt = item.tag;
+          d.insertBefore(im, d.firstChild);
+        });
+      }
+      host.appendChild(d);
+    });
+  }
+
+  function renderMeals() {
+    var host = $("mealList");
+    host.textContent = "";
+    D.fuel.meals.forEach(function (m, i) {
+      var row = document.createElement("div");
+      row.className = "meal";
+      if (m.photo) {
+        var im = document.createElement("img");
+        im.alt = "";
+        row.appendChild(im);
+        Photos.url(TODAY + ":fuel-" + m.id).then(function (u) { if (u) im.src = u; });
+      }
+      var name = document.createElement("span");
+      name.className = "meal__name";
+      name.textContent = m.name || "Meal";
+      var kcal = document.createElement("span");
+      kcal.className = "meal__kcal";
+      kcal.textContent = (m.kcal || 0) + " kcal";
+      var del = document.createElement("button");
+      del.className = "meal__del";
+      del.type = "button";
+      del.textContent = "×";
+      del.title = "Remove";
+      del.addEventListener("click", function () {
+        if (m.photo) Photos.drop(TODAY + ":fuel-" + m.id);
+        D.fuel.meals.splice(i, 1);
+        commit();
+      });
+      row.appendChild(name); row.appendChild(kcal); row.appendChild(del);
+      host.appendChild(row);
+    });
+  }
+
+  function renderMonth() {
+    var g = $("month");
+    g.textContent = "";
+    var start = shift(now, -34);
+    for (var i = 0; i < 35; i++) {
+      var d = shift(start, i), k = keyOf(d), rec = mem.days[k];
+      var cell = document.createElement("div");
+      cell.className = "dot";
+      cell.setAttribute("data-lit", String(rec ? litLevel(rec) : 0));
+      if (k === TODAY) cell.setAttribute("data-today", "1");
+      cell.title = d.toLocaleDateString(undefined, { month: "short", day: "numeric" }) +
+        (rec ? " — " + closedIn(rec).length + "/6" : " — nothing yet");
+      g.appendChild(cell);
+    }
+    var best = Math.max(P.best, P.streak);
+    g.previousElementSibling.textContent =
+      "One dot a day. Three frames lights it up." + (best ? "  Best run: " + best + " days." : "");
+  }
+
+  function renderStickers() {
+    var host = $("stickers");
+    host.textContent = "";
+    MILESTONES.forEach(function (m) {
+      var b = document.createElement("span");
+      b.className = "sticker";
+      if (P.badges.indexOf(m.n) !== -1 || P.streak >= m.n || P.best >= m.n) {
+        b.setAttribute("data-won", "1");
+      }
+      b.textContent = m.label;
+      host.appendChild(b);
+    });
+  }
+
+  /* ══ Hydrate (never clobber a field being typed in) ═════════════════ */
+  function set(el, v) { if (el && document.activeElement !== el) el.value = v; }
+  function hydrate() {
+    set($("dawnNice"), D.dawn.nice);
+    set($("moveWhat"), D.move.what);
+    set($("moveMins"), D.move.mins || "");
+    set($("g1"), D.dusk.good[0]); set($("g2"), D.dusk.good[1]); set($("g3"), D.dusk.good[2]);
+    set($("tomorrow"), D.dusk.tomorrow);
+    set($("impression"), P.impression || todaysWish());
+    set($("setWater"), P.waterGoal); set($("setBottle"), P.bottleMl);
+    set($("setKcal"), P.kcalGoal);   set($("setXp"), P.goalXp);
+    checkWish();
+  }
+
+  /* ══ 01 Morning ═════════════════════════════════════════════════════ */
+  var dawnEnd = 0, dawnTick = null;
+  function paintClock(sec) {
+    $("dawnClock").textContent = Math.floor(sec / 60) + ":" + pad(Math.max(0, sec % 60));
+  }
+  paintClock(20 * 60);
+  $("dawnStart").addEventListener("click", function () {
+    if (dawnTick) return;
+    dawnEnd = Date.now() + 20 * 60 * 1000;
+    $("dawnState").textContent = "Running — go do something else!";
+    dawnTick = setInterval(function () {
+      var left = Math.round((dawnEnd - Date.now()) / 1000);
+      if (left <= 0) {
+        clearInterval(dawnTick); dawnTick = null;
+        paintClock(0);
+        $("dawnState").textContent = "Twenty clear minutes 🩷";
+        D.dawn.off = true; D.dawn.timed = true;
+        commit();
+        return;
+      }
+      paintClock(left);
+    }, 1000);
+  });
+  $("dawnOwn").addEventListener("click", function () {
+    D.dawn.off = !D.dawn.off;
+    if (!D.dawn.off) D.dawn.timed = false;
+    commit();
+  });
+  $("dawnNice").addEventListener("input", function () { D.dawn.nice = this.value; commit(); });
+
+  /* ══ 02 Water ═══════════════════════════════════════════════════════ */
+  var waterHist = [];
+  function addWater(ml) { D.water.ml = Math.max(0, D.water.ml + ml); waterHist.push(ml); commit(); }
+  $("waterAdd").addEventListener("click", function () { addWater(P.bottleMl); });
+  $("waterGlass").addEventListener("click", function () { addWater(250); });
+  $("waterUndo").addEventListener("click", function () {
+    var last = waterHist.pop();
+    if (!last) return;
+    D.water.ml = Math.max(0, D.water.ml - last);
+    commit();
+  });
+  $("waterPhoto").addEventListener("change", function () {
+    var f = this.files && this.files[0];
+    this.value = "";
+    if (!f) return;
+    shrink(f, 900, .75).then(function (b) { return Photos.put(TODAY + ":water", b); })
+      .then(function () { D.water.photo = true; commit(); })
+      .catch(function () { toast("Couldn't read that photo — try again?"); });
+  });
+
+  /* ══ 03 Food ════════════════════════════════════════════════════════ */
+  var pending = $("fuelPending");
+  function nextMealId() {
+    return D.fuel.meals.reduce(function (a, m) { return Math.max(a, (m.id || 0) + 1); }, 0);
+  }
+  var sampleNs = null, sampleImages = false;
+  use("sample").then(function (s) {
+    if (!s) return;
+    sampleNs = s;
+    return s.limits().then(function (lim) { sampleImages = !!(lim && lim.images); })
+            .catch(function () {});
+  }).catch(function () {});
+
+  var FUEL_PROMPT =
+    "You are estimating the calories in a photograph of a meal. Reply with JSON only, no prose.\n" +
+    'Shape: {"items":[{"name":string,"kcal":number}],"total":number,' +
+    '"confidence":"low"|"medium"|"high","note":string}\n' +
+    "- name: the food plus an assumed portion, e.g. \"grilled chicken breast, ~150 g\"\n" +
+    "- total: the sum of the items' kcal, rounded to the nearest 10\n" +
+    "- note: one friendly sentence, max 18 words, on what you assumed about portion size\n" +
+    "- confidence: low if the portion or ingredients are genuinely unclear\n" +
+    'If there is no food in the photo, return {"items":[],"total":0,"confidence":"low",' +
+    '"note":"I can\'t see any food in this one!"}';
+
+  function mealCard(opts) {
+    pending.hidden = false;
+    pending.textContent = "";
+    var box = document.createElement("div");
+    box.className = "estimate";
+    box.innerHTML =
+      '<div><span class="lbl">What was it?</span>' +
+      '<input class="well" id="pName" type="text" placeholder="Lunch"></div>' +
+      '<div><span class="lbl">Calories</span>' +
+      '<input class="well" id="pKcal" type="number" min="0" max="5000" step="10" placeholder="0"></div>' +
+      '<p class="estimate__note" id="pNote"></p>' +
+      '<div class="row row--fill"><button class="btn btn--go" id="pSave">Log it</button>' +
+      '<button class="btn" id="pDrop">Never mind</button></div>';
+    pending.appendChild(box);
+    if (opts.name) $("pName").value = opts.name;
+    if (opts.kcal) $("pKcal").value = opts.kcal;
+    var note = opts.note || "";
+    if (opts.conf) note += (note ? " " : "") + "(" + opts.conf + " confidence — fix it if it looks off)";
+    $("pNote").textContent = note;
+    (opts.kcal ? $("pKcal") : $("pName")).focus();
+
+    $("pSave").addEventListener("click", function () {
+      var id = nextMealId();
+      if (opts.blob) Photos.put(TODAY + ":fuel-" + id, opts.blob);
+      D.fuel.meals.push({
+        id: id,
+        name: $("pName").value.trim() || "Meal",
+        kcal: parseInt($("pKcal").value, 10) || 0,
+        photo: !!opts.blob
+      });
+      pending.hidden = true; pending.textContent = "";
+      commit();
+    });
+    $("pDrop").addEventListener("click", function () {
+      pending.hidden = true; pending.textContent = "";
+    });
+  }
+
+  $("fuelManual").addEventListener("click", function () { mealCard({}); });
+  $("fuelPhoto").addEventListener("change", function () {
+    var f = this.files && this.files[0];
+    this.value = "";
+    if (!f) return;
+    pending.hidden = false;
+    pending.innerHTML = '<div class="thinking"><i></i><span>Pip is looking at your plate…</span></div>';
+
+    shrink(f, 900, .75).then(function (stored) {
+      if (!sampleNs || !sampleImages) {
+        mealCard({ blob: stored, note: "Pop the calories in yourself — photo reading isn't available here." });
+        return;
+      }
+      return shrink(f, 768, .8).then(function (forClaude) {
+        return sampleNs.json(FUEL_PROMPT, { images: [forClaude], modelTier: "default" })
+          .then(function (r) {
+            var items = (r && r.items) || [];
+            mealCard({
+              blob: stored,
+              name: items.length ? items.map(function (i) { return i.name; }).join(", ") : "",
+              kcal: r && r.total ? Math.round(r.total) : "",
+              note: (r && r.note) || "",
+              conf: (r && r.confidence) || ""
+            });
+          })
+          .catch(function (e) {
+            var why = e && e.code === "rate_limited" ? "Too many guesses just now."
+                    : e && e.code === "not_granted" ? "Photo reading isn't switched on here."
+                    : "That one stumped me.";
+            mealCard({ blob: stored, note: why + " Type the calories in and we're fine." });
+          });
+      });
+    }).catch(function () {
+      pending.hidden = true;
+      toast("Couldn't read that photo — try again?");
+    });
+  });
+
+  /* ══ 04 Move ════════════════════════════════════════════════════════ */
+  function movePhoto(which, input) {
+    input.addEventListener("change", function () {
+      var f = this.files && this.files[0];
+      this.value = "";
+      if (!f) return;
+      shrink(f, 900, .75)
+        .then(function (b) { return Photos.put(TODAY + ":move-" + which, b); })
+        .then(function () { D.move[which] = true; commit(); })
+        .catch(function () { toast("Couldn't read that photo — try again?"); });
+    });
+  }
+  movePhoto("before", $("movePhotoBefore"));
+  movePhoto("after", $("movePhotoAfter"));
+  $("moveWhat").addEventListener("input", function () { D.move.what = this.value; save(); });
+  $("moveMins").addEventListener("input", function () {
+    D.move.mins = parseInt(this.value, 10) || 0; save();
+  });
+
+  /* ══ 05 Manifest ════════════════════════════════════════════════════ */
+  var WISHES = [
+    "The thought I hold today is the shape my day takes.",
+    "I am calm, and the calm is already working in me.",
+    "What I give attention to grows, so I give it to the good.",
+    "My subconscious knows the way, and it is already moving.",
+    "I release the how. The how was never my work.",
+    "There is a healing presence in me, and it is at work right now.",
+    "I speak of what I want and never of what I fear.",
+    "I am worthy of the good I am asking for.",
+    "Nothing outside me has authority over what happens inside me.",
+    "I sleep on the answer and wake up holding it.",
+    "Peace is my natural state, and I return to it easily.",
+    "I do not fight the thought. I replace it.",
+    "The feeling of the thing I want is mine now, before the thing arrives.",
+    "I am guided in all my ways today.",
+    "What I need arrives in good time, and I recognise it when it does.",
+    "I praise the good in other people and it multiplies in me.",
+    "My body knows how to heal, and I get out of its way.",
+    "I forgive, and the weight leaves me.",
+    "Every part of me is at ease.",
+    "I have decided, and the decision is already true.",
+    "I am the one who chooses what gets in.",
+    "Confidence is not something I earn today. It is something I remember.",
+    "The next right step is shown to me clearly.",
+    "I meet this day rested, willing, and unhurried.",
+    "Whatever is truly mine cannot pass me by.",
+    "I think from the end, not toward it.",
+    "My mind is quiet, and a quiet mind gets answered.",
+    "I let go of the argument with what is.",
+    "Good things are ordinary for me now.",
+    "I close today gently and hand it over to sleep."
+  ];
+  function todaysWish() {
+    var n = Math.floor(Date.UTC(now.getFullYear(), now.getMonth(), now.getDate()) / 86400000);
+    return WISHES[((n % WISHES.length) + WISHES.length) % WISHES.length];
+  }
+
+  var wishEl = $("impression");
+  var touched = false;
+  var NEG = new RegExp([
+    "\\bi(?:'m| am)? ?(?:am )?not\\b", "\\bi do ?n[o']?t\\b", "\\bi ca ?n[o']?t\\b",
+    "\\bi cannot\\b", "\\bi wo ?n[o']?t\\b", "\\bi never\\b",
+    "\\bno more\\b", "\\bno longer\\b", "\\bget rid of\\b",
+    "\\bstop (?:being|feeling|worrying|thinking)\\b",
+    "\\bless (?:anxious|stressed|afraid|worried|scared)\\b"
+  ].join("|"), "i");
+
+  function checkWish() {
+    var s = wishEl.value.trim(), el = $("checkText");
+    if (!touched) {
+      el.textContent = P.impression
+        ? "Your saved wish 🩷"
+        : "Today's wish, ready as it is — or write your own over it.";
+      return;
+    }
+    if (!s) { el.textContent = "Write it like it's already happened."; return; }
+    if (/^i\s+will\s+/i.test(s)) { el.textContent = "“I will” keeps it one day away. Try “I am”."; return; }
+    if (/^i\s+(want|need)\b/i.test(s)) { el.textContent = "Wanting says you don't have it. Try “I have”, “I am”."; return; }
+    if (NEG.test(s)) { el.textContent = "There's a negative aimed at you in there — say what you do want instead."; return; }
+    if (!/\b(i|i'm|im|my|me|mine)\b/i.test(s)) { el.textContent = "Put yourself in it — “I am”, “my”, “me”."; return; }
+    if (s.split(/\s+/).length > 22) { el.textContent = "Long to say twenty-one times! Trim it to one line."; return; }
+    el.textContent = "Present tense, said as fact. This one will land 🩷";
+  }
+  wishEl.addEventListener("input", function () {
+    touched = true;
+    P.impression = this.value.trim();
+    checkWish();
+    save({ day: false });
+  });
+
+  /* A soft breathing glow — drawn, so it can pulse cheaply. */
+  function makeGlow(canvas) {
+    var ctx = canvas.getContext("2d"), w = 0, h = 0;
+    function resize() {
+      var r = canvas.getBoundingClientRect();
+      var dpr = Math.min(window.devicePixelRatio || 1, 2);
+      w = Math.max(1, Math.round(r.width)); h = Math.max(1, Math.round(r.height));
+      canvas.width = w * dpr; canvas.height = h * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+    function draw(amount) {
+      if (!w || !h) resize();
+      ctx.clearRect(0, 0, w, h);
+      var cx = w / 2, cy = h / 2, max = Math.min(w, h) / 2;
+      var r = max * (0.36 + 0.64 * amount);
+      var halo = ctx.createRadialGradient(cx, cy, r * 0.2, cx, cy, max);
+      halo.addColorStop(0, "rgba(255,95,162,.26)");
+      halo.addColorStop(.5, "rgba(160,123,255,.14)");
+      halo.addColorStop(1, "rgba(255,95,162,0)");
+      ctx.fillStyle = halo;
+      ctx.beginPath(); ctx.arc(cx, cy, max, 0, Math.PI * 2); ctx.fill();
+      var core = ctx.createRadialGradient(cx, cy - r * .08, 0, cx, cy, r);
+      core.addColorStop(0, "rgba(255,255,255,.95)");
+      core.addColorStop(.2, "rgba(255,205,228,.9)");
+      core.addColorStop(.5, "rgba(255,95,162,.62)");
+      core.addColorStop(.8, "rgba(160,123,255,.26)");
+      core.addColorStop(1, "rgba(160,123,255,0)");
+      ctx.fillStyle = core;
+      ctx.beginPath(); ctx.arc(cx, cy, r, 0, Math.PI * 2); ctx.fill();
+      ctx.strokeStyle = "rgba(255,255,255,.42)";
+      ctx.lineWidth = 1.5;
+      ctx.beginPath(); ctx.arc(cx, cy, r * .62, 0, Math.PI * 2); ctx.stroke();
+    }
+    window.addEventListener("resize", resize);
+    resize();
+    return { draw: draw, resize: resize };
+  }
+  function ease(t) { return t * t * (3 - 2 * t); }
+
+  function Breath(phases, onFrame, onCycle) {
+    this.p = phases; this.onFrame = onFrame; this.onCycle = onCycle;
+    this.i = 0; this.t0 = 0; this.raf = null; this.timer = null; this.on = false;
+  }
+  Breath.prototype.start = function () {
+    if (this.on) return;
+    this.on = true; this.i = 0; this.t0 = performance.now();
+    var self = this;
+    if (reduced) {
+      var step = function () {
+        var p = self.p[self.i];
+        self.onFrame(p, (p.from + p.to) / 2, 0);
+        self.timer = setTimeout(function () {
+          self.i = (self.i + 1) % self.p.length;
+          if (self.i === 0 && self.onCycle) self.onCycle();
+          if (self.on) step();
+        }, p.dur);
+      };
+      step(); return;
+    }
+    var frame = function (t) {
+      if (!self.on) return;
+      var p = self.p[self.i];
+      var k = Math.min(1, (t - self.t0) / p.dur);
+      self.onFrame(p, p.from + (p.to - p.from) * ease(k), k);
+      if (k >= 1) {
+        self.t0 = t;
+        self.i = (self.i + 1) % self.p.length;
+        if (self.i === 0 && self.onCycle) self.onCycle();
+      }
+      self.raf = requestAnimationFrame(frame);
+    };
+    this.raf = requestAnimationFrame(frame);
+  };
+  Breath.prototype.stop = function () {
+    this.on = false;
+    if (this.raf) cancelAnimationFrame(this.raf);
+    if (this.timer) clearTimeout(this.timer);
+    this.raf = this.timer = null;
+  };
+
+  var SETTLE = [
+    { name: "Breathe in", dur: 4000, from: .30, to: 1 },
+    { name: "Hold",       dur: 7000, from: 1,   to: 1 },
+    { name: "Let go",     dur: 8000, from: 1,   to: .30 }
+  ];
+  var EXPOSE = [
+    { name: "Breathe in", dur: 2400, from: .32, to: 1 },
+    { name: "Say it",     dur: 3600, from: 1,   to: .32 }
+  ];
+  var NIGHT = [
+    { name: "", dur: 3000, from: .30, to: .75 },
+    { name: "", dur: 4000, from: .75, to: .30 }
+  ];
+
+  var cardGlow = makeGlow($("cardGlow"));
+  var cardBreath = new Breath(SETTLE, function (p, amt) {
+    cardGlow.draw(amt);
+    if ($("cardPhase").textContent !== p.name) $("cardPhase").textContent = p.name;
+  });
+  cardBreath.start();
+
+  var session = $("session");
+  var sessionGlow = makeGlow($("sessionGlow"));
+  var TOTAL_REPS = 21, live = null, lastFocus = null;
+
+  function openSession(mode) {
+    var phrase = wishEl.value.trim() || todaysWish();
+    lastFocus = document.activeElement;
+    session.setAttribute("data-mode", mode);
+    session.hidden = false;
+    $("sessionPhrase").textContent = phrase;
+    $("sessionPhrase").style.opacity = "1";
+    cardBreath.stop();
+    requestAnimationFrame(function () { sessionGlow.resize(); });
+
+    if (mode === "expose") {
+      var reps = 0;
+      $("sessionCount").textContent = "0 / " + TOTAL_REPS;
+      $("sessionHint").textContent = "Say it on every out-breath — out loud if you can.";
+      live = new Breath(EXPOSE, function (p, amt) {
+        sessionGlow.draw(amt);
+        if ($("sessionPhase").textContent !== p.name) $("sessionPhase").textContent = p.name;
+      }, function () {
+        reps++;
+        D.manifest.reps = Math.max(D.manifest.reps, reps);
+        $("sessionCount").textContent = reps + " / " + TOTAL_REPS;
+        if (reps >= TOTAL_REPS) {
+          live.stop();
+          $("sessionPhase").textContent = "That's it 🩷";
+          $("sessionHint").textContent = "Now leave it alone. Say it once more as you fall asleep.";
+          D.manifest.done = true;
+          commit();
+        }
+      });
+    } else {
+      $("sessionCount").textContent = "";
+      $("sessionPhase").textContent = "";
+      $("sessionHint").textContent = "Lie down. Let the words drift. Tap anywhere to leave.";
+      var lit = true;
+      live = new Breath(NIGHT, function (p, amt) { sessionGlow.draw(amt); }, function () {
+        lit = !lit;
+        $("sessionPhrase").style.opacity = lit ? "1" : "0.12";
+      });
+      D.manifest.done = true;
+      commit();
+    }
+    live.start();
+    $("endSession").focus();
+  }
+  function closeSession() {
+    if (live) live.stop();
+    live = null;
+    session.hidden = true;
+    session.removeAttribute("data-mode");
+    cardBreath.start();
+    save();
+    if (lastFocus && lastFocus.focus) lastFocus.focus();
+  }
+  $("startExpose").addEventListener("click", function () { openSession("expose"); });
+  $("startNight").addEventListener("click", function () { openSession("night"); });
+  $("endSession").addEventListener("click", closeSession);
+  session.addEventListener("click", function (e) {
+    if (session.getAttribute("data-mode") === "night" || e.target === session) closeSession();
+  });
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape" && !session.hidden) closeSession();
+  });
+
+  /* ══ 06 Night ═══════════════════════════════════════════════════════ */
+  ["g1", "g2", "g3"].forEach(function (id, i) {
+    $(id).addEventListener("input", function () { D.dusk.good[i] = this.value; save(); });
+  });
+  $("tomorrow").addEventListener("input", function () { D.dusk.tomorrow = this.value; save(); });
+  $("duskSave").addEventListener("click", function () {
+    D.dusk.good = [$("g1").value, $("g2").value, $("g3").value];
+    D.dusk.tomorrow = $("tomorrow").value;
+    if (!D.dusk.good.some(function (g) { return g.trim(); })) {
+      toast("One good thing first — even a small one 🩷");
+      return;
+    }
+    if (!D.dusk.tomorrow.trim()) toast("Name tomorrow's one thing to finish this off.");
+    D.dusk.done = true;
+    commit();
+  });
+
+  /* ══ Settings ═══════════════════════════════════════════════════════ */
+  function num(el, lo, hi) { return clamp(parseInt(el.value, 10) || lo, lo, hi); }
+  function setting(id, key, lo, hi) {
+    $(id).addEventListener("change", function () {
+      P[key] = num(this, lo, hi);
+      this.value = P[key];
+      save({ day: false });
+      render();
+    });
+  }
+  setting("setWater", "waterGoal", 500, 6000);
+  setting("setBottle", "bottleMl", 100, 2000);
+  setting("setKcal", "kcalGoal", 800, 6000);
+  setting("setXp", "goalXp", 20, 110);
+
+  /* ══ Go ═════════════════════════════════════════════════════════════ */
+  repairStreak();
+  hydrate();
+  render();
+  writeLocal();
+
+  setInterval(function () { if (keyOf(new Date()) !== TODAY) location.reload(); }, 60000);
+})();
+</script>
+</body>
+</html>
