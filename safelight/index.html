@@ -1,0 +1,1710 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#16090A">
+<meta name="description" content="Six frames a day: phone down, water, food, movement, manifestation, and a good-things log. Photo proof, XP, and a streak that forgives you.">
+<title>Safelight</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&family=DM+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,300&display=swap">
+<style>
+/* ── Tokens ──────────────────────────────────────────────────────────────
+   One committed visual world: a darkroom under a red safelight. Every
+   colour is painted explicitly so the page holds on any host ground.   */
+:root{
+  --ground:#16090A;
+  --lift:#1E0C0E;
+  --lift-2:#26100F;
+  --well:#2C1415;
+  --ember:#E8412F;
+  --ember-dim:#B8342A;
+  --oxblood:#7E1A1E;
+  --hair:rgba(126,26,30,.55);
+  --amber:#F2A03D;
+  --green:#5FBF8F;          /* semantic: exposed / complete            */
+  --paper:#F5EAE3;
+  --paper-dim:#BC9E96;
+  --paper-faint:#7E5D59;
+
+  --f-display:"Newsreader",Georgia,"Times New Roman",serif;
+  --f-body:"Archivo","Helvetica Neue",Arial,sans-serif;
+  --f-mono:"DM Mono","SFMono-Regular",Consolas,monospace;
+  --col:32rem;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+[hidden]{display:none !important}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:var(--ground);color:var(--paper);
+  font-family:var(--f-body);font-size:.938rem;line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+  padding-bottom:env(safe-area-inset-bottom);
+}
+h1,h2,h3{margin:0;font-weight:400;text-wrap:balance}
+p{margin:0}
+ol,ul{margin:0;padding:0;list-style:none}
+img{max-width:100%;display:block}
+button,input,textarea,select{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:2px solid var(--amber);outline-offset:2px;border-radius:2px}
+
+/* Film grain + vignette over everything */
+body::before,body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:60}
+body::before{
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='260' height='260' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity:.06;
+}
+body::after{background:radial-gradient(ellipse 95% 60% at 50% 0%,transparent 30%,rgba(6,2,3,.6) 100%)}
+body.is-full::after{background:radial-gradient(ellipse 95% 60% at 50% 0%,rgba(232,65,47,.10) 0%,rgba(6,2,3,.6) 100%)}
+
+.col{width:100%;max-width:var(--col);margin-inline:auto;padding-inline:1.15rem}
+
+.mono{font-family:var(--f-mono);font-size:.688rem;letter-spacing:.15em;text-transform:uppercase}
+.dim{color:var(--paper-faint)}
+
+/* ── HUD ─────────────────────────────────────────────────────────────── */
+.hud{
+  position:sticky;top:0;z-index:40;
+  background:rgba(22,9,10,.93);backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--hair);
+}
+.hud__in{
+  max-width:var(--col);margin-inline:auto;padding:.7rem 1.15rem;
+  display:flex;align-items:center;gap:.9rem;
+}
+.hud__ring{flex:0 0 auto;width:3.1rem;height:3.1rem;position:relative}
+.hud__ring svg{width:100%;height:100%;transform:rotate(-90deg)}
+.hud__ring .track{fill:none;stroke:rgba(126,26,30,.55);stroke-width:3}
+.hud__ring .fill{fill:none;stroke:var(--ember);stroke-width:3;stroke-linecap:round;
+  transition:stroke-dashoffset .7s cubic-bezier(.2,.7,.3,1)}
+.hud__ring.is-goal .fill{stroke:var(--amber)}
+.hud__ring b{
+  position:absolute;inset:0;display:grid;place-items:center;
+  font-family:var(--f-mono);font-size:.72rem;font-weight:500;
+  font-variant-numeric:tabular-nums;color:var(--paper);
+}
+.hud__main{flex:1 1 auto;min-width:0}
+.hud__streak{display:flex;align-items:baseline;gap:.45rem}
+.hud__streak b{font-family:var(--f-display);font-size:1.85rem;line-height:1;font-weight:300;
+  font-variant-numeric:tabular-nums}
+.hud__streak span{font-family:var(--f-mono);font-size:.688rem;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--paper-dim)}
+.hud__sub{display:flex;flex-wrap:wrap;gap:.15rem .75rem;margin-top:.2rem;
+  font-family:var(--f-mono);font-size:.65rem;letter-spacing:.11em;text-transform:uppercase;
+  color:var(--paper-faint)}
+.hud__sub b{color:var(--amber);font-weight:400}
+.hud__sync{flex:0 0 auto;width:.44rem;height:.44rem;border-radius:50%;
+  background:var(--paper-faint);align-self:flex-start;margin-top:.35rem}
+.hud__sync[data-sync="on"]{background:var(--green);box-shadow:0 0 8px rgba(95,191,143,.6)}
+.hud__sync[data-sync="local"]{background:var(--oxblood)}
+
+/* ── Day header ──────────────────────────────────────────────────────── */
+.day{padding:1.6rem 0 .4rem}
+.day__date{font-family:var(--f-mono);font-size:.688rem;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--ember)}
+.day__title{font-family:var(--f-display);font-weight:300;font-size:2rem;line-height:1.12;
+  margin-top:.35rem}
+.day__carry{
+  margin-top:.9rem;padding:.7rem .85rem;border-left:2px solid var(--amber);
+  background:rgba(242,160,61,.07);font-size:.875rem;color:var(--paper-dim);
+}
+.day__carry b{color:var(--paper);font-weight:500}
+
+/* ── Frames ──────────────────────────────────────────────────────────── */
+.roll{padding:1.4rem 0 2rem;display:flex;flex-direction:column}
+.frame{display:grid;grid-template-columns:2.1rem 1fr;gap:0 .85rem}
+.frame__rail{display:flex;flex-direction:column;align-items:center;gap:.5rem;padding-top:1.05rem}
+.frame__line{flex:1 1 auto;width:1px;background:var(--hair);margin-top:.5rem}
+.frame:last-child .frame__line{display:none}
+.frame__pip{
+  width:.85rem;height:.85rem;border:1px solid var(--oxblood);background:var(--ground);
+  position:relative;z-index:1;transition:background .4s ease,box-shadow .4s ease;
+}
+.frame[data-state="part"] .frame__pip{background:var(--amber);border-color:var(--amber)}
+.frame[data-state="done"] .frame__pip{background:var(--ember);border-color:var(--ember);
+  box-shadow:0 0 10px 1px rgba(232,65,47,.65)}
+.frame__no{font-family:var(--f-mono);font-size:.6rem;line-height:1;color:var(--paper-faint);
+  font-variant-numeric:tabular-nums}
+
+.card{
+  border:1px solid var(--hair);background:var(--lift);
+  padding:1rem 1rem 1.05rem;margin-bottom:1rem;
+  transition:border-color .4s ease,background .4s ease;
+}
+.frame[data-state="done"] .card{
+  border-color:rgba(232,65,47,.7);
+  background:linear-gradient(180deg,rgba(232,65,47,.09),transparent 55%),var(--lift);
+}
+.card__head{display:flex;align-items:baseline;gap:.6rem;flex-wrap:wrap}
+.card__head h2{font-family:var(--f-display);font-size:1.3rem;line-height:1.1;flex:1 1 auto}
+.card__when{font-family:var(--f-mono);font-size:.63rem;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--paper-faint)}
+.card__xp{font-family:var(--f-mono);font-size:.63rem;letter-spacing:.1em;
+  color:var(--ember);white-space:nowrap}
+.frame[data-state="done"] .card__xp{color:var(--green)}
+.card__why{color:var(--paper-dim);font-size:.85rem;margin-top:.35rem;line-height:1.5}
+.card__work{margin-top:.95rem;display:flex;flex-direction:column;gap:.75rem}
+
+/* Controls */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:.45rem;
+  padding:.6rem 1rem;min-height:2.65rem;border:1px solid var(--ember-dim);
+  background:transparent;color:var(--paper);
+  font-family:var(--f-mono);font-size:.7rem;letter-spacing:.11em;text-transform:uppercase;
+  transition:background .2s ease,border-color .2s ease;
+}
+.btn:hover{background:rgba(232,65,47,.13);border-color:var(--ember)}
+.btn--solid{background:var(--ember);border-color:var(--ember);color:#1B0708;font-weight:500}
+.btn--solid:hover{background:#F4553F;border-color:#F4553F}
+.btn--quiet{border-color:rgba(188,158,150,.3);color:var(--paper-dim)}
+.btn--quiet:hover{background:rgba(245,234,227,.06);border-color:var(--paper-dim);color:var(--paper)}
+.btn--wide{width:100%}
+.btn[disabled]{opacity:.35;cursor:not-allowed}
+.btn[aria-pressed="true"]{background:var(--green);border-color:var(--green);color:#0A1B13;font-weight:500}
+.row{display:flex;gap:.55rem;flex-wrap:wrap}
+.row--fill > *{flex:1 1 0;min-width:0}
+
+.well{
+  width:100%;background:var(--well);border:1px solid var(--hair);
+  padding:.65rem .8rem;font-size:.9rem;
+}
+.well:focus{outline:none;border-color:var(--ember-dim);box-shadow:0 0 0 1px var(--ember-dim)}
+.well::placeholder{color:var(--paper-faint);font-style:italic}
+textarea.well{font-family:var(--f-display);font-size:1.1rem;font-weight:300;line-height:1.4;resize:vertical}
+.lbl{font-family:var(--f-mono);font-size:.63rem;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--paper-faint);display:block;margin-bottom:.35rem}
+
+/* Meter (water, calories) */
+.meter{display:flex;flex-direction:column;gap:.4rem}
+.meter__top{display:flex;justify-content:space-between;align-items:baseline;
+  font-family:var(--f-mono);font-size:.7rem;letter-spacing:.08em;
+  font-variant-numeric:tabular-nums;color:var(--paper-dim)}
+.meter__top b{color:var(--paper);font-weight:500;font-size:.95rem}
+.meter__bar{height:.4rem;background:rgba(126,26,30,.45);overflow:hidden}
+.meter__fill{height:100%;width:0;background:var(--ember);transition:width .5s cubic-bezier(.2,.7,.3,1)}
+.meter__fill[data-over="1"]{background:var(--amber)}
+
+/* Photo slots */
+.shots{display:grid;grid-template-columns:repeat(auto-fill,minmax(5.4rem,1fr));gap:.5rem}
+/* A single slot in an auto-fill grid becomes one full-width track, and a
+   1:1 box on that track is enormous. Cap the track where slots are few. */
+.shots--few{grid-template-columns:repeat(auto-fill,6rem);justify-content:start}
+.shot{
+  position:relative;aspect-ratio:1;border:1px solid var(--hair);background:var(--lift-2);
+  display:grid;place-items:center;overflow:hidden;
+}
+.shot img{width:100%;height:100%;object-fit:cover}
+.shot__tag{
+  position:absolute;left:0;bottom:0;right:0;padding:.2rem .35rem;
+  background:linear-gradient(0deg,rgba(10,3,4,.9),transparent);
+  font-family:var(--f-mono);font-size:.55rem;letter-spacing:.09em;text-transform:uppercase;
+  color:var(--paper-dim);
+}
+.shot--empty{border-style:dashed;color:var(--paper-faint)}
+.shot--empty span{font-family:var(--f-mono);font-size:.58rem;letter-spacing:.1em;
+  text-transform:uppercase;text-align:center;padding:.3rem;line-height:1.4}
+.snap{position:relative;overflow:hidden;display:inline-flex}
+.snap input[type=file]{position:absolute;inset:0;opacity:0;width:100%;height:100%;cursor:pointer}
+
+/* Meal list */
+.meals{display:flex;flex-direction:column;gap:.45rem}
+.meal{display:flex;align-items:center;gap:.65rem;padding:.5rem .6rem;
+  background:var(--lift-2);border:1px solid var(--hair)}
+.meal img{width:2.6rem;height:2.6rem;object-fit:cover;flex:0 0 auto;border:1px solid var(--hair)}
+.meal__name{flex:1 1 auto;min-width:0;font-size:.85rem;overflow:hidden;text-overflow:ellipsis;
+  white-space:nowrap}
+.meal__kcal{font-family:var(--f-mono);font-size:.78rem;font-variant-numeric:tabular-nums;
+  color:var(--amber);white-space:nowrap}
+.meal__del{background:none;border:none;color:var(--paper-faint);padding:.2rem .3rem;font-size:.9rem}
+.meal__del:hover{color:var(--ember)}
+
+.estimate{border:1px solid var(--hair);background:var(--lift-2);padding:.75rem .8rem;
+  display:flex;flex-direction:column;gap:.55rem}
+.estimate__note{font-size:.78rem;color:var(--paper-dim);line-height:1.5}
+.estimate__conf{font-family:var(--f-mono);font-size:.6rem;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--paper-faint)}
+.thinking{display:flex;align-items:center;gap:.5rem;font-family:var(--f-mono);font-size:.68rem;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--paper-dim)}
+.thinking i{width:.5rem;height:.5rem;border-radius:50%;background:var(--ember);
+  animation:pulse 1.3s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:.25;transform:scale(.7)}50%{opacity:1;transform:scale(1)}}
+
+/* Timer */
+.timer{display:flex;align-items:center;gap:.9rem}
+.timer__num{font-family:var(--f-display);font-size:2.4rem;font-weight:300;line-height:1;
+  font-variant-numeric:tabular-nums;letter-spacing:-.01em}
+.timer__lbl{font-family:var(--f-mono);font-size:.63rem;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--paper-faint)}
+
+/* Lamp (manifest) */
+.lamp{position:relative;width:min(12rem,55vw);aspect-ratio:1;margin:.2rem auto}
+.lamp canvas{position:absolute;inset:0;width:100%;height:100%}
+.lamp__read{position:absolute;inset:0;display:grid;place-items:center}
+.lamp__read::before{content:"";position:absolute;inset:18%;border-radius:50%;
+  background:radial-gradient(circle,rgba(20,7,8,.74) 0%,rgba(20,7,8,.44) 58%,rgba(20,7,8,0) 100%)}
+.lamp__phase{position:relative;font-family:var(--f-display);font-style:italic;font-weight:300;
+  font-size:1.25rem}
+
+.disclose{border-top:1px solid var(--hair);margin-top:.35rem;padding-top:.6rem}
+.disclose summary{font-family:var(--f-mono);font-size:.63rem;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--paper-faint);cursor:pointer;list-style:none}
+.disclose summary::-webkit-details-marker{display:none}
+.disclose summary::before{content:"+ ";color:var(--ember)}
+.disclose[open] summary::before{content:"– "}
+.disclose__body{padding-top:.75rem;display:flex;flex-direction:column;gap:.7rem}
+.law{font-size:.82rem;line-height:1.55;color:var(--paper-dim)}
+.law b{color:var(--paper);font-weight:500;font-family:var(--f-display);font-size:1rem}
+
+.state{
+  margin-top:.85rem;padding-top:.6rem;border-top:1px solid var(--hair);
+  font-family:var(--f-mono);font-size:.63rem;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--paper-faint);display:flex;justify-content:space-between;gap:.5rem;
+}
+.frame[data-state="done"] .state{color:var(--green)}
+
+/* ── Contact sheet ───────────────────────────────────────────────────── */
+.sheet{padding:1.8rem 0 1rem;border-top:1px solid var(--hair)}
+.sheet__grid{display:grid;grid-template-columns:repeat(7,1fr);gap:.32rem;margin-top:1rem}
+.cell{aspect-ratio:1;border:1px solid rgba(126,26,30,.75);background:#22100F;position:relative}
+.cell[data-lit="1"]{background:rgba(232,65,47,.28)}
+.cell[data-lit="2"]{background:rgba(232,65,47,.55)}
+.cell[data-lit="3"]{background:var(--ember);box-shadow:0 0 9px rgba(232,65,47,.5)}
+.cell[data-today="1"]{outline:1px solid var(--amber);outline-offset:1px}
+.legend{display:flex;flex-wrap:wrap;gap:.4rem 1rem;margin-top:.8rem;
+  font-family:var(--f-mono);font-size:.6rem;letter-spacing:.11em;text-transform:uppercase;
+  color:var(--paper-faint)}
+
+.badges{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:1.4rem}
+.badge{
+  border:1px solid var(--hair);padding:.35rem .6rem;
+  font-family:var(--f-mono);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--paper-faint);
+}
+.badge[data-won="1"]{border-color:var(--amber);color:var(--amber);
+  background:rgba(242,160,61,.09)}
+
+.settings{margin-top:1.6rem}
+.settings .grid{display:grid;grid-template-columns:1fr 1fr;gap:.7rem}
+
+.foot{padding:2rem 0 3rem;color:var(--paper-faint);font-size:.75rem;line-height:1.7}
+.foot p + p{margin-top:.6rem}
+
+/* ── Session overlay (manifest ritual) ───────────────────────────────── */
+.session{
+  position:fixed;inset:0;z-index:70;background:var(--ground);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:1.3rem;padding:2rem 1.2rem;text-align:center;
+}
+.session[data-mode="night"]{background:#0A0304}
+.session__lamp{position:relative;width:min(14rem,52vw);aspect-ratio:1}
+.session__lamp canvas{position:absolute;inset:0;width:100%;height:100%}
+.session[data-mode="night"] .session__lamp{width:min(8rem,32vw);opacity:.5}
+.session__phrase{font-family:var(--f-display);font-weight:300;
+  font-size:clamp(1.4rem,1.1rem + 2vw,2.1rem);line-height:1.3;max-width:24rem}
+.session[data-mode="night"] .session__phrase{color:#E9D1C9;transition:opacity 2.6s ease}
+.session__phase{font-family:var(--f-mono);font-size:.7rem;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--ember)}
+.session__count{font-family:var(--f-mono);font-size:.7rem;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--paper-faint);font-variant-numeric:tabular-nums}
+.session__hint{font-family:var(--f-mono);font-size:.63rem;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--paper-faint);max-width:22rem;line-height:1.9}
+
+/* ── Toast ───────────────────────────────────────────────────────────── */
+.toasts{position:fixed;left:0;right:0;bottom:1rem;z-index:80;display:flex;
+  flex-direction:column;align-items:center;gap:.4rem;pointer-events:none;padding-inline:1rem}
+.toast{
+  background:var(--lift);border:1px solid var(--ember);
+  box-shadow:0 0 22px rgba(232,65,47,.22);
+  padding:.6rem .95rem;max-width:26rem;
+  font-family:var(--f-mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;
+  animation:rise .35s cubic-bezier(.2,.8,.3,1);
+}
+.toast b{color:var(--amber);font-weight:400}
+.toast[data-kind="big"]{border-color:var(--amber);background:rgba(242,160,61,.12)}
+@keyframes rise{from{opacity:0;transform:translateY(.6rem)}to{opacity:1;transform:none}}
+
+@media (prefers-reduced-motion:reduce){
+  *{animation-duration:.001ms !important;animation-iteration-count:1 !important;
+    transition-duration:.001ms !important}
+}
+</style>
+</head>
+<body>
+
+<header class="hud">
+  <div class="hud__in">
+    <div class="hud__ring" id="ring">
+      <svg viewBox="0 0 44 44" aria-hidden="true">
+        <circle class="track" cx="22" cy="22" r="19"></circle>
+        <circle class="fill" cx="22" cy="22" r="19" id="ringFill"
+                stroke-dasharray="119.4" stroke-dashoffset="119.4"></circle>
+      </svg>
+      <b id="ringNum">0</b>
+    </div>
+    <div class="hud__main">
+      <div class="hud__streak">
+        <b id="streakNum">0</b>
+        <span id="streakLbl">days lit</span>
+      </div>
+      <div class="hud__sub">
+        <span><b id="freezeNum">0</b> freezes</span>
+        <span>best <b id="bestNum">0</b></span>
+        <span id="xpTotal">0 xp</span>
+      </div>
+    </div>
+    <span class="hud__sync" id="sync" data-sync="local" title="Saving on this device only"></span>
+  </div>
+</header>
+
+<main class="col">
+
+  <section class="day">
+    <p class="day__date" id="dayDate">&nbsp;</p>
+    <h1 class="day__title" id="dayTitle">Six frames to expose.</h1>
+    <p class="day__carry" id="dayCarry" hidden></p>
+  </section>
+
+  <ol class="roll">
+
+    <!-- 01 First Light ------------------------------------------------- -->
+    <li class="frame" id="f-dawn" data-state="open">
+      <div class="frame__rail"><span class="frame__no">01</span><span class="frame__pip"></span><span class="frame__line"></span></div>
+      <div class="card">
+        <div class="card__head">
+          <h2>First Light</h2>
+          <span class="card__when">On waking</span>
+          <span class="card__xp">15 XP</span>
+        </div>
+        <p class="card__why">The first thing your mind touches sets the exposure for the whole day.
+          Don't let it be the feed.</p>
+        <div class="card__work">
+          <div class="timer">
+            <span class="timer__num" id="dawnClock">20:00</span>
+            <div>
+              <div class="timer__lbl">Phone down</div>
+              <div class="timer__lbl dim" id="dawnState">Not started</div>
+            </div>
+          </div>
+          <div class="row row--fill">
+            <button class="btn" id="dawnStart">Start 20 min</button>
+            <button class="btn btn--quiet" id="dawnOwn" aria-pressed="false">I stayed off it</button>
+          </div>
+          <div>
+            <label class="lbl" for="dawnNice">One nice thing you'll do today</label>
+            <input class="well" id="dawnNice" type="text" placeholder="Call Mum. Walk the long way home.">
+          </div>
+        </div>
+        <div class="state"><span id="dawnStatus">Unexposed</span><span id="dawnMeta"></span></div>
+      </div>
+    </li>
+
+    <!-- 02 Water --------------------------------------------------------- -->
+    <li class="frame" id="f-water" data-state="open">
+      <div class="frame__rail"><span class="frame__no">02</span><span class="frame__pip"></span><span class="frame__line"></span></div>
+      <div class="card">
+        <div class="card__head">
+          <h2>Water</h2>
+          <span class="card__when">All day</span>
+          <span class="card__xp">15 XP</span>
+        </div>
+        <p class="card__why">Photograph your bottle once so the app knows its size, then tap it off
+          each time you finish one.</p>
+        <div class="card__work">
+          <div class="meter">
+            <div class="meter__top">
+              <span><b id="waterMl">0</b> / <span id="waterGoal">2500</span> ml</span>
+              <span id="waterBottles">0 bottles</span>
+            </div>
+            <div class="meter__bar"><div class="meter__fill" id="waterFill"></div></div>
+          </div>
+          <div class="shots shots--few" id="waterShots"></div>
+          <div class="row row--fill">
+            <label class="btn snap">
+              <span id="waterSnapLabel">Photograph the bottle</span>
+              <input type="file" accept="image/*" capture="environment" id="waterPhoto">
+            </label>
+          </div>
+          <div class="row row--fill">
+            <button class="btn btn--solid" id="waterAdd">+ 1 bottle</button>
+            <button class="btn btn--quiet" id="waterGlass">+ glass (250)</button>
+            <button class="btn btn--quiet" id="waterUndo">Undo</button>
+          </div>
+        </div>
+        <div class="state"><span id="waterStatus">Unexposed</span><span id="waterMeta"></span></div>
+      </div>
+    </li>
+
+    <!-- 03 Fuel ---------------------------------------------------------- -->
+    <li class="frame" id="f-fuel" data-state="open">
+      <div class="frame__rail"><span class="frame__no">03</span><span class="frame__pip"></span><span class="frame__line"></span></div>
+      <div class="card">
+        <div class="card__head">
+          <h2>Fuel</h2>
+          <span class="card__when">Each meal</span>
+          <span class="card__xp">20 XP</span>
+        </div>
+        <p class="card__why">Photograph the plate before you eat. Two meals logged closes the frame.</p>
+        <div class="card__work">
+          <div class="meter">
+            <div class="meter__top">
+              <span><b id="fuelKcal">0</b> / <span id="fuelGoal">2000</span> kcal</span>
+              <span id="fuelCount">0 meals</span>
+            </div>
+            <div class="meter__bar"><div class="meter__fill" id="fuelFill"></div></div>
+          </div>
+          <div class="meals" id="mealList"></div>
+          <div id="fuelPending" hidden></div>
+          <div class="row row--fill">
+            <label class="btn btn--solid snap">
+              <span>Photograph a meal</span>
+              <input type="file" accept="image/*" capture="environment" id="fuelPhoto">
+            </label>
+            <button class="btn btn--quiet" id="fuelManual">Type it instead</button>
+          </div>
+        </div>
+        <div class="state"><span id="fuelStatus">Unexposed</span><span id="fuelMeta"></span></div>
+      </div>
+    </li>
+
+    <!-- 04 Move ---------------------------------------------------------- -->
+    <li class="frame" id="f-move" data-state="open">
+      <div class="frame__rail"><span class="frame__no">04</span><span class="frame__pip"></span><span class="frame__line"></span></div>
+      <div class="card">
+        <div class="card__head">
+          <h2>Move</h2>
+          <span class="card__when">Evening</span>
+          <span class="card__xp">25 XP</span>
+        </div>
+        <p class="card__why">Before and after. The frame will not close on one photo — that's the
+          whole point of it.</p>
+        <div class="card__work">
+          <div class="shots" style="grid-template-columns:1fr 1fr" id="moveShots"></div>
+          <div class="row row--fill">
+            <label class="btn snap">
+              <span id="moveBeforeLabel">Before</span>
+              <input type="file" accept="image/*" capture="user" id="movePhotoBefore">
+            </label>
+            <label class="btn snap">
+              <span id="moveAfterLabel">After</span>
+              <input type="file" accept="image/*" capture="user" id="movePhotoAfter">
+            </label>
+          </div>
+          <div class="row">
+            <input class="well" id="moveWhat" type="text" placeholder="What you did — 30 min walk, gym, yoga" style="flex:2 1 10rem">
+            <input class="well" id="moveMins" type="number" min="0" max="600" placeholder="min" style="flex:0 0 5rem" aria-label="Minutes">
+          </div>
+        </div>
+        <div class="state"><span id="moveStatus">Unexposed</span><span id="moveMeta"></span></div>
+      </div>
+    </li>
+
+    <!-- 05 Manifest ------------------------------------------------------ -->
+    <li class="frame" id="f-manifest" data-state="open">
+      <div class="frame__rail"><span class="frame__no">05</span><span class="frame__pip"></span><span class="frame__line"></span></div>
+      <div class="card">
+        <div class="card__head">
+          <h2>Manifest</h2>
+          <span class="card__when">Before sleep</span>
+          <span class="card__xp">20 XP</span>
+        </div>
+        <p class="card__why">One sentence, present tense, twenty-one slow repetitions. Just over two
+          minutes.</p>
+        <div class="card__work">
+          <div class="lamp">
+            <canvas id="cardLamp" aria-hidden="true"></canvas>
+            <div class="lamp__read"><span class="lamp__phase" id="cardPhase">Breathe</span></div>
+          </div>
+          <div>
+            <label class="lbl" for="impression">Today's impression</label>
+            <textarea class="well" id="impression" rows="2"></textarea>
+          </div>
+          <p class="card__why" id="checkText" style="margin-top:-.2rem"></p>
+          <div class="row row--fill">
+            <button class="btn btn--solid" id="startExpose">Begin — 21 reps</button>
+            <button class="btn" id="startNight">Night session</button>
+          </div>
+          <details class="disclose">
+            <summary>Why this works</summary>
+            <div class="disclose__body">
+              <p class="law"><b>It takes what it's given.</b> The subconscious doesn't weigh whether
+                a thought is good for you. It accepts what's repeated and acts on it.</p>
+              <p class="law"><b>Feeling is the key.</b> One sentence said with real feeling does more
+                than a thousand said flatly. Straining is what stops it taking.</p>
+              <p class="law"><b>Never fight a thought.</b> Arguing with a fear feeds it your
+                attention. Don't wrestle it — replace it.</p>
+              <p class="law"><b>Sleep is the doorway.</b> The last five minutes before sleep are
+                worth more than an hour at noon. That's what the night session is for.</p>
+              <p class="law"><b>You don't need the how.</b> Decide the outcome and drop the route.
+                Instructing yourself on the method is how you talk yourself out of it.</p>
+            </div>
+          </details>
+        </div>
+        <div class="state"><span id="manifestStatus">Unexposed</span><span id="manifestMeta"></span></div>
+      </div>
+    </li>
+
+    <!-- 06 Last Light ---------------------------------------------------- -->
+    <li class="frame" id="f-dusk" data-state="open">
+      <div class="frame__rail"><span class="frame__no">06</span><span class="frame__pip"></span><span class="frame__line"></span></div>
+      <div class="card">
+        <div class="card__head">
+          <h2>Last Light</h2>
+          <span class="card__when">Bedtime</span>
+          <span class="card__xp">15 XP</span>
+        </div>
+        <p class="card__why">Three good things from today, and the one thing that matters tomorrow.
+          What you notice, you get more of.</p>
+        <div class="card__work">
+          <div class="row" style="flex-direction:column;gap:.45rem">
+            <input class="well" id="g1" type="text" placeholder="Something that went right" aria-label="First good thing">
+            <input class="well" id="g2" type="text" placeholder="Someone you're glad about" aria-label="Second good thing">
+            <input class="well" id="g3" type="text" placeholder="Something small you enjoyed" aria-label="Third good thing">
+          </div>
+          <div>
+            <label class="lbl" for="tomorrow">Tomorrow's one thing</label>
+            <input class="well" id="tomorrow" type="text" placeholder="The single thing that would make tomorrow good">
+          </div>
+          <button class="btn btn--solid btn--wide" id="duskSave">Print the day</button>
+          <ul id="duskList" class="meals"></ul>
+        </div>
+        <div class="state"><span id="duskStatus">Unexposed</span><span id="duskMeta"></span></div>
+      </div>
+    </li>
+  </ol>
+
+  <!-- ── Contact sheet ─────────────────────────────────────────────── -->
+  <section class="sheet">
+    <p class="mono" style="color:var(--ember)">The contact sheet</p>
+    <h2 style="font-family:var(--f-display);font-size:1.4rem;margin-top:.4rem">Every day you've exposed.</h2>
+    <div class="sheet__grid" id="sheetGrid"></div>
+    <div class="legend">
+      <span>Last 35 days</span>
+      <span>Faint · 1–2 frames</span>
+      <span>Mid · 3–5, day lit</span>
+      <span>Bright · full roll</span>
+    </div>
+
+    <div class="badges" id="badges"></div>
+
+    <details class="disclose settings">
+      <summary>Goals &amp; settings</summary>
+      <div class="disclose__body">
+        <div class="grid">
+          <div>
+            <label class="lbl" for="setWater">Water goal (ml)</label>
+            <input class="well" id="setWater" type="number" min="500" max="6000" step="100">
+          </div>
+          <div>
+            <label class="lbl" for="setBottle">Bottle size (ml)</label>
+            <input class="well" id="setBottle" type="number" min="100" max="2000" step="50">
+          </div>
+          <div>
+            <label class="lbl" for="setKcal">Calorie goal</label>
+            <input class="well" id="setKcal" type="number" min="800" max="6000" step="50">
+          </div>
+          <div>
+            <label class="lbl" for="setXp">Daily XP goal</label>
+            <input class="well" id="setXp" type="number" min="20" max="110" step="5">
+          </div>
+        </div>
+        <p class="foot" style="padding:0" id="storageNote"></p>
+      </div>
+    </details>
+  </section>
+
+  <footer class="foot">
+    <p>Calorie numbers are an estimate read off a photograph. Treat them as a rough guide and
+      correct them whenever they look wrong — the field is always editable.</p>
+    <p>The manifestation practice follows Joseph Murphy's <em>The Power of Your Subconscious
+      Mind</em> (1963). It's a practice, not treatment — if something is genuinely heavy, please
+      also talk to a doctor.</p>
+  </footer>
+</main>
+
+<div class="session" id="session" role="dialog" aria-modal="true" aria-label="Practice session" hidden>
+  <p class="session__phase" id="sessionPhase">Breathe in</p>
+  <div class="session__lamp"><canvas id="sessionLamp" aria-hidden="true"></canvas></div>
+  <p class="session__phrase" id="sessionPhrase"></p>
+  <p class="session__count" id="sessionCount"></p>
+  <p class="session__hint" id="sessionHint"></p>
+  <button class="btn btn--quiet" id="endSession">End session</button>
+</div>
+
+<div class="toasts" id="toasts" aria-live="polite"></div>
+
+<script>
+(function () {
+  "use strict";
+
+  /* ══ Small helpers ══════════════════════════════════════════════════ */
+  var $ = function (id) { return document.getElementById(id); };
+  var reduced = window.matchMedia &&
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  function pad(n) { return String(n).padStart(2, "0"); }
+  function keyOf(d) { return d.getFullYear() + "-" + pad(d.getMonth() + 1) + "-" + pad(d.getDate()); }
+  function midnight(d) { return new Date(d.getFullYear(), d.getMonth(), d.getDate()); }
+  function shift(d, n) { var x = midnight(d); x.setDate(x.getDate() + n); return x; }
+  function apart(aKey, bKey) {
+    var a = new Date(aKey + "T00:00:00"), b = new Date(bKey + "T00:00:00");
+    return Math.round((b - a) / 86400000);
+  }
+  function clamp(n, lo, hi) { return Math.max(lo, Math.min(hi, n)); }
+
+  var now = new Date();
+  var TODAY = keyOf(now);
+
+  /* ══ Toasts ═════════════════════════════════════════════════════════ */
+  var toasts = $("toasts");
+  function toast(html, kind) {
+    var t = document.createElement("div");
+    t.className = "toast";
+    if (kind) t.setAttribute("data-kind", kind);
+    t.innerHTML = html;
+    toasts.appendChild(t);
+    setTimeout(function () {
+      t.style.transition = "opacity .4s ease";
+      t.style.opacity = "0";
+      setTimeout(function () { t.remove(); }, 420);
+    }, kind === "big" ? 6000 : 3800);
+  }
+
+  /* ══ Capability access ══════════════════════════════════════════════
+     window.claude may not exist at all (a saved file, GitHub Pages) and
+     use() never resolves during this first synchronous run. Render from
+     local state now; light the extras up if and when they arrive.     */
+  function use(name) {
+    try {
+      if (window.claude && typeof window.claude.use === "function") return window.claude.use(name);
+    } catch (e) {}
+    return Promise.resolve(null);
+  }
+
+  /* ══ Photo store — IndexedDB, on this device only ═══════════════════ */
+  var Photos = (function () {
+    var ready = null, urls = {};
+    function open() {
+      if (ready) return ready;
+      ready = new Promise(function (resolve) {
+        if (!window.indexedDB) return resolve(null);
+        var req = indexedDB.open("safelight-photos", 1);
+        req.onupgradeneeded = function () {
+          if (!req.result.objectStoreNames.contains("shots")) req.result.createObjectStore("shots");
+        };
+        req.onsuccess = function () { resolve(req.result); };
+        req.onerror = function () { resolve(null); };
+      });
+      return ready;
+    }
+    function tx(mode) {
+      return open().then(function (db) {
+        return db ? db.transaction("shots", mode).objectStore("shots") : null;
+      });
+    }
+    return {
+      put: function (key, blob) {
+        return tx("readwrite").then(function (st) {
+          if (!st) return false;
+          return new Promise(function (res) {
+            var r = st.put(blob, key);
+            r.onsuccess = function () {
+              if (urls[key]) { URL.revokeObjectURL(urls[key]); delete urls[key]; }
+              res(true);
+            };
+            r.onerror = function () { res(false); };
+          });
+        });
+      },
+      url: function (key) {
+        if (urls[key]) return Promise.resolve(urls[key]);
+        return tx("readonly").then(function (st) {
+          if (!st) return null;
+          return new Promise(function (res) {
+            var r = st.get(key);
+            r.onsuccess = function () {
+              if (!r.result) return res(null);
+              urls[key] = URL.createObjectURL(r.result);
+              res(urls[key]);
+            };
+            r.onerror = function () { res(null); };
+          });
+        });
+      },
+      drop: function (key) {
+        if (urls[key]) { URL.revokeObjectURL(urls[key]); delete urls[key]; }
+        return tx("readwrite").then(function (st) { if (st) st.delete(key); });
+      }
+    };
+  })();
+
+  function shrink(file, max, quality) {
+    return new Promise(function (resolve, reject) {
+      var done = function (img, w0, h0, close) {
+        var scale = Math.min(1, max / Math.max(w0, h0));
+        var w = Math.max(1, Math.round(w0 * scale)), h = Math.max(1, Math.round(h0 * scale));
+        var c = document.createElement("canvas");
+        c.width = w; c.height = h;
+        c.getContext("2d").drawImage(img, 0, 0, w, h);
+        if (close) close();
+        c.toBlob(function (b) { b ? resolve(b) : reject(new Error("encode failed")); },
+                 "image/jpeg", quality);
+      };
+      if (window.createImageBitmap) {
+        createImageBitmap(file).then(function (bmp) {
+          done(bmp, bmp.width, bmp.height, function () { bmp.close && bmp.close(); });
+        }).catch(reject);
+      } else {
+        var url = URL.createObjectURL(file);
+        var im = new Image();
+        im.onload = function () {
+          done(im, im.naturalWidth, im.naturalHeight, function () { URL.revokeObjectURL(url); });
+        };
+        im.onerror = function () { URL.revokeObjectURL(url); reject(new Error("decode failed")); };
+        im.src = url;
+      }
+    });
+  }
+
+  /* ══ Record store — localStorage now, synced store when available ═══
+     The streak is the one thing that must never be lost, so the numbers
+     go to the synced store. Photos stay on the device.                */
+  var LKEY = "safelight.app.v1";
+  var mem = { profile: null, days: {} };
+
+  function readLocal() {
+    try { return JSON.parse(localStorage.getItem(LKEY)) || {}; } catch (e) { return {}; }
+  }
+  function writeLocal() {
+    try { localStorage.setItem(LKEY, JSON.stringify(mem)); } catch (e) {}
+  }
+
+  function blankProfile() {
+    return {
+      streak: 0, best: 0, freezes: 0, lastLit: null, totalXp: 0, badges: [],
+      goalXp: 100, waterGoal: 2500, bottleMl: 750, kcalGoal: 2000,
+      impression: "", updatedAt: 0
+    };
+  }
+  function blankDay(k) {
+    return {
+      d: k, updatedAt: 0,
+      dawn: { off: false, nice: "", timed: false },
+      water: { ml: 0, photo: false },
+      fuel: { meals: [] },
+      move: { before: false, after: false, what: "", mins: 0 },
+      manifest: { reps: 0, done: false },
+      dusk: { good: ["", "", ""], tomorrow: "", done: false }
+    };
+  }
+  /* Merge a stored record onto a blank one. Note `typeof null === "object"`:
+     recursing into a null default (lastLit) would throw on every boot once
+     a streak existed, so both sides are checked before descending. */
+  function fill(target, blank) {
+    Object.keys(blank).forEach(function (k) {
+      var b = blank[k];
+      if (target[k] === undefined || target[k] === null) target[k] = b;
+      else if (b && typeof b === "object" && !Array.isArray(b) &&
+               target[k] && typeof target[k] === "object" && !Array.isArray(target[k])) {
+        fill(target[k], b);
+      }
+    });
+    return target;
+  }
+
+  var boot = readLocal();
+  mem.profile = fill(boot.profile || {}, blankProfile());
+  mem.days = boot.days || {};
+  Object.keys(mem.days).forEach(function (k) { fill(mem.days[k], blankDay(k)); });
+
+  function dayOf(k) {
+    if (!mem.days[k]) mem.days[k] = blankDay(k);
+    return mem.days[k];
+  }
+  var P = mem.profile;
+  var D = dayOf(TODAY);
+
+  /* Synced store — pulled once at load, pushed on every write. */
+  var remote = null;
+  var syncDot = $("sync");
+
+  function pushDay(k) {
+    if (!remote) return;
+    remote.doc("days/" + k).set(mem.days[k]).catch(function () {});
+  }
+  function pushProfile() {
+    if (!remote) return;
+    remote.doc("state/profile").set(P).catch(function () {});
+  }
+
+  var saveTimer = null;
+  function save(opts) {
+    var o = opts || {};
+    var d = o.day === false ? null : D;
+    if (d) d.updatedAt = Date.now();
+    P.updatedAt = Date.now();
+    writeLocal();
+    clearTimeout(saveTimer);
+    saveTimer = setTimeout(function () {
+      if (d) pushDay(d.d);
+      pushProfile();
+    }, 700);
+  }
+
+  use("db").then(function (db) {
+    if (!db) {
+      syncDot.setAttribute("data-sync", "local");
+      syncDot.title = "Saved on this device only";
+      $("storageNote").textContent =
+        "Your day is saved in this browser. Photos never leave the device.";
+      return;
+    }
+    remote = db;
+    syncDot.setAttribute("data-sync", "on");
+    syncDot.title = "Streak and numbers are synced";
+    $("storageNote").textContent =
+      "Streak, XP and daily numbers sync, so clearing this browser can't wipe them. " +
+      "Photos stay on this device only.";
+
+    Promise.all([
+      db.doc("state/profile").get().catch(function () { return null; }),
+      db.collection("days").orderBy("d", "desc").limit(45).get().catch(function () { return null; })
+    ]).then(function (r) {
+      var rp = r[0] && r[0].exists ? r[0].data() : null;
+      if (rp && (rp.updatedAt || 0) > (P.updatedAt || 0)) {
+        fill(rp, blankProfile());
+        Object.keys(rp).forEach(function (k) { P[k] = rp[k]; });
+      }
+      if (r[1]) {
+        r[1].docs.forEach(function (doc) {
+          var rd = fill(doc.data(), blankDay(doc.id));
+          var local = mem.days[doc.id];
+          if (!local || (rd.updatedAt || 0) > (local.updatedAt || 0)) mem.days[doc.id] = rd;
+        });
+      }
+      D = dayOf(TODAY);
+      writeLocal();
+      repairStreak();
+      hydrate();
+      render();
+      pushProfile();
+      pushDay(TODAY);
+    });
+  });
+
+  /* ══ The six frames ═════════════════════════════════════════════════ */
+  var FRAMES = [
+    { key: "dawn",     name: "First Light", xp: 15,
+      done: function (d) { return d.dawn.off && !!d.dawn.nice.trim(); } },
+    { key: "water",    name: "Water", xp: 15,
+      done: function (d) { return d.water.ml >= P.waterGoal; } },
+    { key: "fuel",     name: "Fuel", xp: 20,
+      done: function (d) { return d.fuel.meals.length >= 2; } },
+    { key: "move",     name: "Move", xp: 25,
+      done: function (d) { return d.move.before && d.move.after; } },
+    { key: "manifest", name: "Manifest", xp: 20,
+      done: function (d) { return d.manifest.done; } },
+    { key: "dusk",     name: "Last Light", xp: 15,
+      done: function (d) { return d.dusk.good.some(function (g) { return !!g.trim(); }) &&
+                                  !!d.dusk.tomorrow.trim(); } }
+  ];
+  var FULL_BONUS = 40;
+  var LIT_AT = 3;                 // frames needed for the day to count
+
+  function closedIn(d) {
+    return FRAMES.filter(function (f) { return f.done(d); });
+  }
+  function xpOf(d) {
+    var c = closedIn(d);
+    var x = c.reduce(function (a, f) { return a + f.xp; }, 0);
+    return c.length === FRAMES.length ? x + FULL_BONUS : x;
+  }
+  function litLevel(d) {
+    var n = closedIn(d).length;
+    if (n === FRAMES.length) return 3;
+    if (n >= LIT_AT) return 2;
+    if (n > 0) return 1;
+    return 0;
+  }
+
+  /* ══ Streak ═════════════════════════════════════════════════════════ */
+  var MILESTONES = [
+    { n: 3,   label: "3 · Caught" },
+    { n: 7,   label: "7 · A week" },
+    { n: 14,  label: "14 · Fortnight" },
+    { n: 30,  label: "30 · A month" },
+    { n: 50,  label: "50 · Fifty" },
+    { n: 80,  label: "80 · Duolingo run matched" },
+    { n: 100, label: "100 · Century" },
+    { n: 180, label: "180 · Half a year" },
+    { n: 365, label: "365 · A year lit" }
+  ];
+
+  /* Run once at open: spend freezes on days missed, or reset. */
+  function repairStreak() {
+    if (!P.lastLit || P.lastLit === TODAY) return;
+    var gap = apart(P.lastLit, TODAY) - 1;      // whole days missed
+    if (gap <= 0) return;
+    if (P.freezes >= gap && gap <= 2) {
+      P.freezes -= gap;
+      P.lastLit = keyOf(shift(now, -1));        // treat as if yesterday held
+      toast("<b>Streak freeze used</b> — " + gap + " missed day" + (gap > 1 ? "s" : "") +
+            " covered. " + P.freezes + " left.", "big");
+    } else if (P.streak > 0) {
+      toast("Streak reset after " + gap + " missed day" + (gap > 1 ? "s" : "") +
+            ". Best was " + Math.max(P.best, P.streak) + ".");
+      P.best = Math.max(P.best, P.streak);
+      P.streak = 0;
+    }
+    writeLocal();
+  }
+
+  function updateStreak() {
+    if (litLevel(D) < 2) return;
+    if (P.lastLit === TODAY) return;
+    var yest = keyOf(shift(now, -1));
+    P.streak = (P.lastLit === yest) ? P.streak + 1 : 1;
+    P.lastLit = TODAY;
+    P.best = Math.max(P.best, P.streak);
+    toast("<b>Day " + P.streak + " lit.</b> Streak holds.", "big");
+    if (P.streak % 7 === 0 && P.freezes < 2) {
+      P.freezes++;
+      toast("<b>Streak freeze earned.</b> You hold " + P.freezes + ".");
+    }
+    MILESTONES.forEach(function (m) {
+      if (P.streak === m.n && P.badges.indexOf(m.n) === -1) {
+        P.badges.push(m.n);
+        toast("<b>" + m.label + "</b>", "big");
+      }
+    });
+  }
+
+  /* ══ Change bookkeeping — award XP once per frame, per day ══════════ */
+  var wasClosed = {};
+  FRAMES.forEach(function (f) { wasClosed[f.key] = f.done(D); });
+  var wasFull = closedIn(D).length === FRAMES.length;
+
+  function commit() {
+    FRAMES.forEach(function (f) {
+      var isDone = f.done(D);
+      if (isDone && !wasClosed[f.key]) {
+        P.totalXp += f.xp;
+        toast("<b>+" + f.xp + " XP</b> · " + f.name + " exposed");
+      }
+      wasClosed[f.key] = isDone;
+    });
+    var full = closedIn(D).length === FRAMES.length;
+    if (full && !wasFull) {
+      P.totalXp += FULL_BONUS;
+      toast("<b>Full roll.</b> All six frames exposed · +" + FULL_BONUS + " XP", "big");
+    }
+    wasFull = full;
+    updateStreak();
+    save();
+    render();
+  }
+
+  /* ══ Render ═════════════════════════════════════════════════════════ */
+  var RING = 2 * Math.PI * 19;
+
+  function render() {
+    var xp = xpOf(D);
+    var pct = clamp(xp / P.goalXp, 0, 1);
+    $("ringFill").setAttribute("stroke-dashoffset", String(RING * (1 - pct)));
+    $("ring").classList.toggle("is-goal", xp >= P.goalXp);
+    $("ringNum").textContent = xp;
+    $("streakNum").textContent = P.streak;
+    $("streakLbl").textContent = P.streak === 1 ? "day lit" : "days lit";
+    $("freezeNum").textContent = P.freezes;
+    $("bestNum").textContent = Math.max(P.best, P.streak);
+    $("xpTotal").textContent = P.totalXp.toLocaleString() + " xp";
+
+    var n = closedIn(D).length;
+    $("dayDate").textContent = now.toLocaleDateString(undefined,
+      { weekday: "long", month: "long", day: "numeric" });
+    $("dayTitle").textContent =
+      n === 0 ? "Six frames to expose." :
+      n === FRAMES.length ? "The roll is full." :
+      n + " of " + FRAMES.length + " frames exposed.";
+
+    FRAMES.forEach(function (f) {
+      var li = $("f-" + f.key);
+      var done = f.done(D);
+      li.setAttribute("data-state", done ? "done" : (started(f.key) ? "part" : "open"));
+      var st = $(f.key + "Status");
+      if (st) st.textContent = done ? "Exposed · +" + f.xp + " XP" : "Unexposed";
+    });
+    document.body.classList.toggle("is-full", n === FRAMES.length);
+
+    /* 01 */
+    $("dawnOwn").setAttribute("aria-pressed", D.dawn.off ? "true" : "false");
+    $("dawnOwn").textContent = D.dawn.off ? "Phone stayed down" : "I stayed off it";
+    $("dawnMeta").textContent = D.dawn.nice.trim() ? "Nice thing set" : "";
+
+    /* 02 */
+    var wg = P.waterGoal;
+    $("waterMl").textContent = D.water.ml;
+    $("waterGoal").textContent = wg;
+    $("waterBottles").textContent = (D.water.ml / P.bottleMl).toFixed(1) + " bottles";
+    var wf = $("waterFill");
+    wf.style.width = clamp(D.water.ml / wg, 0, 1) * 100 + "%";
+    wf.setAttribute("data-over", D.water.ml >= wg ? "1" : "0");
+    $("waterAdd").textContent = "+ 1 bottle (" + P.bottleMl + ")";
+    $("waterSnapLabel").textContent = D.water.photo ? "Re-photograph the bottle" : "Photograph the bottle";
+    $("waterMeta").textContent = D.water.photo ? "Bottle on file" : "No bottle photo";
+    renderShots("waterShots", D.water.photo ? [{ key: TODAY + ":water", tag: "The bottle" }] :
+      [{ empty: "Photograph your bottle" }]);
+
+    /* 03 */
+    var kcal = D.fuel.meals.reduce(function (a, m) { return a + (m.kcal || 0); }, 0);
+    $("fuelKcal").textContent = kcal;
+    $("fuelGoal").textContent = P.kcalGoal;
+    $("fuelCount").textContent = D.fuel.meals.length +
+      (D.fuel.meals.length === 1 ? " meal" : " meals");
+    var ff = $("fuelFill");
+    ff.style.width = clamp(kcal / P.kcalGoal, 0, 1) * 100 + "%";
+    ff.setAttribute("data-over", kcal > P.kcalGoal ? "1" : "0");
+    $("fuelMeta").textContent = D.fuel.meals.length >= 2 ? "" :
+      (2 - D.fuel.meals.length) + " more to close";
+    renderMeals();
+
+    /* 04 */
+    $("moveBeforeLabel").textContent = D.move.before ? "Retake before" : "Before";
+    $("moveAfterLabel").textContent = D.move.after ? "Retake after" : "After";
+    $("moveMeta").textContent = D.move.mins ? D.move.mins + " min" : "";
+    renderShots("moveShots", [
+      D.move.before ? { key: TODAY + ":move-before", tag: "Before" } : { empty: "Before" },
+      D.move.after ? { key: TODAY + ":move-after", tag: "After" } : { empty: "After" }
+    ]);
+
+    /* 05 */
+    $("manifestMeta").textContent = D.manifest.reps ? D.manifest.reps + " reps" : "";
+
+    /* 06 */
+    $("duskMeta").textContent = D.dusk.tomorrow.trim() ? "Tomorrow set" : "";
+    var dl = $("duskList");
+    dl.textContent = "";
+    D.dusk.good.filter(function (g) { return g.trim(); }).forEach(function (g) {
+      var li = document.createElement("li");
+      li.className = "meal";
+      li.innerHTML = '<span class="meal__name"></span>';
+      li.firstChild.textContent = g;
+      dl.appendChild(li);
+    });
+
+    /* Carry-over from last night */
+    var y = mem.days[keyOf(shift(now, -1))];
+    var carry = y && y.dusk && y.dusk.tomorrow.trim();
+    var cEl = $("dayCarry");
+    if (carry) {
+      cEl.hidden = false;
+      cEl.innerHTML = "";
+      cEl.appendChild(document.createTextNode("Last night you wrote: "));
+      var b = document.createElement("b");
+      b.textContent = carry;
+      cEl.appendChild(b);
+    } else { cEl.hidden = true; }
+
+    renderSheet();
+    renderBadges();
+  }
+
+  function started(key) {
+    if (key === "dawn") return D.dawn.off || !!D.dawn.nice.trim() || D.dawn.timed;
+    if (key === "water") return D.water.ml > 0 || D.water.photo;
+    if (key === "fuel") return D.fuel.meals.length > 0;
+    if (key === "move") return D.move.before || D.move.after || !!D.move.what.trim();
+    if (key === "manifest") return D.manifest.reps > 0;
+    if (key === "dusk") return D.dusk.good.some(function (g) { return !!g.trim(); }) ||
+                               !!D.dusk.tomorrow.trim();
+    return false;
+  }
+
+  function renderShots(hostId, list) {
+    var host = $(hostId);
+    host.textContent = "";
+    list.forEach(function (item) {
+      var d = document.createElement("div");
+      d.className = "shot" + (item.empty ? " shot--empty" : "");
+      if (item.empty) {
+        var s = document.createElement("span");
+        s.textContent = item.empty;
+        d.appendChild(s);
+      } else {
+        var tag = document.createElement("span");
+        tag.className = "shot__tag";
+        tag.textContent = item.tag;
+        d.appendChild(tag);
+        Photos.url(item.key).then(function (u) {
+          if (!u) return;
+          var im = document.createElement("img");
+          im.src = u; im.alt = item.tag;
+          d.insertBefore(im, d.firstChild);
+        });
+      }
+      host.appendChild(d);
+    });
+  }
+
+  function renderMeals() {
+    var host = $("mealList");
+    host.textContent = "";
+    D.fuel.meals.forEach(function (m, i) {
+      var row = document.createElement("div");
+      row.className = "meal";
+      var name = document.createElement("span");
+      name.className = "meal__name";
+      name.textContent = m.name || "Meal";
+      var kcal = document.createElement("span");
+      kcal.className = "meal__kcal";
+      kcal.textContent = (m.kcal || 0) + " kcal";
+      var del = document.createElement("button");
+      del.className = "meal__del";
+      del.type = "button";
+      del.textContent = "×";
+      del.title = "Remove this meal";
+      del.addEventListener("click", function () {
+        if (m.photo) Photos.drop(TODAY + ":fuel-" + m.id);
+        D.fuel.meals.splice(i, 1);
+        commit();
+      });
+      if (m.photo) {
+        var im = document.createElement("img");
+        im.alt = "";
+        row.appendChild(im);
+        Photos.url(TODAY + ":fuel-" + m.id).then(function (u) { if (u) im.src = u; });
+      }
+      row.appendChild(name); row.appendChild(kcal); row.appendChild(del);
+      host.appendChild(row);
+    });
+  }
+
+  function renderSheet() {
+    var g = $("sheetGrid");
+    g.textContent = "";
+    var start = shift(now, -34);
+    for (var i = 0; i < 35; i++) {
+      var d = shift(start, i);
+      var k = keyOf(d);
+      var rec = mem.days[k];
+      var lvl = rec ? litLevel(rec) : 0;
+      var cell = document.createElement("div");
+      cell.className = "cell";
+      cell.setAttribute("data-lit", String(lvl));
+      if (k === TODAY) cell.setAttribute("data-today", "1");
+      cell.title = d.toLocaleDateString(undefined, { month: "short", day: "numeric" }) +
+        (rec ? " — " + closedIn(rec).length + "/6 frames" : " — nothing");
+      g.appendChild(cell);
+    }
+  }
+
+  function renderBadges() {
+    var host = $("badges");
+    host.textContent = "";
+    MILESTONES.forEach(function (m) {
+      var b = document.createElement("span");
+      b.className = "badge";
+      var won = P.badges.indexOf(m.n) !== -1 || P.streak >= m.n || P.best >= m.n;
+      if (won) b.setAttribute("data-won", "1");
+      b.textContent = m.label;
+      host.appendChild(b);
+    });
+  }
+
+  /* ══ Hydrate text inputs (never clobber a field being typed in) ═════ */
+  function set(el, v) { if (el && document.activeElement !== el) el.value = v; }
+  function hydrate() {
+    set($("dawnNice"), D.dawn.nice);
+    set($("moveWhat"), D.move.what);
+    set($("moveMins"), D.move.mins || "");
+    set($("g1"), D.dusk.good[0]); set($("g2"), D.dusk.good[1]); set($("g3"), D.dusk.good[2]);
+    set($("tomorrow"), D.dusk.tomorrow);
+    set($("impression"), P.impression || todaysImpression());
+    set($("setWater"), P.waterGoal); set($("setBottle"), P.bottleMl);
+    set($("setKcal"), P.kcalGoal);   set($("setXp"), P.goalXp);
+    checkImpression();
+  }
+
+  /* ══ 01 · First Light ═══════════════════════════════════════════════ */
+  var dawnEnd = 0, dawnTick = null;
+  function paintClock(sec) {
+    $("dawnClock").textContent = Math.floor(sec / 60) + ":" + pad(Math.max(0, sec % 60));
+  }
+  paintClock(20 * 60);
+  $("dawnStart").addEventListener("click", function () {
+    if (dawnTick) return;
+    dawnEnd = Date.now() + 20 * 60 * 1000;
+    $("dawnState").textContent = "Running — leave the phone alone";
+    dawnTick = setInterval(function () {
+      var left = Math.round((dawnEnd - Date.now()) / 1000);
+      if (left <= 0) {
+        clearInterval(dawnTick); dawnTick = null;
+        paintClock(0);
+        $("dawnState").textContent = "Twenty minutes clear";
+        D.dawn.off = true; D.dawn.timed = true;
+        toast("<b>Twenty minutes, no feed.</b> That's the exposure set.");
+        commit();
+        return;
+      }
+      paintClock(left);
+    }, 1000);
+  });
+  $("dawnOwn").addEventListener("click", function () {
+    D.dawn.off = !D.dawn.off;
+    if (!D.dawn.off) D.dawn.timed = false;
+    commit();
+  });
+  $("dawnNice").addEventListener("input", function () {
+    D.dawn.nice = this.value;
+    commit();
+  });
+
+  /* ══ 02 · Water ═════════════════════════════════════════════════════ */
+  var waterHist = [];
+  function addWater(ml) {
+    D.water.ml = Math.max(0, D.water.ml + ml);
+    waterHist.push(ml);
+    commit();
+  }
+  $("waterAdd").addEventListener("click", function () { addWater(P.bottleMl); });
+  $("waterGlass").addEventListener("click", function () { addWater(250); });
+  $("waterUndo").addEventListener("click", function () {
+    var last = waterHist.pop();
+    if (!last) return;
+    D.water.ml = Math.max(0, D.water.ml - last);
+    commit();
+  });
+  $("waterPhoto").addEventListener("change", function () {
+    var f = this.files && this.files[0];
+    this.value = "";
+    if (!f) return;
+    shrink(f, 900, .75).then(function (b) { return Photos.put(TODAY + ":water", b); })
+      .then(function () { D.water.photo = true; commit(); })
+      .catch(function () { toast("Couldn't read that photo — try again"); });
+  });
+
+  /* ══ 03 · Fuel ══════════════════════════════════════════════════════ */
+  var pending = $("fuelPending");
+  function nextMealId() {
+    return D.fuel.meals.reduce(function (a, m) { return Math.max(a, (m.id || 0) + 1); }, 0);
+  }
+  var sampleNs = null, sampleImages = false;
+
+  use("sample").then(function (s) {
+    if (!s) return;
+    return s.limits().then(function (lim) {
+      sampleNs = s;
+      sampleImages = !!(lim && lim.images);
+      if (!sampleImages) {
+        $("fuelPhoto").parentNode.querySelector("span").textContent = "Photograph a meal";
+      }
+    }).catch(function () { sampleNs = s; });
+  }).catch(function () {});
+
+  var FUEL_PROMPT =
+    "You are estimating the calories in a photograph of a meal. Reply with JSON only, no prose.\n" +
+    'Shape: {"items":[{"name":string,"kcal":number}],"total":number,' +
+    '"confidence":"low"|"medium"|"high","note":string}\n' +
+    "- name: the food plus an assumed portion, e.g. \"grilled chicken breast, ~150 g\"\n" +
+    "- total: the sum of the items' kcal, rounded to the nearest 10\n" +
+    "- note: one sentence, max 18 words, saying what you assumed about portion size\n" +
+    "- confidence: low if the portion or ingredients are genuinely unclear\n" +
+    'If there is no food in the photo, return {"items":[],"total":0,"confidence":"low",' +
+    '"note":"No food visible in this photo."}';
+
+  function mealCard(opts) {
+    pending.hidden = false;
+    pending.textContent = "";
+    var box = document.createElement("div");
+    box.className = "estimate";
+    box.innerHTML =
+      '<div><span class="lbl">What it is</span>' +
+      '<input class="well" id="pName" type="text" placeholder="Lunch"></div>' +
+      '<div><span class="lbl">Calories</span>' +
+      '<input class="well" id="pKcal" type="number" min="0" max="5000" step="10" placeholder="0"></div>' +
+      '<p class="estimate__note" id="pNote"></p>' +
+      '<p class="estimate__conf" id="pConf"></p>' +
+      '<div class="row row--fill">' +
+      '<button class="btn btn--solid" id="pSave">Log it</button>' +
+      '<button class="btn btn--quiet" id="pDrop">Discard</button></div>';
+    pending.appendChild(box);
+    if (opts.name) $("pName").value = opts.name;
+    if (opts.kcal) $("pKcal").value = opts.kcal;
+    if (opts.note) $("pNote").textContent = opts.note;
+    if (opts.conf) $("pConf").textContent = "Confidence: " + opts.conf + " · always correct it if it looks wrong";
+    (opts.kcal ? $("pKcal") : $("pName")).focus();
+
+    $("pSave").addEventListener("click", function () {
+      var kcal = parseInt($("pKcal").value, 10) || 0;
+      var name = $("pName").value.trim() || "Meal";
+      var id = nextMealId();
+      if (opts.blob) Photos.put(TODAY + ":fuel-" + id, opts.blob);
+      D.fuel.meals.push({ id: id, name: name, kcal: kcal, photo: !!opts.blob });
+      pending.hidden = true; pending.textContent = "";
+      commit();
+    });
+    $("pDrop").addEventListener("click", function () {
+      pending.hidden = true; pending.textContent = "";
+    });
+  }
+
+  $("fuelManual").addEventListener("click", function () { mealCard({}); });
+
+  $("fuelPhoto").addEventListener("change", function () {
+    var f = this.files && this.files[0];
+    this.value = "";
+    if (!f) return;
+    pending.hidden = false;
+    pending.innerHTML = '<div class="thinking"><i></i><span>Reading the photo…</span></div>';
+
+    shrink(f, 900, .75).then(function (stored) {
+      if (!sampleNs || !sampleImages) {
+        mealCard({ blob: stored, note: "Type the calories in — photo estimates aren't available here." });
+        return;
+      }
+      return shrink(f, 768, .8).then(function (forClaude) {
+        return sampleNs.json(FUEL_PROMPT, { images: [forClaude], modelTier: "default" })
+          .then(function (r) {
+            var items = (r && r.items) || [];
+            mealCard({
+              blob: stored,
+              name: items.length ? items.map(function (i) { return i.name; }).join(", ") : "",
+              kcal: r && r.total ? Math.round(r.total) : "",
+              note: (r && r.note) || "",
+              conf: (r && r.confidence) || ""
+            });
+          })
+          .catch(function (e) {
+            var why = e && e.code === "rate_limited" ? "Too many estimates just now."
+                    : e && e.code === "not_granted" ? "Estimates aren't switched on for this view."
+                    : "Couldn't read that one.";
+            mealCard({ blob: stored, note: why + " Type the calories in yourself." });
+          });
+      });
+    }).catch(function () {
+      pending.hidden = true;
+      toast("Couldn't read that photo — try again");
+    });
+  });
+
+  /* ══ 04 · Move ══════════════════════════════════════════════════════ */
+  function movePhoto(which, input) {
+    input.addEventListener("change", function () {
+      var f = this.files && this.files[0];
+      this.value = "";
+      if (!f) return;
+      shrink(f, 900, .75)
+        .then(function (b) { return Photos.put(TODAY + ":move-" + which, b); })
+        .then(function () { D.move[which] = true; commit(); })
+        .catch(function () { toast("Couldn't read that photo — try again"); });
+    });
+  }
+  movePhoto("before", $("movePhotoBefore"));
+  movePhoto("after", $("movePhotoAfter"));
+  $("moveWhat").addEventListener("input", function () { D.move.what = this.value; save(); });
+  $("moveMins").addEventListener("input", function () {
+    D.move.mins = parseInt(this.value, 10) || 0; save(); render();
+  });
+
+  /* ══ 05 · Manifest ══════════════════════════════════════════════════ */
+  var IMPRESSIONS = [
+    "The thought I hold today is the shape my day takes.",
+    "I am calm, and the calm is already working in me.",
+    "What I give attention to grows, so I give it to the good.",
+    "My subconscious knows the way, and it is already moving.",
+    "I release the how. The how was never my work.",
+    "There is a healing presence in me, and it is at work right now.",
+    "I speak of what I want and never of what I fear.",
+    "I am worthy of the good I am asking for.",
+    "Nothing outside me has authority over what happens inside me.",
+    "I sleep on the answer and wake up holding it.",
+    "Peace is my natural state, and I return to it easily.",
+    "I do not fight the thought. I replace it.",
+    "The feeling of the thing I want is mine now, before the thing arrives.",
+    "I am guided in all my ways today.",
+    "What I need arrives in good time, and I recognise it when it does.",
+    "I praise the good in other people and it multiplies in me.",
+    "My body knows how to heal, and I get out of its way.",
+    "I forgive, and the weight leaves me.",
+    "Every part of me is at ease.",
+    "I have decided, and the decision is already true.",
+    "I am the one who chooses what gets in.",
+    "Confidence is not something I earn today. It is something I remember.",
+    "The next right step is shown to me clearly.",
+    "I meet this day rested, willing, and unhurried.",
+    "Whatever is truly mine cannot pass me by.",
+    "I think from the end, not toward it.",
+    "My mind is quiet, and a quiet mind gets answered.",
+    "I let go of the argument with what is.",
+    "Good things are ordinary for me now.",
+    "I close today gently and hand it over to sleep."
+  ];
+  function todaysImpression() {
+    var n = Math.floor(Date.UTC(now.getFullYear(), now.getMonth(), now.getDate()) / 86400000);
+    return IMPRESSIONS[((n % IMPRESSIONS.length) + IMPRESSIONS.length) % IMPRESSIONS.length];
+  }
+
+  var impressionEl = $("impression");
+  var touched = false;
+  var NEG = new RegExp([
+    "\\bi(?:'m| am)? ?(?:am )?not\\b", "\\bi do ?n[o']?t\\b", "\\bi ca ?n[o']?t\\b",
+    "\\bi cannot\\b", "\\bi wo ?n[o']?t\\b", "\\bi never\\b",
+    "\\bno more\\b", "\\bno longer\\b", "\\bget rid of\\b",
+    "\\bstop (?:being|feeling|worrying|thinking)\\b",
+    "\\bless (?:anxious|stressed|afraid|worried|scared)\\b"
+  ].join("|"), "i");
+
+  function checkImpression() {
+    var s = impressionEl.value.trim();
+    var el = $("checkText");
+    if (!touched) {
+      el.textContent = P.impression
+        ? "Your saved impression."
+        : "Today’s impression, ready as it is — or write your own over it.";
+      return;
+    }
+    if (!s) { el.textContent = "Write it as though it were already true."; return; }
+    if (/^i\s+will\s+/i.test(s)) {
+      el.textContent = "“I will” keeps it one day away. Try “I am”."; return;
+    }
+    if (/^i\s+(want|need)\b/i.test(s)) {
+      el.textContent = "Wanting states the lack. Say it as a fact — “I have”, “I am”."; return;
+    }
+    if (NEG.test(s)) {
+      el.textContent = "There's a negative aimed at you in there. Say what you do want instead."; return;
+    }
+    if (!/\b(i|i'm|im|my|me|mine)\b/i.test(s)) {
+      el.textContent = "Put yourself in it — “I am”, “my”, “me”."; return;
+    }
+    if (s.split(/\s+/).length > 22) {
+      el.textContent = "Long to repeat twenty-one times. Cut it to one clean line."; return;
+    }
+    el.textContent = "Present tense, stated as fact. This one will take.";
+  }
+  impressionEl.addEventListener("input", function () {
+    touched = true;
+    P.impression = this.value.trim();
+    checkImpression();
+    save({ day: false });
+  });
+
+  /* The ember — drawn rather than authored, so it can breathe cheaply. */
+  function makeLamp(canvas) {
+    var ctx = canvas.getContext("2d"), w = 0, h = 0;
+    function resize() {
+      var r = canvas.getBoundingClientRect();
+      var dpr = Math.min(window.devicePixelRatio || 1, 2);
+      w = Math.max(1, Math.round(r.width)); h = Math.max(1, Math.round(r.height));
+      canvas.width = w * dpr; canvas.height = h * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+    function draw(amount, dim) {
+      if (!w || !h) resize();
+      ctx.clearRect(0, 0, w, h);
+      var cx = w / 2, cy = h / 2, max = Math.min(w, h) / 2;
+      var r = max * (0.34 + 0.66 * amount), a = dim ? 0.45 : 1;
+      var halo = ctx.createRadialGradient(cx, cy, r * 0.2, cx, cy, max);
+      halo.addColorStop(0, "rgba(232,65,47," + (0.34 * a) + ")");
+      halo.addColorStop(0.45, "rgba(155,28,30," + (0.16 * a) + ")");
+      halo.addColorStop(1, "rgba(107,20,24,0)");
+      ctx.fillStyle = halo;
+      ctx.beginPath(); ctx.arc(cx, cy, max, 0, Math.PI * 2); ctx.fill();
+      var bulb = ctx.createRadialGradient(cx, cy - r * 0.08, 0, cx, cy, r);
+      bulb.addColorStop(0, "rgba(255,236,222," + (0.80 * a) + ")");
+      bulb.addColorStop(0.18, "rgba(250,166,110," + (0.85 * a) + ")");
+      bulb.addColorStop(0.46, "rgba(232,65,47," + (0.62 * a) + ")");
+      bulb.addColorStop(0.78, "rgba(150,26,28," + (0.26 * a) + ")");
+      bulb.addColorStop(1, "rgba(107,20,24,0)");
+      ctx.fillStyle = bulb;
+      ctx.beginPath(); ctx.arc(cx, cy, r, 0, Math.PI * 2); ctx.fill();
+      ctx.strokeStyle = "rgba(255,214,190," + (0.16 * a) + ")";
+      ctx.lineWidth = 1;
+      ctx.beginPath(); ctx.arc(cx, cy, r * 0.62, 0, Math.PI * 2); ctx.stroke();
+    }
+    window.addEventListener("resize", resize);
+    resize();
+    return { draw: draw, resize: resize };
+  }
+  function ease(t) { return t * t * (3 - 2 * t); }
+
+  function Breath(phases, onFrame, onCycle) {
+    this.p = phases; this.onFrame = onFrame; this.onCycle = onCycle;
+    this.i = 0; this.t0 = 0; this.raf = null; this.timer = null; this.on = false;
+  }
+  Breath.prototype.start = function () {
+    if (this.on) return;
+    this.on = true; this.i = 0; this.t0 = performance.now();
+    var self = this;
+    if (reduced) {
+      var step = function () {
+        var p = self.p[self.i];
+        self.onFrame(p, (p.from + p.to) / 2, 0);
+        self.timer = setTimeout(function () {
+          self.i = (self.i + 1) % self.p.length;
+          if (self.i === 0 && self.onCycle) self.onCycle();
+          if (self.on) step();
+        }, p.dur);
+      };
+      step(); return;
+    }
+    var frame = function (t) {
+      if (!self.on) return;
+      var p = self.p[self.i];
+      var k = Math.min(1, (t - self.t0) / p.dur);
+      self.onFrame(p, p.from + (p.to - p.from) * ease(k), k);
+      if (k >= 1) {
+        self.t0 = t;
+        self.i = (self.i + 1) % self.p.length;
+        if (self.i === 0 && self.onCycle) self.onCycle();
+      }
+      self.raf = requestAnimationFrame(frame);
+    };
+    this.raf = requestAnimationFrame(frame);
+  };
+  Breath.prototype.stop = function () {
+    this.on = false;
+    if (this.raf) cancelAnimationFrame(this.raf);
+    if (this.timer) clearTimeout(this.timer);
+    this.raf = this.timer = null;
+  };
+
+  var SETTLE = [
+    { name: "Inhale",  dur: 4000, from: .30, to: 1 },
+    { name: "Hold",    dur: 7000, from: 1,   to: 1 },
+    { name: "Release", dur: 8000, from: 1,   to: .30 }
+  ];
+  var EXPOSE = [
+    { name: "Breathe in", dur: 2400, from: .32, to: 1 },
+    { name: "Say it",     dur: 3600, from: 1,   to: .32 }
+  ];
+  var NIGHT = [
+    { name: "", dur: 3000, from: .30, to: .75 },
+    { name: "", dur: 4000, from: .75, to: .30 }
+  ];
+
+  var cardLamp = makeLamp($("cardLamp"));
+  var cardBreath = new Breath(SETTLE, function (p, amt) {
+    cardLamp.draw(amt, false);
+    if ($("cardPhase").textContent !== p.name) $("cardPhase").textContent = p.name;
+  });
+  cardBreath.start();
+
+  var session = $("session");
+  var sessionLamp = makeLamp($("sessionLamp"));
+  var TOTAL_REPS = 21;
+  var live = null, lastFocus = null;
+
+  function openSession(mode) {
+    var phrase = impressionEl.value.trim() || todaysImpression();
+    lastFocus = document.activeElement;
+    session.setAttribute("data-mode", mode);
+    session.hidden = false;
+    $("sessionPhrase").textContent = phrase;
+    $("sessionPhrase").style.opacity = "1";
+    cardBreath.stop();
+    requestAnimationFrame(function () { sessionLamp.resize(); });
+
+    if (mode === "expose") {
+      var reps = 0;
+      $("sessionCount").textContent = "0 / " + TOTAL_REPS;
+      $("sessionHint").textContent = "Say it on every out-breath — out loud if you can";
+      live = new Breath(EXPOSE, function (p, amt) {
+        sessionLamp.draw(amt, false);
+        if ($("sessionPhase").textContent !== p.name) $("sessionPhase").textContent = p.name;
+      }, function () {
+        reps++;
+        D.manifest.reps = Math.max(D.manifest.reps, reps);
+        $("sessionCount").textContent = reps + " / " + TOTAL_REPS;
+        if (reps >= TOTAL_REPS) {
+          live.stop();
+          $("sessionPhase").textContent = "Fixed";
+          $("sessionHint").textContent = "Now leave it alone. Say it once more as you fall asleep.";
+          D.manifest.done = true;
+          commit();
+        }
+      });
+    } else {
+      $("sessionCount").textContent = "";
+      $("sessionPhase").textContent = "";
+      $("sessionHint").textContent = "Lie down. Let the words go where they go. Tap anywhere to leave.";
+      var lit = true;
+      live = new Breath(NIGHT, function (p, amt) { sessionLamp.draw(amt, true); }, function () {
+        lit = !lit;
+        $("sessionPhrase").style.opacity = lit ? "1" : "0.12";
+      });
+      D.manifest.done = true;
+      commit();
+    }
+    live.start();
+    $("endSession").focus();
+  }
+  function closeSession() {
+    if (live) live.stop();
+    live = null;
+    session.hidden = true;
+    session.removeAttribute("data-mode");
+    cardBreath.start();
+    save();
+    if (lastFocus && lastFocus.focus) lastFocus.focus();
+  }
+  $("startExpose").addEventListener("click", function () { openSession("expose"); });
+  $("startNight").addEventListener("click", function () { openSession("night"); });
+  $("endSession").addEventListener("click", closeSession);
+  session.addEventListener("click", function (e) {
+    if (session.getAttribute("data-mode") === "night" || e.target === session) closeSession();
+  });
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape" && !session.hidden) closeSession();
+  });
+
+  /* ══ 06 · Last Light ════════════════════════════════════════════════ */
+  ["g1", "g2", "g3"].forEach(function (id, i) {
+    $(id).addEventListener("input", function () { D.dusk.good[i] = this.value; save(); });
+  });
+  $("tomorrow").addEventListener("input", function () { D.dusk.tomorrow = this.value; save(); });
+  $("duskSave").addEventListener("click", function () {
+    D.dusk.good = [$("g1").value, $("g2").value, $("g3").value];
+    D.dusk.tomorrow = $("tomorrow").value;
+    if (!D.dusk.good.some(function (g) { return g.trim(); })) {
+      toast("Write at least one good thing first");
+      return;
+    }
+    if (!D.dusk.tomorrow.trim()) {
+      toast("Name tomorrow's one thing to close the frame");
+    }
+    D.dusk.done = true;
+    commit();
+  });
+
+  /* ══ Settings ═══════════════════════════════════════════════════════ */
+  function num(el, lo, hi) { return clamp(parseInt(el.value, 10) || lo, lo, hi); }
+  $("setWater").addEventListener("change", function () {
+    P.waterGoal = num(this, 500, 6000); this.value = P.waterGoal; save({ day: false }); render();
+  });
+  $("setBottle").addEventListener("change", function () {
+    P.bottleMl = num(this, 100, 2000); this.value = P.bottleMl; save({ day: false }); render();
+  });
+  $("setKcal").addEventListener("change", function () {
+    P.kcalGoal = num(this, 800, 6000); this.value = P.kcalGoal; save({ day: false }); render();
+  });
+  $("setXp").addEventListener("change", function () {
+    P.goalXp = num(this, 20, 110); this.value = P.goalXp; save({ day: false }); render();
+  });
+
+  /* ══ Go ═════════════════════════════════════════════════════════════ */
+  repairStreak();
+  hydrate();
+  render();
+  writeLocal();
+
+  /* Roll over to a new day if the tab is left open overnight. */
+  setInterval(function () {
+    var k = keyOf(new Date());
+    if (k !== TODAY) location.reload();
+  }, 60000);
+})();
+</script>
+</body>
+</html>
