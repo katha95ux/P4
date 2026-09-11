@@ -30,7 +30,7 @@ Snapshot date: 11 Sep 2026 · Account age: ~2–3 weeks · 15 posts · 31 follow
 **Reach is fine for a brand-new account. Conversion is the problem.** ~9,000 people saw the content and ~31 followed. That is a ~0.3% follow rate. A focused account converts at 1–3%. With the same views you should already be at 100–250 followers.
 
 ### Why people watch but don't follow
-1. **No niche a stranger can name in 3 seconds.** In 15 posts you covered books, matcha, Indian food, a designer bag, skincare, homesickness, a letter to your younger self, and a lawn hack. Every viewer arrives from a different reel and sees a different account. Nobody can answer "what will I get if I follow?"
+1. **No niche a stranger can name in 3 seconds.** In 15 posts you covered books, matcha, paneer, a designer bag, skincare, homesickness, a letter to your younger self, and a lawn hack. Every viewer arrives from a different reel and sees a different account. Nobody can answer "what will I get if I follow?"
 2. **Bio doesn't sell a reason to follow.** "Main character in my own little world / oversharing through reels / vibes & questionable decisions" is cute, but it tells a new visitor nothing about *what* you post or *who* it's for.
 3. **Recent posts are drifting into the weakest lane.** Your newest three (intro, "loves reading", book stack) are all at 250–450. Book content is your lowest-performing pillar. Food and matcha are your highest.
 4. **Format inconsistencies leak views.** The cutting-board reel has black bars (not full 9:16). The carousel got 89 views — carousels get almost no non-follower distribution on a new account. Several covers have no title text, so the grid doesn't read as a "channel."
@@ -49,57 +49,61 @@ Pattern: **face in the first frame + bold title text + a concept or twist → 2�
 
 ## 2. Pick your lane (the single biggest fix)
 
-Your unique angle is already sitting in your grid: **a 20-something Indian girl building a cozy life in Tennessee.** That's a story diaspora viewers (India + US desi audience) and Southern lifestyle viewers both connect with, and almost nobody in Tennessee is doing it.
+Your bio already says it: **"main character in my own little world."** Make that the whole account. The niche is **aesthetic, cozy, main-character 20-something life** — matcha, pretty food, small rituals, goals, the little things that make an ordinary week feel like a movie. No identity angle, no "where I'm from" framing. It's about the *vibe*, not the backstory.
+
+This is exactly what your top reels already are: Matcha Maxing, the sticky-note goals wall, Lowkey Chic, Cake Recipe by Claude, What's in My Bag.
 
 ### Three content pillars (stick to these for 30 days)
 | Pillar | Share | What it looks like |
 |---|---|---|
-| **A. Food & drinks at home** | 50% | Matcha experiments, Indian-fusion recipes (paneer tacos → paneer bao → cardamom matcha), "AI told me to cook this" series, easy desi meals in a US kitchen. |
-| **B. Life in Tennessee as an Indian 20-something** | 30% | "Missing home" style storytelling, things that surprised you about the South, grocery runs for Indian ingredients in TN, friend-making, first-fall-in-Tennessee. |
-| **C. Cozy lifestyle** | 20% | What's in my bag, lowkey chic, sticky-note goals wall updates, occasional books (fold books in here, don't make it its own pillar). |
+| **A. Matcha & pretty food** | 45% | Matcha experiments and ratings, aesthetic home cooking, "I asked AI to make my recipe" series, cozy baking, drinks with a concept. Food is styled, not explained — think mood over recipe. |
+| **B. Main-character rituals & goals** | 35% | The sticky-note wall and its updates, "romanticizing" a Tuesday, morning/evening routines, letters to younger self, "I can't believe this worked" experiments, small life upgrades. |
+| **C. Cozy style & things** | 20% | What's in my bag, lowkey chic, outfit/skincare shelf reels, the occasional book — but shot as a *vibe* (a book + matcha + blanket), not a review. |
 
-**Cut for now:** stand-alone book reels, plain selfie reels, carousels as first-contact content.
+**Cut for now:** book reviews, plain selfie reels, carousels as first-contact content, anything that needs a backstory to land.
 
 ### Bio rewrite (copy/paste and adjust)
 ```
-Sanika 🎀 Indian girl building a cozy life in Tennessee
-matcha, home-cooked desi food & oversharing
+Sanika 🎀 main character in my own little world
+matcha, pretty food & romanticizing the small stuff
 new reel every Tue · Thu · Sat ↓
 ```
-Add 4 Story Highlights with matching covers: **Matcha · Food · TN Life · Me**.
+Add 4 Story Highlights with matching soft covers: **Matcha · Food · Rituals · Me**.
 
----
+### Visual identity (this is what makes it "nicer")
+- **One palette.** Cream, matcha green, soft brown, a pop of pink. Same warm filter on every clip.
+- **One title font** for every cover and on-screen text (the thought-bubble style from Matcha Maxing works — keep it).
+- **Natural window light**, tidy backgrounds, slow-ish cuts. Aesthetic accounts win on *consistency*, not production budget.
+- **Same cover layout** every time: title top-third, you or the object centered. The grid should look like one magazine.
 
 ## 3. What to post next (first 2 weeks, in order)
 
 Every one of these reuses a proven winner.
 
-1. **"Matcha Maxing: Ep 2 — I tried making cardamom matcha"** — same thought-bubble title style as the 1,789-view reel. Hook: "matcha but make it desi."
-2. **"I let AI plan my dinner for 3 days (Indian edition)"** — sequel to Cake Recipe by Claude. End with "Day 2 tomorrow — follow so you don't miss it."
-3. **"The sticky-note wall, 30 days later"** — show which notes got done. Callback to your 1,497 reel; people who saw it will recognize it.
-4. **"Things nobody told me about living in Tennessee as an Indian girl"** — talking-head, 3 points, text on screen. Storytelling pillar.
-5. **"Where I buy Indian groceries in Tennessee"** — local + searchable. Tag the city. This is the kind of reel that gets saved and shared in group chats.
-6. **"Paneer, but make it Southern"** — paneer biscuit? paneer hot chicken? One fusion dish, quick cuts, face at start and end.
-7. **"Missing home, part 2"** — cinematic B-roll + one honest line of text. Your homesickness reel did 302 with no hook text on the cover; give it a title and it will do more.
-8. **"Rating every matcha in [your city]"** — a series that can run for months and pulls local followers.
-9. **"What's in my bag: fall in Tennessee edition"** — repeat of a 518-view format with a seasonal twist.
-10. **"A letter to my younger self about moving to America"** — merges your best emotional hook with your niche.
+1. **"Matcha Maxing: Ep 2"** — a new matcha (strawberry, vanilla, iced with cold foam). Same thought-bubble title as the 1,789-view reel. This is your signature series now.
+2. **"I let AI plan my week of pretty meals"** — sequel to Cake Recipe by Claude. End with "day 2 tomorrow — follow so you don't miss it."
+3. **"The sticky-note wall, 30 days later"** — peel off the ones you did. Callback to your 1,497 reel; people who saw it will recognize it.
+4. **"Romanticizing a boring Tuesday"** — matcha, a walk, one pretty meal, journaling. Soft music, three lines of text. Pure pillar B.
+5. **"Rating every matcha in [your city]"** — a local series that pulls nearby followers and can run for months.
+6. **"My 5 PM reset"** — evening ritual reel: tidy, candle, skincare, book. High save rate content.
+7. **"Cozy girl grocery haul"** — what you buy for a week of matcha + pretty food. Ends with "recipes this week."
+8. **"What's in my bag: fall edition"** — repeat of the 518-view format with a seasonal twist.
+9. **"I can't believe this worked, part 2"** — another small experiment with a payoff. The "does this work?" hook is one of your reliable ones.
+10. **"A letter to my younger self, from my little apartment"** — your best emotional hook, shot in your aesthetic.
 
 Then repeat the cycle with new episodes. **Series > one-offs.** Series give people a reason to follow.
-
----
 
 ## 4. Format rules (non-negotiable for 30 days)
 
 - **9:16 only.** No black bars, no landscape. Re-shoot the cutting-board style clips vertical.
 - **Face + title text in the first frame.** Your two best reels both do this. Make it every reel.
-- **Hook in the first 1.5 seconds,** spoken *and* on screen. Formulas that fit your voice: "I can't believe this worked", "nobody told me…", "POV: you're Indian in Tennessee and…", "I asked AI to…".
+- **Hook in the first 1.5 seconds,** spoken *and* on screen. Formulas that fit your voice: "I can't believe this worked", "nobody told me…", "POV: you decided to romanticize your life", "I asked AI to…".
 - **Length:** 7–15 s for reach reels (food, matcha, hacks); 30–45 s for storytelling reels. Never over 60 s for now.
 - **Cover image with a title** on every reel so the grid reads like a channel, not a camera roll.
 - **Trending audio at low volume** under your voice. Check the Reels audio "trending ↗" arrow.
-- **Captions written for search:** first line = the hook, then 2–3 sentences with keywords (Tennessee / Nashville / Knoxville, Indian food, matcha, desi girl, cozy). Instagram indexes captions now — treat them like SEO.
-- **Hashtags:** 3–5 max, specific. e.g. `#desigirl #indianinamerica #tennesseecreator #matchalover #paneerrecipe`. Skip generic ones like #reels #viral.
-- **End with a soft CTA:** "part 2 on Thursday", "save this for your next grocery run", "follow for the Tennessee chronicles."
+- **Captions written for search:** first line = the hook, then 2–3 sentences with keywords (matcha, cozy, aesthetic, romanticize your life, Nashville / Knoxville if the reel is local). Instagram indexes captions now — treat them like SEO.
+- **Hashtags:** 3–5 max, specific. e.g. `#matchalover #cozyaesthetic #romanticizeyourlife #thatgirl #mainchara`. Skip generic ones like #reels #viral.
+- **End with a soft CTA:** "part 2 on Thursday", "save this for your next grocery run", "follow for the next episode."
 - **Carousels:** only as a follow-up to a reel that already did well, never as fresh content on a new account.
 
 ---
@@ -108,12 +112,12 @@ Then repeat the cycle with new episodes. **Series > one-offs.** Series give peop
 
 Tennessee is split across two time zones: Nashville / Memphis are **Central**, Knoxville / Chattanooga are **Eastern**. Times below are your **local** time.
 
-Your audience is likely two groups: US viewers (evening scrollers) and Indian/diaspora viewers (IST is 10.5 h ahead of Central, 9.5 h ahead of Eastern). Two windows serve both:
+Aesthetic / cozy content is scrolled hardest in the evening and on weekend mornings. Two windows to test:
 
 | Slot | Local time | Who's awake |
 |---|---|---|
-| **Morning** | 7:00–8:30 AM | US commute scroll + India early evening (5:30–7 PM IST) |
-| **Evening** (primary) | 7:00–9:00 PM | US prime scroll + India early morning (6:30–8:30 AM IST) |
+| **Morning** | 7:00–8:30 AM | Commute scroll; also strong Sat/Sun 9–11 AM for cozy content |
+| **Evening** (primary) | 7:00–9:00 PM | Prime scroll window for lifestyle reels |
 | Lunch (test only) | 12:00–1:00 PM | US lunch break |
 
 **Best days:** Tuesday, Thursday, Saturday as your core 3. Add Sunday evening as a 4th once you're consistent (lifestyle/cozy content over-performs on Sundays).
@@ -151,28 +155,21 @@ Review every Sunday. Double down on the top 2 reels of the week; kill any format
 
 ## 8. Creators to study (reference, not copy)
 
-Verify handles before following — names change. Look at *how they hook, structure, and title*, not what they post.
+Verify handles before following — names change. Look at *how they hook, frame, and title*, not what they post.
 
-**Food / desi cooking in America**
-- **Palak Patel — @thechutneylife** · Indian-American home cooking, clean titles, warm voice. Study her recipe-reel pacing.
-- **Nisha Vora — @rainbowplantlife** · Indian-inspired vegan food; excellent first-frame + text hooks.
-- **Shivesh Bhatia — @shivesh17** · Baking with personality; see how he turns one dessert into a series.
-- **Emily Mariko — @emilymariko** · Quiet, cozy cooking with almost no talking. Your "Lowkey Chic" energy done at scale.
-- **Nara Smith — @naraaziza** · Aesthetic from-scratch cooking. Study lighting and pacing, not the lifestyle.
+**Aesthetic food & matcha**
+- **Emily Mariko — @emilymariko** · Quiet, cozy cooking with almost no talking. The closest model for your food pillar.
+- **Nara Smith — @naraaziza** · From-scratch cooking as an aesthetic. Study lighting, pacing, and the calm voiceover.
+- **Meredith Hayden — @wishbonekitchen** · Pretty food with personality and clear on-screen titles.
+- **Shivesh Bhatia — @shivesh17** · Baking with a strong visual signature; see how one dessert becomes a series.
 
-**Diaspora / relatable 20-something storytelling**
-- **Nabela Noor — @nabela** · Bangladeshi-American cozy-life + self-love storytelling. The closest model for your "life in Tennessee" pillar.
-- **Prajakta Koli — @mostlysane** · Relatable talking-head content; watch her first 3 seconds.
-- **Dolly Singh — @dollysingh** · Character/POV formats you can adapt for "Indian girl in the South."
-- **Kritika Khurana — @thatbohogirl** · Fashion/lifestyle vlogs; study her "what's in my bag" and outfit reels.
+**Main-character / romanticize-your-life**
+- **Nabela Noor — @nabela** · Cozy home, self-love, small rituals. Ignore the backstory; copy the warmth and the framing.
+- **Tinx — @tinx** · Opinionated talking-head commentary — a model for your "questionable decisions" voice.
+- **Kritika Khurana — @thatbohogirl** · Lifestyle and what's-in-my-bag formats done cleanly.
 - **Komal Pandey — @komalpandeyofficial** · Bold visual hooks and consistent series branding.
 
-**Commentary / "oversharing" voice**
-- **Tinx — @tinx** · Opinionated lifestyle commentary in a talking-head format — a model for your "questionable decisions" voice.
-
-**Your real comparables:** search `#desigirlinamerica`, `#indianintheus`, `#nashvillefoodie` / `#knoxvillefoodie`, `#matchagirl` and follow 20 accounts with **5K–50K** followers. Watch which of *their* reels get 10× their median and note the hook. Those are the templates to adapt.
-
----
+**Your real comparables:** search `#romanticizeyourlife`, `#cozyaesthetic`, `#matchagirl`, `#thatgirlroutine`, `#slowliving` and follow 20 accounts with **5K–50K** followers. Watch which of *their* reels get 10× their median and note the hook. Those are the templates to adapt.
 
 ## 9. 30-day checklist
 
@@ -181,4 +178,4 @@ Verify handles before following — names change. Look at *how they hook, struct
 - [ ] Post 3–4 reels/week from the list in §3, Tue/Thu/Sat at 7–9 PM local
 - [ ] Daily: reply to comments, 10 min of niche commenting, 1 Story
 - [ ] Weekly: 1 Collab post, Sunday insights review
-- [ ] Day 30: if follow rate is still < 1%, tighten to pillars A + B only
+- [ ] Day 30: if follow rate is still < 1%, tighten to matcha + rituals only
